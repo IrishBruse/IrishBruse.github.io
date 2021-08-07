@@ -1,12 +1,10 @@
 <template>
     <h2 class="text-center">Featured Projects</h2>
-    <Carousel :items-to-show="2" :wrap-around="true">
-        <!-- <Slide v-for="project in projects" :key="project.title">
+    <Carousel :items-to-show="1" :wrap-around="true">
+        <Slide v-for="project in projects" :key="project.title">
             <img :src="require('@/assets/projects/' + project.title + '/Thumbnail.png')" alt="" srcset="" />
-        </Slide> -->
-        <Slide v-for="slide in 10" :key="slide">
-            <div class="carousel__item">{{ slide }}</div>
         </Slide>
+
         <template #addons>
             <Navigation />
             <Pagination />
@@ -15,6 +13,7 @@
 </template>
 
 <script>
+import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import Projects from "@/assets/projects/projects.json";
 
