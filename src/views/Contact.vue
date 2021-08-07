@@ -1,6 +1,6 @@
 <template>
-    <h1>Email</h1>
-    <form @submit.prevent="submit" @reset="onReset">
+    <h1 class="text-center">Email</h1>
+    <form class="text-center" @submit.prevent="submit" @reset="onReset">
         <input placeholder="Name" v-model="name" /><br />
         <input placeholder="Email" v-model="email" /><br />
         <input placeholder="Subject" v-model="subject" /><br />
@@ -40,53 +40,3 @@ export default {
     },
 };
 </script>
-
-<style>
-::placeholder {
-    padding: 0 0.5em;
-    color: var(--input-placeholder);
-    font-weight: bolder;
-}
-
-input,
-textarea {
-    padding: 0.5em 0;
-    width: 100%;
-    border-radius: 0.5em;
-    border-width: 2px;
-    border-style: solid;
-    border-color: var(--input-border);
-    outline: 0;
-    background: var(--input-background);
-
-    margin: 1em 0;
-}
-
-button {
-    padding: 0.5em 0;
-    border-radius: 2em;
-    border-width: 0;
-    border-style: none;
-    outline: 0;
-    background: var(--light-background);
-    color: var(--link);
-    width: 10em;
-    font-size: 1em;
-    cursor: pointer;
-}
-
-button:hover {
-    color: var(--link-hover);
-}
-
-@media only screen and (min-width: 800px) {
-    input,
-    textarea {
-        width: 20em;
-    }
-
-    textarea {
-        resize: none;
-    }
-}
-</style>

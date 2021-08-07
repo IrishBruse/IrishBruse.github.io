@@ -23,22 +23,22 @@
     }
 
     .cell25 {
-        margin: 1em;
+        margin: 1rem;
         width: calc(25% - 2em);
     }
 
     .cell33 {
-        margin: 1em;
+        margin: 1rem;
         width: calc(33.3% - 2em);
     }
 
     .cell50 {
-        margin: 1em;
+        margin: 1rem;
         width: calc(50% - 2em);
     }
 
     .cell75 {
-        margin: 1em;
-        width: calc(50% - 2em);
+        margin: 1rem;
+        width: calc(75% - 2em);
     }
 }

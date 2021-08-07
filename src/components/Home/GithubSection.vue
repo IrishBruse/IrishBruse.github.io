@@ -3,13 +3,13 @@
     <h1 class="text-center">Github</h1>
 
     <div class="githubProfile" v-if="isFoundProfile">
-        <img :src="profile.avatar" alt="" class="githubProfileImage" />
+        <img :src="profile.avatar" alt="" class="githubProfileImage noTextHighlight" />
 
         <div class="profileInfo">
             <h2>{{ profile.name }}</h2>
             <div class="container">
-                <p class="cell profileInfoItems">{{ profile.followers }} followers</p>
-                <p class="cell profileInfoItems">{{ profile.following }} following</p>
+                <p class="cell profileInfoItems noTextHighlight">{{ profile.followers }} followers</p>
+                <p class="cell profileInfoItems noTextHighlight">{{ profile.following }} following</p>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
                 <div class="repoDetails">
                     <p class="cell repoDetail">{{ repo.language }}</p>
                     <a class="cell repoDetail repoStarButton" :href="repo.html_url + '/stargazers'" v-if="repo.stargazers_count > 0">
-                        ✰ {{ repo.stargazers_count }}
+                        <span class="icons">grade</span> {{ repo.stargazers_count }}
                     </a>
                 </div>
             </div>
@@ -88,7 +88,7 @@ export default {
 
 <style>
 .githubLogo {
-    height: 1em;
+    height: 1rem;
 }
 .repoContainer {
     width: 75%;
@@ -107,20 +107,20 @@ export default {
 
 .profileInfo {
     margin: auto;
-    padding: 1em;
+    padding: 1rem;
 }
 .profileInfoItems {
     margin: 0 1em 0 0;
 }
 
 .githubRepo {
-    padding: 1em;
+    padding: 1rem;
     margin: 0.5em 0;
 
     border-width: 1px;
     border-color: var(--input-border);
     border-style: solid;
-    border-radius: 0.75em;
+    border-radius: 0.75rem;
 }
 
 .repoTitle {
@@ -133,7 +133,7 @@ export default {
 }
 
 .repoStar {
-    height: 1em;
+    height: 1rem;
     fill: red;
 }
 

@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
 
 .seperator {
-    height: 10em;
+    height: 10rem;
 }
 
 /* Text Aligning */
@@ -31,6 +32,16 @@
     justify-content: right;
 }
 
+.pin-right {
+    float: right;
+    /* right: 0; */
+}
+
+.pin-left {
+    float: left;
+    /* left: 0; */
+}
+
 /* padding and margin stuff */
 .m0 {
     margin: 0;
@@ -40,24 +51,15 @@
     padding: 0;
 }
 
-#app {
-    height: 100vh;
-}
-
-.mainPage {
-    margin: 0 auto;
-    width: 95%;
-}
-
 * {
-    font-family: "Lato", sans-serif;
+    font-family: "Open Sans", sans-serif;
     color: var(--paragraph);
 }
 
 body {
     margin: 0;
     padding: 0;
-    background: var(--background);
+    background-color: var(--background);
 }
 
 h1,
@@ -69,6 +71,7 @@ h4 {
 
 p {
     color: var(--paragraph);
+    font-weight: normal;
 }
 
 a {
@@ -80,9 +83,52 @@ a:hover {
     color: var(--link-hover);
 }
 
+button:hover {
+    color: var(--link-hover);
+}
+
+button {
+    padding: 0.5rem 0.5rem;
+    margin: 0.5rem;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--background);
+    outline: 2px;
+    background-color: var(--accent-background);
+    color: var(--link);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+::placeholder {
+    padding: 0;
+    color: var(--input-placeholder);
+    font-weight: bolder;
+}
+
+input,
+textarea {
+    padding: 0.5rem 0.5rem;
+    width: 90%;
+    border-radius: 0.5rem;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--input-border);
+    outline: 0;
+    background: var(--background);
+
+    margin: 1rem 0;
+}
+
 @media only screen and (min-width: 800px) {
-    .mainPage {
-        width: 75%;
+    input,
+    textarea {
+        width: 20rem;
+        height: 2rem;
+    }
+
+    textarea {
+        resize: none;
     }
 }
 
@@ -92,14 +138,56 @@ a:hover {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--light-background);
+    background: var(--accent-background);
 }
 
 ::-webkit-scrollbar-thumb {
     background: var(--paragraph);
-    border-radius: 1em;
+    border-radius: 1rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--header);
+}
+
+.icons {
+    font-family: "Material Icons Outlined";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1rem; /* Preferred icon size */
+    display: inline-block;
+    margin: 0.25rem;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    cursor: pointer;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: "liga";
+}
+
+.noTextHighlight {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Edge, Opera and Firefox */
+}
+
+.round {
+    border-radius: 50vh;
 }

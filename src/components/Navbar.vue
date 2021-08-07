@@ -1,16 +1,27 @@
 <template>
-    <div class="navbar text-center">
+    <div class="navbar noTextHighlight text-center">
         <router-link to="/" class="navbarLink">Home</router-link>
-        <router-link to="/contact" class="navbarLink">Contact me</router-link>
+        <router-link to="/projects" class="navbarLink">Projects</router-link>
+        <router-link to="/about" class="navbarLink">About</router-link>
+        <router-link to="/contact" class="navbarLink">Contact</router-link>
+        <ThemeToggle class="pin-right" />
     </div>
 </template>
 
 <style>
 .navbar {
-    background: var(--background);
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+    background-color: var(--accent-background);
 
-    padding: 20px 0;
+    box-shadow: 0 -10px 20px black;
+
+    padding: 20px 5%;
+    position: sticky;
+    top: 0;
+
+    z-index: 10;
+}
+.navbarLinks {
+    padding: 0 5%;
 }
 
 .navbarLink {
@@ -22,6 +33,18 @@
 
 .navbarLink:hover {
     color: var(--link-hover);
-    border-bottom: 0.1em solid var(--link);
+}
+
+.navbarLink[aria-current="page"] {
+    border-color: var(--link);
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
 }
 </style>
+
+<script>
+import ThemeToggle from "../components/Home/ThemeToggle.vue";
+export default {
+    components: { ThemeToggle },
+};
+</script>

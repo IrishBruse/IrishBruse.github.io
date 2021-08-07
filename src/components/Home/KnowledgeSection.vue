@@ -4,7 +4,7 @@
     <h1 class="text-center">Knowledge</h1>
     <div class="container justify-center">
         <div class="cell33">
-            <h2 class="mainColor">Web</h2>
+            <h2 class="mainColor text-center">Web</h2>
             <p class="text-justify">
                 I am both self taught and have studied web development in College. I know HTML, CSS and Javascript. I also know vue its what this is written
                 using.
@@ -12,7 +12,7 @@
         </div>
 
         <div class="cell33">
-            <h2 class="mainColor">C#</h2>
+            <h2 class="mainColor text-center">C#</h2>
             <p class="text-justify">
                 I am self taught in C# and have used it in many ways from Unity to Monogame to a
                 <Router-link to="/projects/Monoboy">Gameboy Emulator</Router-link> and mobile apps. I have been programming in C# for {{ yearsCSharp }} years
@@ -21,12 +21,12 @@
         </div>
 
         <div class="cell33">
-            <h2 class="mainColor">Java</h2>
+            <h2 class="mainColor text-center">Java</h2>
             <p class="text-justify">I have studied Java in College. I know HTML, CSS and Javascript. I also know vue its what this is written using.</p>
         </div>
 
         <div class="cell33">
-            <h2 class="mainColor">GitHub/Git</h2>
+            <h2 class="mainColor text-center">GitHub/Git</h2>
             <p class="text-justify">
                 I have studied git in collage and have been using it for many years as source control for my projects and have gotten a good understanding of it
                 from both the command line and the gui interfaces.
@@ -51,8 +51,8 @@ export default {
 }
 
 .githubLogo {
-    height: 0.9em;
-    padding: 0 0.5em;
+    height: 0.9rem;
+    padding: 0 0.5rem;
     filter: hue-rotate() var(--link);
 }
 </style>

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Contact from "../views/Contact.vue";
+import ProjectTemplate from "../views/ProjectTemplate.vue";
 import Projects from "../views/Projects.vue";
 import PageNotFound from "../views/404.vue";
 
@@ -18,6 +19,12 @@ const routes = [
     },
     {
         path: "/projects/:project",
+        name: "Project",
+        title: "Project",
+        component: ProjectTemplate,
+    },
+    {
+        path: "/projects",
         name: "Projects",
         title: "Projects",
         component: Projects,
@@ -36,7 +43,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _from, next) => {
-    document.title = process.env.VUE_APP_TITLE + " - " + to.name;
+    document.title = "Ethan Conneely - " + to.name;
     next();
 });
 
