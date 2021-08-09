@@ -1,34 +1,36 @@
 <template>
-    <br />
-    <h1 class="text-center">{{ projectTitle }}</h1>
+    <div class="page">
+        <br />
+        <h1 class="text-center">{{ projectTitle }}</h1>
 
-    <div class="container">
-        <div class="cell50">
-            <div class="videoContainer">
-                <iframe
-                    class="video"
-                    :src="projectVideo"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; 
+        <div class="container">
+            <div class="cell50">
+                <div class="videoContainer">
+                    <iframe
+                        class="video"
+                        :src="projectVideo"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; 
                 clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                >
-                </iframe>
-                <!-- <div class="video">YouTube Temp</div> -->
+                        allowfullscreen
+                    >
+                    </iframe>
+                    <!-- <div class="video">YouTube Temp</div> -->
+                </div>
+            </div>
+            <div class="cell50">
+                <div class="justify-center">
+                    <Markdown class="text-justify justify-center" :source="markdownContents"></Markdown>
+                </div>
             </div>
         </div>
-        <div class="cell50">
-            <div class="justify-center">
-                <Markdown class="text-justify justify-center" :source="markdownContents"></Markdown>
-            </div>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="cell50">
-            <a class="downloadButton text-center" v-if="downloadLink" :href="downloadLink">Download {{ projectTitle }} </a>
+        <div class="container">
+            <div class="cell50">
+                <a class="downloadButton text-center" v-if="downloadLink" :href="downloadLink">Download {{ projectTitle }} </a>
+            </div>
+            <div class="cell50"></div>
         </div>
-        <div class="cell50"></div>
     </div>
 </template>
 

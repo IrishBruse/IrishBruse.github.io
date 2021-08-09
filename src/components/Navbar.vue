@@ -1,12 +1,19 @@
 <template>
     <div class="navbar noTextHighlight text-center">
-        <router-link to="/" class="navbarLink">Home</router-link>
+        <router-link to="/home" class="navbarLink">Home</router-link>
         <router-link to="/projects" class="navbarLink">Projects</router-link>
         <router-link to="/about" class="navbarLink">About</router-link>
         <router-link to="/contact" class="navbarLink">Contact</router-link>
         <ThemeToggle class="pin-right" />
     </div>
 </template>
+
+<script>
+import ThemeToggle from "@/components/ThemeToggle.vue";
+export default {
+    components: { ThemeToggle },
+};
+</script>
 
 <style>
 .navbar {
@@ -41,10 +48,3 @@
     border-bottom-width: 2px;
 }
 </style>
-
-<script>
-import ThemeToggle from "../components/Home/ThemeToggle.vue";
-export default {
-    components: { ThemeToggle },
-};
-</script>

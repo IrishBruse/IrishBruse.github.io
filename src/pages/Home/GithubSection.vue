@@ -3,37 +3,38 @@
     <h1 class="text-center">Github</h1>
 
     <div class="githubProfile" v-if="isFoundProfile">
-        <img :src="profile.avatar" alt="" class="githubProfileImage noTextHighlight" />
+        <img :src="profile.avatar" alt="github avatar" class="round noTextHighlight" />
 
         <div class="profileInfo">
-            <h2>{{ profile.name }}</h2>
+            <a :href="profile.url">{{ profile.name }}</a>
             <div class="container">
                 <p class="cell profileInfoItems noTextHighlight">{{ profile.followers }} followers</p>
                 <p class="cell profileInfoItems noTextHighlight">{{ profile.following }} following</p>
             </div>
         </div>
+
+        <h2 class="text-center">Repos</h2>
+
+        <Row class="githubRepos" :gutter="40" :columns="12">
+            <Col :xs="12" :lg="6" v-for="repo in repos" :key="repo.stargazers_count">
+                <div class="githubRepo">
+                    <a :href="repo.html_url" class="repoTitle">
+                        {{ repo.name }}
+                    </a>
+                    <p class="repoDescription">{{ repo.description }}</p>
+                    <div class="repoDetails">
+                        <p class="repoDetail">{{ repo.language }}</p>
+                        <a class="repoDetail repoStarButton" :href="repo.html_url + '/stargazers'" v-if="repo.stargazers_count > 0">
+                            <span class="icons">grade</span> {{ repo.stargazers_count }}
+                        </a>
+                    </div>
+                </div>
+            </Col>
+        </Row>
     </div>
     <div class="text-center" v-else>
         <p>Github Api Request Failed</p>
         <p>Try refresing the page</p>
-    </div>
-
-    <div class="container repoContainer">
-        <div class="cell50" v-for="repo in repos" :key="repo.id">
-            <div class="githubRepo">
-                <a :href="repo.html_url" class="repoTitle">
-                    <img class="githubLogo" :src="require('@/assets/images/Github Logo.png')" alt="" />
-                    {{ repo.name }}
-                </a>
-                <p class="repoDescription">{{ repo.description }}</p>
-                <div class="repoDetails">
-                    <p class="cell repoDetail">{{ repo.language }}</p>
-                    <a class="cell repoDetail repoStarButton" :href="repo.html_url + '/stargazers'" v-if="repo.stargazers_count > 0">
-                        <span class="icons">grade</span> {{ repo.stargazers_count }}
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -95,22 +96,21 @@ export default {
     margin: 0 auto;
 }
 
-.githubProfile {
-    display: flex;
-    margin: 0 auto;
-    width: fit-content;
-}
-
-.githubProfileImage {
-    border-radius: 50%;
-}
-
 .profileInfo {
     margin: auto;
     padding: 1rem;
 }
 .profileInfoItems {
     margin: 0 1em 0 0;
+}
+.githubRepos {
+    width: 100%;
+}
+
+@media only screen and (min-width: 992px) {
+    .githubRepos {
+        width: %;
+    }
 }
 
 .githubRepo {
@@ -146,7 +146,7 @@ export default {
 }
 
 .repoStarButton:hover {
-    color: var(--pallet-blue);
+    color: lightblue;
 }
 
 .repoStarButton:hover .repoStar {

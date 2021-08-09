@@ -1,28 +1,21 @@
-body {
-    --navbar-background: rgb(35, 39, 42);
-
-    --link: rgb(134, 194, 50);
-    --link-hover: white;
-}
-
 body.dark {
-    --background: rgb(35, 39, 42);
-    --accent-background: rgb(30, 34, 36);
-
-    --input-border: rgb(193, 203, 214);
-    --input-placeholder: rgb(132, 137, 143);
+    --background: rgb(30, 34, 36);
+    --accent-background: rgb(35, 39, 42);
 
     --header: rgb(255, 255, 255);
     --paragraph: rgb(228, 228, 228);
+
+    --link: rgb(134, 194, 50);
+    --link-hover: white;
 }
 
 body.light {
     --background: rgb(231, 234, 236);
     --accent-background: rgb(236, 241, 247);
 
-    --input-border: rgb(193, 203, 214);
-    --input-placeholder: rgb(132, 137, 143);
-
     --header: rgb(0, 0, 0);
     --paragraph: rgb(20, 20, 20);
+
+    --link: rgb(69, 112, 9);
+    --link-hover: black;
 }

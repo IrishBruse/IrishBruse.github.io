@@ -1,24 +1,7 @@
 # irishbruse.github.io
 
-## Project setup
-```
-npm install
-```
+Personal portfolio website written using Vue3
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Component packages used:
+- [vue3-carousel](https://ismail9k.github.io/vue3-carousel/)
+- [vue-grid-responsive]([https://link](https://vue-grid-responsive.netlify.app/))

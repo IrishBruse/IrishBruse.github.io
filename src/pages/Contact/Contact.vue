@@ -1,12 +1,14 @@
 <template>
-    <h1 class="text-center">Email</h1>
-    <form class="text-center" @submit.prevent="submit" @reset="onReset">
-        <input placeholder="Name" v-model="name" /><br />
-        <input placeholder="Email" v-model="email" /><br />
-        <input placeholder="Subject" v-model="subject" /><br />
-        <textarea rows="6" placeholder="Body" v-model="message" /><br />
-        <button type="submit">Submit</button>
-    </form>
+    <div class="page">
+        <h1 class="text-center">Email</h1>
+        <form class="text-center" @submit.prevent="submit" @reset="onReset">
+            <input placeholder="Name" v-model="name" /><br />
+            <input placeholder="Email" v-model="email" /><br />
+            <input placeholder="Subject" v-model="subject" /><br />
+            <textarea rows="6" placeholder="Body" v-model="message" /><br />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </template>
 
 <script>

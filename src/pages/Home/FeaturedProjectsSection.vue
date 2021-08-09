@@ -1,0 +1,133 @@
+<template>
+    <h2 class="text-center">Featured Projects</h2>
+    <Carousel :items-to-show="1" :transition="500" :wrap-around="true">
+        <Slide v-for="project in projects" :key="project.title" class="slide">
+            <img :src="require('@/assets/projects/' + project.title + '/Thumbnail.png')" class="slideImage" @click="navigateToProject(project.title)" />
+            <div class="tags">
+                <a v-for="tag in project.tags" :key="tag" :href="tag" class="tag round">{{ tag }}</a>
+            </div>
+        </Slide>
+
+        <template #addons>
+            <Navigation />
+            <Pagination />
+        </template>
+    </Carousel>
+</template>
+
+<script>
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import Projects from "@/assets/projects/projects.json";
+import { useRouter } from "vue-router";
+
+export default {
+    components: {
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
+    },
+    setup() {
+        const router = useRouter();
+
+        const projects = Projects.filter((project) => {
+            return project.featured;
+        });
+
+        const navigateToProject = (project) => {
+            router.push("/projects/" + project);
+        };
+
+        return { projects, navigateToProject };
+    },
+};
+</script>
+
+<style>
+.carousel__prev,
+.carousel__next {
+    background-color: var(--accent-background);
+    box-sizing: content-box;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.carousel__prev:hover,
+.carousel__next:hover {
+    background-color: var(--background);
+}
+
+.carousel__prev {
+    left: 2rem;
+}
+
+.carousel__next {
+    right: 2rem;
+}
+
+.carousel__pagination {
+    padding: 0;
+}
+
+.carousel__pagination-button {
+    border-radius: 50%;
+    background-color: lightgray;
+    box-shadow: 0px 1.5px 5px black;
+}
+
+.carousel__pagination-button:hover {
+    background-color: white;
+}
+
+.carousel__pagination-button--active {
+    background-color: gray;
+}
+
+.carousel__pagination-button--active:hover {
+    background-color: lightgray;
+}
+
+.slide {
+    margin: 0;
+    padding: 0;
+}
+
+.slideImage {
+    width: 95%;
+    cursor: pointer;
+    background-color: var(--background);
+    transition-duration: 0.25s;
+}
+
+@media only screen and (min-width: 992px) {
+    .slideImage {
+        width: 75%;
+    }
+}
+
+.slideImage:hover {
+    filter: brightness(110%);
+}
+
+.tags {
+    position: absolute;
+    bottom: 1rem;
+    opacity: 0;
+    display: flex;
+    margin: 0.25rem;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.tag {
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+
+    padding: 0.25rem;
+    margin: 0.25rem;
+    text-decoration: none;
+}
+</style>

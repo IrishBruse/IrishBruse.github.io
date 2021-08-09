@@ -27,7 +27,6 @@ export default {
         };
 
         function removeTransition() {
-            console.log(document.styleSheets[0]);
             document.styleSheets[0].removeRule(ruleID);
         }
 
