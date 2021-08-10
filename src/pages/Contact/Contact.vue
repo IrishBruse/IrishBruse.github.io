@@ -1,5 +1,6 @@
 <template>
     <div class="page">
+        <div class="pageBackground" />
         <h1 class="text-center">Email</h1>
         <form class="text-center" @submit.prevent="submit" @reset="onReset">
             <input placeholder="Name" v-model="name" /><br />

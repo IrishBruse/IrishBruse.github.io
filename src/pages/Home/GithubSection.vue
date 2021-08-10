@@ -2,44 +2,52 @@
     <div class="seperator" />
     <h1 class="text-center">Github</h1>
 
-    <div class="githubProfile" v-if="isFoundProfile">
-        <img :src="profile.avatar" alt="github avatar" class="round noTextHighlight" />
-
-        <div class="profileInfo">
-            <a :href="profile.url">{{ profile.name }}</a>
-            <div class="container">
-                <p class="cell profileInfoItems noTextHighlight">{{ profile.followers }} followers</p>
-                <p class="cell profileInfoItems noTextHighlight">{{ profile.following }} following</p>
+    <div v-if="isFoundProfile">
+        <div class="githubProfile">
+            <img :src="profile.avatar" alt="github avatar" class="avatar round noTextHighlight" />
+        </div>
+        <div class="githubProfile">
+            <div class="profileInfo">
+                <a :href="profile.url" class="profileLink">{{ profile.name }}</a>
+                <span>
+                    <p class="profileFollowers">{{ profile.followers }} followers</p>
+                    <p class="profileFollowers">{{ profile.following }} following</p>
+                </span>
             </div>
         </div>
 
         <h2 class="text-center">Repos</h2>
 
-        <Row class="githubRepos" :gutter="40" :columns="12">
-            <Col :xs="12" :lg="6" v-for="repo in repos" :key="repo.stargazers_count">
-                <div class="githubRepo">
-                    <a :href="repo.html_url" class="repoTitle">
-                        {{ repo.name }}
-                    </a>
-                    <p class="repoDescription">{{ repo.description }}</p>
-                    <div class="repoDetails">
-                        <p class="repoDetail">{{ repo.language }}</p>
-                        <a class="repoDetail repoStarButton" :href="repo.html_url + '/stargazers'" v-if="repo.stargazers_count > 0">
-                            <span class="icons">grade</span> {{ repo.stargazers_count }}
+        <div class="githubRepos">
+            <Row :gutter="40" :columns="12">
+                <Col :xs="12" :lg="6" v-for="repo in repos" :key="repo.stargazers_count">
+                    <div class="githubRepo">
+                        <a :href="repo.html_url" class="repoTitle">
+                            {{ repo.name }}
                         </a>
+                        <p class="repoDescription">{{ repo.description }}</p>
+                        <div class="repoDetails">
+                            <p class="repoDetail" :style="'color: ' + Colors[repo.language]">{{ repo.language }}</p>
+                            <a class="repoDetail repoStarButton" :href="repo.html_url + '/stargazers'" v-if="repo.stargazers_count > 0">
+                                <span class="icons repoStar">grade</span>
+                                {{ repo.stargazers_count }}
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </Col>
-        </Row>
+                </Col>
+            </Row>
+        </div>
     </div>
     <div class="text-center" v-else>
-        <p>Github Api Request Failed</p>
+        <h3>Github Api Request Failed</h3>
+        <p>Api request limit may be reached</p>
         <p>Try refresing the page</p>
     </div>
 </template>
 
 <script>
 import GitHub from "github-api";
+import Colors from "@/assets/programmingColors.json";
 import { onMounted, ref } from "vue";
 
 export default {
@@ -49,7 +57,7 @@ export default {
         let isFoundProfile = ref(true);
 
         onMounted(() => {
-            var gh = new GitHub();
+            var gh = new GitHub({ token: "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" });
 
             var user = gh.getUser("IrishBruse");
 
@@ -78,88 +86,98 @@ export default {
             user.listRepos(function (error, result) {
                 if (!error) {
                     repos.value = result;
+                    console.log(result);
                 }
             });
         });
 
-        return { profile, repos, isFoundProfile };
+        return { profile, repos, isFoundProfile, Colors };
     },
 };
 </script>
 
 <style>
-.githubLogo {
-    height: 1rem;
+.avatar {
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--background);
+    height: 8rem;
+    display: block;
 }
-.repoContainer {
-    width: 75%;
+.profileFollowers {
+    display: inline;
+    margin: 0 1rem;
+}
+.profileLink {
+    text-decoration: none;
+    font-size: 2rem;
+    position: relative;
+    top: 0;
+    display: block;
+}
+
+.githubProfile {
+    width: fit-content;
     margin: 0 auto;
 }
 
 .profileInfo {
-    margin: auto;
-    padding: 1rem;
+    display: inline-block;
 }
-.profileInfoItems {
-    margin: 0 1em 0 0;
-}
+
 .githubRepos {
     width: 100%;
+    margin: 0 auto;
 }
 
 @media only screen and (min-width: 992px) {
     .githubRepos {
-        width: %;
+        width: 75%;
     }
 }
 
 .githubRepo {
     padding: 1rem;
-    margin: 0.5em 0;
+    margin: 0;
 
     border-width: 1px;
     border-color: var(--input-border);
     border-style: solid;
-    border-radius: 0.75rem;
+    border-radius: 1rem;
+}
+
+.repoDetails {
+    display: inline-block;
+    width: 100%;
+    max-height: 1rem;
+}
+
+.repoDetail {
+    margin: 0 0.5rem;
+    display: inline;
+    width: fit-content;
 }
 
 .repoTitle {
     margin: 0;
     text-decoration: none;
+    font-size: 1.25rem;
 }
 
 .repoDescription {
-    margin: 0.5em 0;
-}
-
-.repoStar {
-    height: 1rem;
-    fill: red;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: calc(1rem + 6px);
 }
 
 .repoStarButton {
-    cursor: pointer;
     text-decoration: none;
     color: var(--paragraph);
-    height: fit-content;
-    padding: 0;
 }
 
-.repoStarButton:hover {
+.repoStarButton:hover,
+.repoStarButton:hover > .repoStar {
     color: lightblue;
-}
-
-.repoStarButton:hover .repoStar {
-    background-image: url("/static/burger.png");
-}
-
-.repoDetails {
-    display: flex;
-    flex-direction: row;
-    padding: 0.5em 0;
-}
-
-.repoDetail {
-    margin: 0 1em 0 0;
 }
 </style>

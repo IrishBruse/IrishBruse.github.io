@@ -1,5 +1,6 @@
 <template>
     <div class="page">
+        <div class="pageBackground" />
         <h1>H1</h1>
         <Row container>
             <Col :xs="12" :md="4" :lg="3">test</Col>

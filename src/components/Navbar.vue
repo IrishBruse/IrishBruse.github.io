@@ -1,6 +1,6 @@
 <template>
     <div class="navbar noTextHighlight text-center">
-        <router-link to="/home" class="navbarLink">Home</router-link>
+        <router-link to="/" class="navbarLink">Home</router-link>
         <router-link to="/projects" class="navbarLink">Projects</router-link>
         <router-link to="/about" class="navbarLink">About</router-link>
         <router-link to="/contact" class="navbarLink">Contact</router-link>
@@ -25,6 +25,8 @@ export default {
     position: sticky;
     top: 0;
 
+    height: 2rem;
+
     z-index: 10;
 }
 .navbarLinks {
@@ -42,7 +44,7 @@ export default {
     color: var(--link-hover);
 }
 
-.navbarLink[aria-current="page"] {
+.router-link-active {
     border-color: var(--link);
     border-bottom-style: solid;
     border-bottom-width: 2px;

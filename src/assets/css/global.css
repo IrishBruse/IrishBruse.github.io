@@ -72,11 +72,15 @@ h2,
 h3,
 h4 {
     color: var(--header);
+    margin: 0;
+    padding: 1rem 0;
 }
 
 p {
     color: var(--paragraph);
     font-weight: normal;
+    margin: 0;
+    padding: 0;
 }
 
 a {
@@ -161,8 +165,8 @@ textarea {
     font-style: normal;
     font-size: 1rem; /* Preferred icon size */
     display: inline-block;
-    margin: 0.25rem;
     line-height: 1;
+    margin: 0.25rem;
     text-transform: none;
     letter-spacing: normal;
     word-wrap: normal;

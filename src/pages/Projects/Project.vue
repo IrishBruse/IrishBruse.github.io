@@ -1,5 +1,6 @@
 <template>
     <div class="page">
+        <div class="pageBackground" />
         <br />
         <h1 class="text-center">{{ projectTitle }}</h1>
 

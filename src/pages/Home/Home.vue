@@ -1,17 +1,18 @@
 <template>
     <div class="page">
-        <FeaturedProjects />
+        <div class="pageBackground" />
+        <Featured />
         <Knowledge />
         <Github />
     </div>
 </template>
 
 <script>
-import FeaturedProjects from "./FeaturedProjectsSection";
+import Featured from "./FeaturedSection";
 import Knowledge from "./KnowledgeSection";
 import Github from "./GithubSection";
 
 export default {
-    components: { FeaturedProjects, Knowledge, Github },
+    components: { Featured, Knowledge, Github },
 };
 </script>

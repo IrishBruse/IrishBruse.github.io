@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "./pages/Home/Home.vue";
 import Contact from "./pages/Contact/Contact.vue";
+import About from "./pages/About/About.vue";
 import Project from "./pages/Projects/Project.vue";
 import Projects from "./pages/Projects/Projects.vue";
 import Error from "./pages/404.vue";
@@ -11,24 +12,28 @@ const routes = [
         name: "Home ",
         title: "Home ",
         component: Home,
+        meta: { index: 0 },
     },
     {
-        path: "/home",
-        name: "Home",
-        title: "Home",
-        component: Home,
+        path: "/projects",
+        name: "Projects",
+        title: "Projects",
+        component: Projects,
+        meta: { index: 1 },
+    },
+    {
+        path: "/about",
+        name: "About",
+        title: "About",
+        component: About,
+        meta: { index: 2 },
     },
     {
         path: "/contact",
         name: "Contact",
         title: "Contact",
         component: Contact,
-    },
-    {
-        path: "/projects/",
-        name: "Projects",
-        title: "Projects",
-        component: Projects,
+        meta: { index: 3 },
     },
     {
         path: "/projects/:project",
