@@ -1,74 +1,79 @@
 <template>
-    <label class="toggle round">
-        <input type="checkbox" class="toggleCheckbox" @click="toggleTheme" />
-        <div class="knob round"></div>
-        <span class="icons">dark_mode</span>
-        <span class="icons">light_mode</span>
+    <label for="themeCheckbox" class="themeSwitch round">
+        <input type="checkbox" id="themeCheckbox" @click="updateTheme" ref="darkThemeCheckbox" />
+        <div class="knob round" />
+
+        <span class="icons themeIcon">light_mode</span>
+        <span class="icons themeIcon">dark_mode</span>
     </label>
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
+
 export default {
     setup() {
-        var ruleID;
+        const darkThemeCheckbox = ref(null);
 
-        const toggleTheme = () => {
-            var dark = document.getElementsByClassName("dark")[0];
-            if (dark != undefined) {
-                dark.className = "light";
-            } else {
-                document.getElementsByClassName("light")[0].className = "dark";
-            }
-
-            document.styleSheets[0].addRule("*", "transition: 0.5s ease !important;");
-            ruleID = document.styleSheets[0].rules.length - 1;
-
-            setTimeout(removeTransition, 500);
+        const updateTheme = () => {
+            localStorage.setItem("isDark", darkThemeCheckbox.value.checked);
+            var body = document.getElementsByTagName("body")[0];
+            body.classList.toggle("dark");
         };
 
-        function removeTransition() {
-            document.styleSheets[0].removeRule(ruleID);
-        }
+        onMounted(() => {
+            if (localStorage.getItem("isDark") === null) {
+                var val = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                localStorage.setItem("isDark", val);
+                darkThemeCheckbox.value.checked = val;
+            } else {
+                darkThemeCheckbox.value.checked = localStorage.getItem("isDark") == "true";
+            }
 
-        return { toggleTheme };
+            updateTheme();
+        });
+        return { updateTheme, darkThemeCheckbox };
     },
 };
 </script>
 
 <style>
-.toggle {
-    position: relative;
-    display: inline-block;
+.themeSwitch {
     width: 3rem;
     height: 1.5rem;
     cursor: pointer;
-    border-width: 2px;
-    border-color: var(--parargraph);
-    border-style: solid;
-}
-
-.toggle input {
-    opacity: 0;
-    height: 0;
-    width: 0;
-}
-
-.knob {
-    border-width: 2px;
-    border-color: var(--parargraph);
-    border-style: solid;
-
-    width: 1rem;
-    height: 1rem;
-    cursor: pointer;
     position: absolute;
-    top: 0;
-    margin: 0.1rem 0.15rem;
+    right: 1rem;
+    top: 1rem;
+    margin: auto 0;
 }
 
-.toggleCheckbox:checked + .knob {
+.themeSwitch > #themeCheckbox:checked + .knob {
     -webkit-transform: translateX(1.5rem);
     -ms-transform: translateX(1.5rem);
     transform: translateX(1.5rem);
+}
+
+.themeSwitch,
+.knob {
+    border-width: 2px;
+    border-color: var(--invert-background);
+    border-style: solid;
+}
+
+.knob {
+    width: 1rem;
+    height: 1rem;
+    margin: 0.1rem;
+    transition: all 0.5s;
+    position: absolute;
+}
+
+.themeIcon {
+    margin: 0.25rem;
+}
+
+#themeCheckbox {
+    display: none;
 }
 </style>

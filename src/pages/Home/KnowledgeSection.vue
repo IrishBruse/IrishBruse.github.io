@@ -1,6 +1,4 @@
 <template>
-    <div class="seperator" />
-
     <h1 class="text-center">Knowledge</h1>
     <div class="knowledge">
         <Row :gutter="20" :columns="12">

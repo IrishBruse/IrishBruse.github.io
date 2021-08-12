@@ -49,7 +49,7 @@ export default {
 .carousel__next {
     background-color: var(--accent-background);
     box-sizing: content-box;
-    border-color: white;
+    border-color: var(--invert-background);
     border-style: solid;
     border-width: 2px;
 }
@@ -98,7 +98,6 @@ export default {
     width: 95%;
     cursor: pointer;
     background-color: var(--background);
-    transition-duration: 0.25s;
 }
 
 @media only screen and (min-width: 992px) {
@@ -114,11 +113,8 @@ export default {
 .tags {
     position: absolute;
     bottom: 1rem;
-    opacity: 0;
     display: flex;
     margin: 0.25rem;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
 }
 
 .tag {

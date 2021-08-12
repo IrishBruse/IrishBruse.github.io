@@ -17,12 +17,14 @@ export default {
     },
     watch: {
         $route(to, from) {
-            this.transitionName = to.meta.index < from.meta.index ? "slide-right" : "slide-left";
+            if (from.name !== undefined) {
+                this.transitionName = to.meta.index < from.meta.index ? "slide-right" : "slide-left";
+            }
         },
     },
     data() {
         return {
-            transitionName: "slide-left",
+            transitionName: "",
         };
     },
 };
@@ -31,55 +33,60 @@ export default {
 <style>
 .page {
     background-color: var(--accent-background);
-    width: 93%;
+    width: 93vw;
     margin: 0 2.5%;
     padding: 0 1%;
 
-    min-height: calc(100vh - 72px);
+    min-height: calc(100vh - var(--navbarHeight));
 }
 
 @media only screen and (min-width: 992px) {
     .page {
         margin: 0 12.5%;
-        width: 72%;
+        width: 72vw;
     }
+}
+
+body {
+    overflow-x: hidden;
 }
 
 /* route transitions */
 .slide-right-enter-from {
-    position: absolute;
     transform: translateX(-100vw);
 }
 
-.slide-right-enter-active {
-    transition: all 0.5s ease-out;
-}
-
 .slide-right-leave-to {
-    position: absolute;
     transform: translateX(100vw);
-}
-
-.slide-right-leave-active {
-    transition: all 0.5s ease-out;
 }
 
 /* route transitions */
 .slide-left-enter-from {
-    position: absolute;
     transform: translateX(100vw);
 }
 
-.slide-left-enter-active {
-    transition: all 0.5s ease-out;
-}
-
 .slide-left-leave-to {
-    position: absolute;
     transform: translateX(-100vw);
 }
 
-.slide-left-leave-active {
-    transition: all 0.5s ease-out;
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active {
+    transition-duration: 0.5s;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.slide-left-enter,
+.slide-right-leave-active {
+    top: var(--navbarHeight);
+    position: absolute;
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+    top: var(--navbarHeight);
+    position: absolute;
 }
 </style>

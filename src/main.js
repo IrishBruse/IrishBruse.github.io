@@ -6,6 +6,8 @@ import { Row, Column, Hidden } from "vue-grid-responsive";
 
 import "./assets/css/theme.css";
 import "./assets/css/global.css";
+import "./assets/css/default.css";
+import "./assets/css/scrollbar.css";
 
 const app = createApp(App);
 

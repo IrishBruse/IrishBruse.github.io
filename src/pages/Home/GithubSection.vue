@@ -1,5 +1,4 @@
 <template>
-    <div class="seperator" />
     <h1 class="text-center">Github</h1>
 
     <div v-if="isFoundProfile">
@@ -173,7 +172,7 @@ export default {
 
 .repoStarButton {
     text-decoration: none;
-    color: var(--paragraph);
+    color: var(--invert-accent-background);
 }
 
 .repoStarButton:hover,

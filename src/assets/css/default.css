@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+
+* {
+    font-family: "Open Sans", sans-serif;
+    color: var(--invert-background);
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 2rem 0 1rem 0;
+    color: var(--invert-accent-background);
+}
+
+p {
+    color: var(--invert-background);
+}
+
+a,
+a:focus,
+a:focus-visible {
+    color: var(--link);
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+button:hover {
+    color: var(--link-hover);
+}
+
+button {
+    padding: 0.5rem 0.5rem;
+    margin: 0.5rem;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--background);
+    outline: 2px;
+    background-color: var(--accent-background);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button,
+button:focus,
+button:focus-visible {
+    color: var(--link);
+}
+
+::placeholder {
+    padding: 0;
+    color: var(--input-placeholder);
+    font-weight: bolder;
+}
+
+.icons {
+    font-family: "Material Icons Outlined";
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    cursor: pointer;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: "liga";
+}
