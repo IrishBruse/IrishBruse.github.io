@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import GitHub from "github-api";
+import { Octokit } from "@octokit/rest";
 import Colors from "@/assets/programmingColors.json";
 import { onMounted, ref } from "vue";
 
@@ -53,41 +53,39 @@ export default {
     setup() {
         let profile = ref({});
         let repos = ref([]);
-        let isFoundProfile = ref(true);
+        let isFoundProfile = ref(false);
 
         onMounted(() => {
-            var gh = new GitHub({ token: "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" });
+            const octokit = new Octokit();
 
-            var user = gh.getUser("IrishBruse");
+            octokit.rest.repos
+                .listForUser({
+                    username: "IrishBruse",
+                })
+                .then(({ data }) => {
+                    repos.value = data;
+                });
 
-            user.getProfile(function (error, result) {
-                if (!error) {
+            octokit.rest.users
+                .getByUsername({
+                    username: "IrishBruse",
+                })
+                .then(({ data }) => {
                     isFoundProfile.value = true;
                     profile.value = {
-                        name: result.name,
-                        username: result.login,
-                        avatar: result.avatar_url,
-                        location: result.location,
-                        url: result.html_url,
-                        repos: result.public_repos,
-                        reposUrl: result.html_url + "?tab=repositories",
-                        followers: result.followers,
-                        followersUrl: result.html_url + "/followers",
-                        following: result.following,
-                        followingUrl: result.html_url + "/following",
+                        name: data.name,
+                        username: data.login,
+                        avatar: data.avatar_url,
+                        location: data.location,
+                        url: data.html_url,
+                        repos: data.public_repos,
+                        reposUrl: data.html_url + "?tab=repositories",
+                        followers: data.followers,
+                        followersUrl: data.html_url + "/followers",
+                        following: data.following,
+                        followingUrl: data.html_url + "/following",
                     };
-                } else {
-                    isFoundProfile.value = false;
-                    profile.value = {};
-                }
-            });
-
-            user.listRepos(function (error, result) {
-                if (!error) {
-                    repos.value = result;
-                    console.log(result);
-                }
-            });
+                });
         });
 
         return { profile, repos, isFoundProfile, Colors };

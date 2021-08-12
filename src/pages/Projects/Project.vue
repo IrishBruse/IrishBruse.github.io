@@ -5,7 +5,7 @@
         <h1 class="text-center">{{ projectTitle }}</h1>
 
         <div class="container">
-            <div class="cell50">
+            <div>
                 <div class="videoContainer">
                     <iframe
                         class="video"
@@ -16,21 +16,18 @@
                         allowfullscreen
                     >
                     </iframe>
-                    <!-- <div class="video">YouTube Temp</div> -->
                 </div>
             </div>
-            <div class="cell50">
-                <div class="justify-center">
-                    <Markdown class="text-justify justify-center" :source="markdownContents"></Markdown>
-                </div>
+            <div>
+                <Markdown class="text-justify" :source="markdownContents"></Markdown>
             </div>
         </div>
 
         <div class="container">
-            <div class="cell50">
+            <div>
                 <a class="downloadButton text-center" v-if="downloadLink" :href="downloadLink">Download {{ projectTitle }} </a>
             </div>
-            <div class="cell50"></div>
+            <div></div>
         </div>
     </div>
 </template>
