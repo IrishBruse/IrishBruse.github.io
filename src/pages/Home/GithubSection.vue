@@ -3,24 +3,26 @@
 
     <div v-if="isFoundProfile">
         <div class="githubProfile">
-            <img :src="profile.avatar" alt="github avatar" class="avatar round noTextHighlight" />
+            <Row class="profileInfo">
+                <Col>
+                    <img :src="profile.avatar" alt="github avatar" class="avatar circle noTextHighlight" />
+                </Col>
+                <Col>
+                    <div class="profileInfoCenter">
+                        <a :href="profile.url" class="profileLink">{{ profile.name }}</a>
+                        <span>
+                            <p class="profileFollowers">{{ profile.followers }} followers</p>
+                            <p class="profileFollowers">{{ profile.following }} following</p>
+                        </span>
+                    </div>
+                </Col>
+            </Row>
         </div>
-        <div class="githubProfile">
-            <div class="profileInfo">
-                <a :href="profile.url" class="profileLink">{{ profile.name }}</a>
-                <span>
-                    <p class="profileFollowers">{{ profile.followers }} followers</p>
-                    <p class="profileFollowers">{{ profile.following }} following</p>
-                </span>
-            </div>
-        </div>
-
-        <h2 class="text-center">Repos</h2>
 
         <div class="githubRepos">
             <Row :gutter="40" :columns="12">
                 <Col :xs="12" :lg="6" v-for="repo in repos" :key="repo.stargazers_count">
-                    <div class="githubRepo">
+                    <div class="githubRepo round shadow">
                         <a :href="repo.html_url" class="repoTitle">
                             {{ repo.name }}
                         </a>
@@ -101,16 +103,22 @@ export default {
     height: 8rem;
     display: block;
 }
+
 .profileFollowers {
     display: inline;
     margin: 0 1rem;
 }
+
 .profileLink {
     text-decoration: none;
     font-size: 2rem;
     position: relative;
     top: 0;
     display: block;
+}
+
+.profileInfoCenter {
+    margin: 2rem;
 }
 
 .githubProfile {
@@ -137,10 +145,9 @@ export default {
     padding: 1rem;
     margin: 0;
 
-    border-width: 1px;
+    border-width: 2px;
     border-color: var(--input-border);
     border-style: solid;
-    border-radius: 1rem;
 }
 
 .repoDetails {

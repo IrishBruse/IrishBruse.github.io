@@ -18,7 +18,7 @@ export default {
         const updateTheme = () => {
             localStorage.setItem("isDark", darkThemeCheckbox.value.checked);
             var body = document.getElementsByTagName("body")[0];
-            body.classList.toggle("dark");
+            body.classList.toggle("dark", darkThemeCheckbox.value.checked);
         };
 
         onMounted(() => {

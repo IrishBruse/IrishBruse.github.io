@@ -1,36 +1,38 @@
 [
     {
         "title": "LDtkMonogame",
+        "type": "Library",
         "tags": ["C#", "Monogame", "Nuget"],
         "video": "",
         "featured": true
     },
     {
         "title": "Monoboy",
+        "type": "Application",
         "tags": ["C#", "Gameboy", "Emulator"],
         "video": "",
-        "download": "https://irishbruse.github.io/LDtkMonogame/",
         "featured": true
     },
     {
         "title": "HyperHop",
+        "type": "Game",
         "tags": ["C#", "Unity", "Game"],
         "video": "https://www.youtube.com/embed/43nXqXdOAu4",
-        "download": "",
-        "featured": true
+        "featured": true,
+        "custom": true
     },
     {
         "title": "Asteroids",
+        "type": "Game",
         "tags": ["C#", "Monogame", "Game"],
         "video": "",
-        "download": "",
         "featured": false
     },
     {
         "title": "ConwaysGameOfLife",
+        "type": "Game",
         "tags": ["C#", "Monogame", "Game"],
         "video": "",
-        "download": "",
         "featured": false
     }
 ]

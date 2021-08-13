@@ -1,17 +1,19 @@
 // vue.config.js
 
-/**
- * @type {import('@vue/cli-service').ProjectOptions}
- */
 module.exports = {
-    configureWebpack: {
-        module: {
-            rules: [
-                {
-                    test: /\.md$/i,
-                    use: "raw-loader",
-                },
-            ],
-        },
+    chainWebpack: (config) => {
+        config.module
+            //md
+            .rule("markdown")
+            .test(/\.md$/i)
+            .use("raw-loader")
+            .loader("raw-loader")
+            .end()
+            //html
+            .rule("html")
+            .rule(/\.html$/i)
+            .use("html-loader")
+            .loader("html-loader")
+            .end();
     },
 };

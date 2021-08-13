@@ -1,33 +1,36 @@
 <template>
     <div class="page">
-        <div class="pageBackground" />
-        <br />
-        <h1 class="text-center">{{ projectTitle }}</h1>
+        <component v-if="isCustom" :is="comp" />
+        <div v-else>
+            <div class="pageBackground" />
+            <br />
+            <h1 class="text-center">{{ projectTitle }}</h1>
 
-        <div class="container">
-            <div>
-                <div class="videoContainer">
-                    <iframe
-                        class="video"
-                        :src="projectVideo"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; 
+            <div class="container">
+                <div>
+                    <div class="videoContainer">
+                        <iframe
+                            class="video"
+                            :src="projectVideo"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; 
                 clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                    >
-                    </iframe>
+                            allowfullscreen
+                        >
+                        </iframe>
+                    </div>
+                </div>
+                <div>
+                    <Markdown class="text-justify" :source="markdownContents"></Markdown>
                 </div>
             </div>
-            <div>
-                <Markdown class="text-justify" :source="markdownContents"></Markdown>
-            </div>
-        </div>
 
-        <div class="container">
-            <div>
-                <a class="downloadButton text-center" v-if="downloadLink" :href="downloadLink">Download {{ projectTitle }} </a>
+            <div class="container">
+                <div>
+                    <a class="downloadButton text-center" v-if="downloadLink" :href="downloadLink">Download {{ projectTitle }} </a>
+                </div>
+                <div></div>
             </div>
-            <div></div>
         </div>
     </div>
 </template>
@@ -36,6 +39,7 @@
 import Markdown from "vue3-markdown-it";
 import { useRoute } from "vue-router";
 import Projects from "@/assets/projects/projects.json";
+import { defineAsyncComponent } from "vue";
 
 export default {
     components: {
@@ -47,10 +51,16 @@ export default {
 
         const projectTitle = currentProject.title;
         const projectVideo = currentProject.video;
-        const markdownContents = require("@/assets/projects/" + currentProject.title + "/markdown.md").default;
+        var markdownContents;
+        if (currentProject.custom) {
+        } else {
+            markdownContents = require("@/assets/projects/" + currentProject.title + "/markdown.md").default;
+        }
         const downloadLink = currentProject.download;
+        const isCustom = currentProject.custom;
+        const comp = defineAsyncComponent(() => import("@/assets/projects/" + currentProject.title + "/index.vue"));
 
-        return { projectTitle, projectVideo, markdownContents, downloadLink };
+        return { comp, currentProject, projectTitle, projectVideo, markdownContents, downloadLink, isCustom };
     },
 };
 </script>
@@ -74,7 +84,6 @@ export default {
     background: var(--accent-background);
     margin: 0.75rem;
     padding: 0.75rem;
-    border-radius: 2rem;
 
     text-decoration: none;
 }

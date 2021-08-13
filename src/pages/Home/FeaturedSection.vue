@@ -47,16 +47,17 @@ export default {
 <style>
 .carousel__prev,
 .carousel__next {
-    background-color: var(--accent-background);
+    background-color: var(--background);
     box-sizing: content-box;
     border-color: var(--invert-background);
+    color: var(--invert-background);
     border-style: solid;
     border-width: 2px;
 }
 
 .carousel__prev:hover,
 .carousel__next:hover {
-    background-color: var(--background);
+    background-color: var(--accent-background);
 }
 
 .carousel__prev {
@@ -110,17 +111,24 @@ export default {
     filter: brightness(110%);
 }
 
+.slideImage:hover + .tags,
+.tags:hover {
+    opacity: 1;
+}
+
 .tags {
+    opacity: 0;
     position: absolute;
     bottom: 1rem;
     display: flex;
     margin: 0.25rem;
+    transition: all 0.25s;
 }
 
 .tag {
     border-width: 2px;
     border-style: solid;
-    border-color: white;
+    border-color: var(--invert-accent-background);
 
     padding: 0.25rem;
     margin: 0.25rem;

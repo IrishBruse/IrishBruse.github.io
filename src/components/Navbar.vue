@@ -48,7 +48,6 @@ export default {
 
             screen.value.width = offsetWidth;
             screen.value.height = offsetHeight;
-            console.log(offsetWidth);
         });
 
         return { toggleLinks, links, screen };

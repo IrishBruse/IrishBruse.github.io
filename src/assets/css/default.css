@@ -3,12 +3,12 @@
 
 * {
     font-family: "Open Sans", sans-serif;
-    color: var(--invert-background);
     margin: 0;
     padding: 0;
 }
 
 body {
+    color: var(--invert-background);
     background-color: var(--background);
 }
 
@@ -19,16 +19,14 @@ h4,
 h5,
 h6 {
     padding: 2rem 0 1rem 0;
-    color: var(--invert-accent-background);
-}
-
-p {
     color: var(--invert-background);
 }
 
-a,
-a:focus,
-a:focus-visible {
+p {
+    color: var(--invert-accent-background);
+}
+
+a {
     color: var(--link);
 }
 
@@ -36,31 +34,32 @@ a:hover {
     color: var(--link-hover);
 }
 
-button:hover {
-    color: var(--link-hover);
-}
-
-button {
+button,
+input[type="text"],
+textarea {
     padding: 0.5rem 0.5rem;
     margin: 0.5rem;
     border-width: 2px;
     border-style: solid;
-    border-color: var(--background);
+    border-color: var(--invert-background);
     outline: 2px;
     background-color: var(--accent-background);
     font-size: 1rem;
-    cursor: pointer;
+    color: var(--invert-background);
 }
 
-button,
-button:focus,
-button:focus-visible {
+button {
+    cursor: pointer;
     color: var(--link);
+}
+
+button:hover {
+    color: var(--link-hover);
 }
 
 ::placeholder {
     padding: 0;
-    color: var(--input-placeholder);
+    color: var(--invert-accent-background);
     font-weight: bolder;
 }
 
