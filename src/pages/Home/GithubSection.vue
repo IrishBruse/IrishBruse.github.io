@@ -10,10 +10,10 @@
                 <Col>
                     <div class="profileInfoCenter">
                         <a :href="profile.url" class="profileLink">{{ profile.name }}</a>
-                        <span>
+                        <div class="profileFollowersContainer">
                             <p class="profileFollowers">{{ profile.followers }} followers</p>
                             <p class="profileFollowers">{{ profile.following }} following</p>
-                        </span>
+                        </div>
                     </div>
                 </Col>
             </Row>
@@ -102,6 +102,8 @@ export default {
     border-color: var(--background);
     height: 8rem;
     display: block;
+
+    margin: 0 auto;
 }
 
 .profileFollowers {
@@ -115,6 +117,8 @@ export default {
     position: relative;
     top: 0;
     display: block;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .profileInfoCenter {
@@ -124,6 +128,7 @@ export default {
 .githubProfile {
     width: fit-content;
     margin: 0 auto;
+    margin-bottom: 2rem;
 }
 
 .profileInfo {
@@ -139,6 +144,15 @@ export default {
     .githubRepos {
         width: 75%;
     }
+
+    .avatar {
+        margin: 0;
+    }
+}
+
+.profileFollowersContainer {
+    margin: 0 auto;
+    width: fit-content;
 }
 
 .githubRepo {

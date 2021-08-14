@@ -36,3 +36,11 @@
 .shadow {
     box-shadow: 0px 10px 16px -10px black;
 }
+
+.inline {
+    display: inline-block;
+}
+
+.hidden {
+    display: none;
+}

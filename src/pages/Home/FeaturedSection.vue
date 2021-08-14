@@ -108,7 +108,7 @@ export default {
 }
 
 .slideImage:hover {
-    filter: brightness(110%);
+    filter: contrast(90%) brightness(105%);
 }
 
 .slideImage:hover + .tags,

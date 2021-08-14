@@ -1,6 +1,6 @@
 <template>
     <label for="themeCheckbox" class="themeSwitch round">
-        <input type="checkbox" id="themeCheckbox" @click="updateTheme" ref="darkThemeCheckbox" />
+        <input type="checkbox" @click="updateTheme" ref="darkThemeCheckbox" id="themeCheckbox" class="hidden" />
         <div class="knob round" />
 
         <span class="icons themeIcon">light_mode</span>
@@ -46,6 +46,7 @@ export default {
     right: 1rem;
     top: 1rem;
     margin: auto 0;
+    padding: 0;
 }
 
 .themeSwitch > #themeCheckbox:checked + .knob {
@@ -71,9 +72,5 @@ export default {
 
 .themeIcon {
     margin: 0.25rem;
-}
-
-#themeCheckbox {
-    display: none;
 }
 </style>
