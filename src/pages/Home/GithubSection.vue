@@ -70,7 +70,6 @@ onMounted(() => {
         })
         .then(({ data }) => {
             isFoundProfile.value = true;
-            console.log(data);
             profile.value = {
                 name: data.name,
                 username: data.login,
@@ -95,7 +94,6 @@ onMounted(() => {
                 .sort((firstEl, secondEl) => firstEl.stargazers_count - secondEl.stargazers_count)
                 .reverse()
                 .slice(0, MaxGithubReposVisable);
-            console.log(repos);
         });
 });
 </script>

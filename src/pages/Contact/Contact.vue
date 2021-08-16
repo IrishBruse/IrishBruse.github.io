@@ -6,7 +6,7 @@
             <input v-model="email" type="email" placeholder="Email" class="round shadow" /><br />
             <input v-model="subject" type="text" placeholder="Subject" class="round shadow" /><br />
             <textarea v-model="message" cols="36" rows="6" placeholder="Body" class="round shadow" /><br />
-            <input type="submit" value="Send Form" class="round shadow" />
+            <input type="submit" value="Send Email" class="round shadow" />
         </form>
     </div>
 </template>

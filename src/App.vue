@@ -16,7 +16,6 @@ const router = useRouter();
 
 router.afterEach((to, from) => {
     if (from.name !== undefined || from.name != "Redirect") {
-        console.log(from.name);
         const toDepth = to.path.split("/").length;
         const fromDepth = from.path.split("/").length;
         if (toDepth == fromDepth) {
