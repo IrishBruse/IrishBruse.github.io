@@ -147,8 +147,10 @@ onUnmounted(() => removeProjects());
 
 .pagination {
     padding: 2rem 0;
-    width: 100%;
-    align-items: flex-end;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .pagination.prev,

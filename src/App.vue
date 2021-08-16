@@ -15,7 +15,8 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 router.afterEach((to, from) => {
-    if (from.name !== undefined) {
+    if (from.name !== undefined || from.name != "Redirect") {
+        console.log(from.name);
         const toDepth = to.path.split("/").length;
         const fromDepth = from.path.split("/").length;
         if (toDepth == fromDepth) {
@@ -33,6 +34,7 @@ router.afterEach((to, from) => {
     width: 93vw;
     margin: 0 2.5%;
     padding: 0 1%;
+    position: relative;
 
     min-height: calc(100vh - var(--navbarHeight));
 }

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "./pages/Home/Home.vue";
+import Redirect from "./pages/Home/Redirect.vue";
 import Contact from "./pages/Contact/Contact.vue";
 import About from "./pages/About/About.vue";
 import ProjectPage from "./pages/Projects/ProjectPage.vue";
@@ -9,10 +10,9 @@ import Error from "./pages/404.vue";
 const routes = [
     {
         path: "/",
-        name: "Home",
-        title: "Home",
-        component: Home,
-        meta: { index: 0 },
+        name: "Redirect",
+        title: "Redirect",
+        component: Redirect,
     },
     {
         path: "/home",
