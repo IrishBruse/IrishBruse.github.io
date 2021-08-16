@@ -2,13 +2,20 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "./pages/Home/Home.vue";
 import Contact from "./pages/Contact/Contact.vue";
 import About from "./pages/About/About.vue";
-import Project from "./pages/Projects/Project.vue";
+import ProjectPage from "./pages/Projects/ProjectPage.vue";
 import Projects from "./pages/Projects/Projects.vue";
 import Error from "./pages/404.vue";
 
 const routes = [
     {
         path: "/",
+        name: "Home",
+        title: "Home",
+        component: Home,
+        meta: { index: 0 },
+    },
+    {
+        path: "/home",
         name: "Home ",
         title: "Home ",
         component: Home,
@@ -39,7 +46,7 @@ const routes = [
         path: "/projects/:project",
         name: "Project",
         title: "Project",
-        component: Project,
+        component: ProjectPage,
     },
     {
         path: "/:pathMatch(.*)*",

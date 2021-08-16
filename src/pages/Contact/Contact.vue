@@ -1,40 +1,33 @@
 <template>
-    <div class="page">
+    <div class="viewport">
         <div class="pageBackground" />
         <h1 class="text-center">Email</h1>
         <form class="text-center" @submit.prevent="submit" @reset="onReset">
-            <input type="email" placeholder="Email" class="round shadow" v-model="email" /><br />
-            <input type="text" placeholder="Subject" class="round shadow" v-model="subject" /><br />
-            <textarea cols="36" rows="6" placeholder="Body" class="round shadow" v-model="message" /><br />
-            <button type="submit" class="round shadow">Submit</button>
+            <input v-model="email" type="email" placeholder="Email" class="round shadow" /><br />
+            <input v-model="subject" type="text" placeholder="Subject" class="round shadow" /><br />
+            <textarea v-model="message" cols="36" rows="6" placeholder="Body" class="round shadow" /><br />
+            <button type="submit" class="round shadow" @click="submit">Submit</button>
         </form>
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            email: "",
-            subject: "",
-            message: "",
-        };
-    },
-    computed: {
-        formValid() {
-            const { email, subject, message } = this;
-            return /(.+)@(.+){2,}\.(.+){2,}/.test(email) && subject.length > 0 && message.length > 0;
-        },
-    },
-    methods: {
-        submit() {
-            if (!this.formValid) {
-                return;
-            }
-            const { subject, message } = this;
+<script setup>
+import { computed, ref } from "@vue/reactivity";
 
-            window.open("mailto:Econn50@outlook.com?subject=" + subject + "&body=" + message);
-        },
-    },
+const email = ref("");
+const subject = ref("");
+const message = ref("");
+
+const submit = () => {
+    const formValid = computed(() => {
+        return /(.+)@(.+){2,}\.(.+){2,}/.test(email) && subject.length > 0 && message.length > 0;
+    });
+
+    if (formValid) {
+        return;
+    }
+    const { subject, message } = this;
+
+    window.open("mailto:Econn50@outlook.com?subject=" + subject + "&body=" + message);
 };
 </script>

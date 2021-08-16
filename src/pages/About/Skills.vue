@@ -10,7 +10,7 @@
             <h2 class="mainColor text-center">C#</h2>
             <p class="text-center">
                 I am self taught in C# and have used it in many ways from Unity to Monogame to a
-                <Router-link to="/projects/Monoboy">Gameboy Emulator</Router-link> and mobile apps. I have been programming in C# for {{ yearsCSharp }} years
+                <Router-link to="/projects/Monoboy"> Gameboy Emulator </Router-link> and mobile apps. I have been programming in C# for {{ yearsCSharp }} years
                 and I am well adversed with its tool chain and the dotnet workflow in general.
             </p>
         </Col>
@@ -34,14 +34,8 @@
     </Row>
 </template>
 
-<script>
-export default {
-    setup() {
-        const yearsCSharp = new Date(Date.now()).getFullYear() - 2014;
-
-        return { yearsCSharp };
-    },
-};
+<script setup>
+const yearsCSharp = new Date(Date.now()).getFullYear() - 2014;
 </script>
 
 <style>

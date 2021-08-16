@@ -8,33 +8,28 @@
     </label>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from "vue";
 
-export default {
-    setup() {
-        const darkThemeCheckbox = ref(null);
+const darkThemeCheckbox = ref(null);
 
-        const updateTheme = () => {
-            localStorage.setItem("isDark", darkThemeCheckbox.value.checked);
-            var body = document.getElementsByTagName("body")[0];
-            body.classList.toggle("dark", darkThemeCheckbox.value.checked);
-        };
-
-        onMounted(() => {
-            if (localStorage.getItem("isDark") === null) {
-                var val = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                localStorage.setItem("isDark", val);
-                darkThemeCheckbox.value.checked = val;
-            } else {
-                darkThemeCheckbox.value.checked = localStorage.getItem("isDark") == "true";
-            }
-
-            updateTheme();
-        });
-        return { updateTheme, darkThemeCheckbox };
-    },
+const updateTheme = () => {
+    localStorage.setItem("isDark", darkThemeCheckbox.value.checked);
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.toggle("dark", darkThemeCheckbox.value.checked);
 };
+
+onMounted(() => {
+    if (localStorage.getItem("isDark") === null) {
+        var val = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        localStorage.setItem("isDark", val);
+        darkThemeCheckbox.value.checked = val;
+    } else {
+        darkThemeCheckbox.value.checked = localStorage.getItem("isDark") == "true";
+    }
+
+    updateTheme();
+});
 </script>
 
 <style>

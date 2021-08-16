@@ -1,14 +1,11 @@
 <template>
-    <div class="page">
+    <div class="viewport">
         <Skills />
     </div>
 </template>
 
-<script>
+<script setup>
 import Skills from "./Skills.vue";
-export default {
-    components: { Skills },
-};
 </script>
 
 <style></style>

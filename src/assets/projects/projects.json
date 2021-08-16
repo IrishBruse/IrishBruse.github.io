@@ -8,7 +8,123 @@
     },
     {
         "title": "Monoboy",
-        "type": "Application",
+        "type": "Software",
+        "tags": ["C#", "Gameboy", "Emulator"],
+        "video": "",
+        "featured": true
+    },
+    {
+        "title": "HyperHop",
+        "type": "Game",
+        "tags": ["C#", "Unity", "Game"],
+        "video": "https://www.youtube.com/embed/43nXqXdOAu4",
+        "featured": true,
+        "custom": true
+    },
+    {
+        "title": "Asteroids",
+        "type": "Game",
+        "tags": ["C#", "Monogame", "Game"],
+        "video": "",
+        "featured": false
+    },
+    {
+        "title": "ConwaysGameOfLife",
+        "type": "Game",
+        "tags": ["C#", "Monogame", "Game"],
+        "video": "",
+        "featured": false
+    },
+    {
+        "title": "Monoboy",
+        "type": "Software",
+        "tags": ["C#", "Gameboy", "Emulator"],
+        "video": "",
+        "featured": true
+    },
+    {
+        "title": "HyperHop",
+        "type": "Game",
+        "tags": ["C#", "Unity", "Game"],
+        "video": "https://www.youtube.com/embed/43nXqXdOAu4",
+        "featured": true,
+        "custom": true
+    },
+    {
+        "title": "Asteroids",
+        "type": "Game",
+        "tags": ["C#", "Monogame", "Game"],
+        "video": "",
+        "featured": false
+    },
+    {
+        "title": "ConwaysGameOfLife",
+        "type": "Game",
+        "tags": ["C#", "Monogame", "Game"],
+        "video": "",
+        "featured": false
+    },
+    {
+        "title": "Monoboy",
+        "type": "Software",
+        "tags": ["C#", "Gameboy", "Emulator"],
+        "video": "",
+        "featured": true
+    },
+    {
+        "title": "HyperHop",
+        "type": "Game",
+        "tags": ["C#", "Unity", "Game"],
+        "video": "https://www.youtube.com/embed/43nXqXdOAu4",
+        "featured": true,
+        "custom": true
+    },
+    {
+        "title": "Asteroids",
+        "type": "Game",
+        "tags": ["C#", "Monogame", "Game"],
+        "video": "",
+        "featured": false
+    },
+    {
+        "title": "ConwaysGameOfLife",
+        "type": "Game",
+        "tags": ["C#", "Monogame", "Game"],
+        "video": "",
+        "featured": false
+    },
+    {
+        "title": "Monoboy",
+        "type": "Software",
+        "tags": ["C#", "Gameboy", "Emulator"],
+        "video": "",
+        "featured": true
+    },
+    {
+        "title": "HyperHop",
+        "type": "Game",
+        "tags": ["C#", "Unity", "Game"],
+        "video": "https://www.youtube.com/embed/43nXqXdOAu4",
+        "featured": true,
+        "custom": true
+    },
+    {
+        "title": "Asteroids",
+        "type": "Game",
+        "tags": ["C#", "Monogame", "Game"],
+        "video": "",
+        "featured": false
+    },
+    {
+        "title": "ConwaysGameOfLife",
+        "type": "Game",
+        "tags": ["C#", "Monogame", "Game"],
+        "video": "",
+        "featured": false
+    },
+    {
+        "title": "Monoboy",
+        "type": "Software",
         "tags": ["C#", "Gameboy", "Emulator"],
         "video": "",
         "featured": true

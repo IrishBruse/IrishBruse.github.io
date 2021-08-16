@@ -15,32 +15,20 @@
     </Carousel>
 </template>
 
-<script>
+<script setup>
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import Projects from "@/assets/projects/projects.json";
 import { useRouter } from "vue-router";
 
-export default {
-    components: {
-        Carousel,
-        Slide,
-        Pagination,
-        Navigation,
-    },
-    setup() {
-        const router = useRouter();
+const router = useRouter();
 
-        const projects = Projects.filter((project) => {
-            return project.featured;
-        });
+const projects = Projects.filter((project) => {
+    return project.featured;
+});
 
-        const navigateToProject = (project) => {
-            router.push("/projects/" + project);
-        };
-
-        return { projects, navigateToProject };
-    },
+const navigateToProject = (project) => {
+    router.push("/projects/" + project);
 };
 </script>
 

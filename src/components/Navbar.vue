@@ -1,58 +1,52 @@
 <template>
     <div class="navbar noTextHighlight">
-        <button v-if="screen.width < 992" @click="toggleLinks()" class="icons burger">menu</button>
-        <div class="navbarLinks" ref="links">
-            <router-link to="/" class="navbarLink">Home</router-link>
-            <router-link to="/projects" class="navbarLink">Projects</router-link>
-            <router-link to="/about" class="navbarLink">About</router-link>
-            <router-link to="/contact" class="navbarLink">Contact</router-link>
+        <button v-if="screen.width < 992" class="icons burger" @click="toggleLinks()">menu</button>
+        <div ref="links" class="navbarLinks">
+            <router-link to="/home" class="navbarLink"> Home </router-link>
+            <router-link to="/projects" class="navbarLink"> Projects </router-link>
+            <router-link to="/about" class="navbarLink"> About </router-link>
+            <router-link to="/contact" class="navbarLink"> Contact </router-link>
         </div>
-        <div class="hiddenButton"></div>
+        <div class="hiddenButton" />
         <ThemeToggle />
     </div>
 </template>
 
-<script>
+<script setup>
 import ThemeToggle from "@/components/ThemeToggle.vue";
 import { ref, onMounted } from "vue";
-export default {
-    components: { ThemeToggle },
-    setup() {
-        const links = ref(null);
-        const screen = ref({ width: 0, height: 0 });
 
-        const outsideClickListener = (clickEvent) => {
-            if (clickEvent.srcElement.parentElement.classList.contains("navbarLinks") == false) {
-                if (links.value.classList.contains("navbarLinksOpen")) {
-                    links.value.classList.remove("navbarLinksOpen");
-                    document.removeEventListener("click", outsideClickListener);
-                }
-            }
-        };
+const links = ref(null);
+const screen = ref({ width: 0, height: 0 });
 
-        const hideOnClickOutside = () => {
-            document.addEventListener("click", outsideClickListener);
-        };
-
-        const toggleLinks = () => {
-            var open = links.value.classList.toggle("navbarLinksOpen");
-            if (open) {
-                setTimeout(hideOnClickOutside, 100);
-            } else {
-                document.removeEventListener("click", outsideClickListener);
-            }
-        };
-
-        onMounted(() => {
-            const { offsetWidth, offsetHeight } = document.getElementById("app");
-
-            screen.value.width = offsetWidth;
-            screen.value.height = offsetHeight;
-        });
-
-        return { toggleLinks, links, screen };
-    },
+const outsideClickListener = (clickEvent) => {
+    if (clickEvent.srcElement.parentElement.classList.contains("navbarLinks") == false) {
+        if (links.value.classList.contains("navbarLinksOpen")) {
+            links.value.classList.remove("navbarLinksOpen");
+            document.removeEventListener("click", outsideClickListener);
+        }
+    }
 };
+
+const hideOnClickOutside = () => {
+    document.addEventListener("click", outsideClickListener);
+};
+
+const toggleLinks = () => {
+    var open = links.value.classList.toggle("navbarLinksOpen");
+    if (open) {
+        setTimeout(hideOnClickOutside, 100);
+    } else {
+        document.removeEventListener("click", outsideClickListener);
+    }
+};
+
+onMounted(() => {
+    const { offsetWidth, offsetHeight } = document.getElementById("app");
+
+    screen.value.width = offsetWidth;
+    screen.value.height = offsetHeight;
+});
 </script>
 
 <style>

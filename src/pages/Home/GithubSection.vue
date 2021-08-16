@@ -21,15 +21,19 @@
 
         <div class="githubRepos">
             <Row :gutter="40" :columns="12">
-                <Col :xs="12" :lg="6" v-for="repo in repos" :key="repo.stargazers_count">
+                <Col v-for="repo in repos" :key="repo.name" :xs="12" :lg="6">
                     <div class="githubRepo round shadow">
                         <a :href="repo.html_url" class="repoTitle">
                             {{ repo.name }}
                         </a>
-                        <p class="repoDescription">{{ repo.description }}</p>
+                        <p class="repoDescription">
+                            {{ repo.description }}
+                        </p>
                         <div class="repoDetails">
-                            <p class="repoDetail" :style="'color: ' + Colors[repo.language]">{{ repo.language }}</p>
-                            <a class="repoDetail repoStarButton" :href="repo.html_url + '/stargazers'" v-if="repo.stargazers_count > 0">
+                            <p class="repoDetail" :style="'color: ' + Colors[repo.language]">
+                                {{ repo.language }}
+                            </p>
+                            <a v-if="repo.stargazers_count > 0" class="repoDetail repoStarButton" :href="repo.html_url + '/stargazers'">
                                 <span class="icons repoStar">grade</span>
                                 {{ repo.stargazers_count }}
                             </a>
@@ -39,60 +43,61 @@
             </Row>
         </div>
     </div>
-    <div class="text-center" v-else>
+    <div v-else class="text-center">
         <h3>Github Api Request Failed</h3>
         <p>Api request limit may be reached</p>
         <p>Try refresing the page</p>
     </div>
 </template>
 
-<script>
+<script setup>
 import { Octokit } from "@octokit/rest";
 import Colors from "@/assets/programmingColors.json";
 import { onMounted, ref } from "vue";
 
-export default {
-    setup() {
-        let profile = ref({});
-        let repos = ref([]);
-        let isFoundProfile = ref(false);
+const MaxGithubReposVisable = 8;
 
-        onMounted(() => {
-            const octokit = new Octokit();
+let profile = ref({});
+let repos = ref([]);
+let isFoundProfile = ref(false);
 
-            octokit.rest.repos
-                .listForUser({
-                    username: "IrishBruse",
-                })
-                .then(({ data }) => {
-                    repos.value = data;
-                });
+onMounted(() => {
+    const octokit = new Octokit();
 
-            octokit.rest.users
-                .getByUsername({
-                    username: "IrishBruse",
-                })
-                .then(({ data }) => {
-                    isFoundProfile.value = true;
-                    profile.value = {
-                        name: data.name,
-                        username: data.login,
-                        avatar: data.avatar_url,
-                        location: data.location,
-                        url: data.html_url,
-                        repos: data.public_repos,
-                        reposUrl: data.html_url + "?tab=repositories",
-                        followers: data.followers,
-                        followersUrl: data.html_url + "/followers",
-                        following: data.following,
-                        followingUrl: data.html_url + "/following",
-                    };
-                });
+    octokit.rest.users
+        .getByUsername({
+            username: "IrishBruse",
+        })
+        .then(({ data }) => {
+            isFoundProfile.value = true;
+            console.log(data);
+            profile.value = {
+                name: data.name,
+                username: data.login,
+                avatar: data.avatar_url,
+                location: data.location,
+                url: data.html_url,
+                repos: data.public_repos,
+                reposUrl: data.repos_url,
+                followers: data.followers,
+                followersUrl: data.followers_url,
+                following: data.following,
+                followingUrl: data.following_url,
+            };
         });
 
-        return { profile, repos, isFoundProfile, Colors };
-    },
-};
+    octokit.rest.repos
+        .listForUser({
+            username: "IrishBruse",
+        })
+        .then(({ data }) => {
+            repos.value = data
+                .sort((firstEl, secondEl) => firstEl.stargazers_count - secondEl.stargazers_count)
+                .reverse()
+                .slice(0, MaxGithubReposVisable);
+            console.log(repos);
+        });
+});
 </script>
 
 <style>
@@ -138,16 +143,6 @@ export default {
 .githubRepos {
     width: 100%;
     margin: 0 auto;
-}
-
-@media only screen and (min-width: 992px) {
-    .githubRepos {
-        width: 75%;
-    }
-
-    .avatar {
-        margin: 0;
-    }
 }
 
 .profileFollowersContainer {
@@ -197,5 +192,15 @@ export default {
 .repoStarButton:hover,
 .repoStarButton:hover > .repoStar {
     color: lightblue;
+}
+
+@media only screen and (min-width: 992px) {
+    .githubRepos {
+        width: 75%;
+    }
+
+    .avatar {
+        margin: 0;
+    }
 }
 </style>

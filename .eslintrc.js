@@ -3,7 +3,7 @@ module.exports = {
     env: {
         node: true,
     },
-    extends: ["plugin:vue/base", "plugin:vue/vue3-essential", "@vue/prettier"],
+    extends: ["plugin:vue/base", "plugin:vue/vue3-essential", "plugin:vue/vue3-recommended", "@vue/prettier"],
     parserOptions: {
         parser: "babel-eslint",
     },
@@ -12,7 +12,7 @@ module.exports = {
         "no-unused-vars": "warn",
         "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-        "max-len": ["error", { code: 200 }],
+        "max-len": ["error", { code: 160 }],
         "vue/no-unused-components": "warn",
     },
 };
