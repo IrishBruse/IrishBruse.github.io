@@ -78,10 +78,13 @@ const changePage = (pageIndex) => {
 
 // Handle displaying projects
 const reloadProjects = (catagoryIndex, pageIndex) => {
-    currentCategory.value = catagoryIndex;
-    currentPage.value = pageIndex;
+    currentCategory.value = -1;
+    currentPage.value = -1;
 
     setTimeout(() => {
+        currentCategory.value = catagoryIndex;
+        currentPage.value = pageIndex;
+
         canChangeTab = true;
 
         // Current Catagory highlight
@@ -113,7 +116,9 @@ const maxPagesForCatagory = computed(() => {
 
 // Events
 onMounted(() => {
-    reloadProjects(0, 0);
+    setTimeout(() => {
+        reloadProjects(0, 0);
+    }, 500);
 });
 </script>
 
@@ -121,7 +126,7 @@ onMounted(() => {
 .project {
     --betweenTime: 0.05s;
     transform: translateY(0rem);
-    opacity: 1;
+    opacity: 0;
     animation: NewProjectAdded 0.35s forwards;
 }
 
