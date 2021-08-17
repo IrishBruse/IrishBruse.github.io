@@ -33,6 +33,7 @@ router.afterEach((to, from) => {
     width: 93vw;
     margin: 0 2.5%;
     padding: 0 1%;
+    position: relative;
 
     min-height: calc(100vh - var(--navbarHeight));
 }

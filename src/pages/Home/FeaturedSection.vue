@@ -35,6 +35,7 @@ const navigateToProject = (project) => {
 <style>
 .carousel__prev,
 .carousel__next {
+    display: none;
     background-color: var(--background);
     box-sizing: content-box;
     border-color: var(--invert-background);
@@ -92,6 +93,11 @@ const navigateToProject = (project) => {
 @media only screen and (min-width: 992px) {
     .slideImage {
         width: 75%;
+    }
+
+    .carousel__prev,
+    .carousel__next {
+        display: flex;
     }
 }
 

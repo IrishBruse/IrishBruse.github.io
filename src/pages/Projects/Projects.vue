@@ -44,24 +44,19 @@ const navigateToProject = (project) => {
 };
 
 // Handle sorting tabs
-const currentCatagory = ref(-1);
+const currentCategory = ref(-1);
 const currentPage = ref(-1);
 
 var canChangeTab = true;
 
-const changeCatagory = (index) => {
-    if (canChangeTab == false || currentCatagory.value == index) {
+const changeCatagory = (newCategory) => {
+    if (canChangeTab == false || currentCategory.value == newCategory) {
         return;
     }
     canChangeTab = false;
 
-    // Tab Styling
-    let sortButtons = document.getElementsByClassName("sort");
-    for (let i = 0; i < sortButtons.length; i++) {
-        sortButtons[i].classList.toggle("active", i == index);
-    }
     // Animate project loading
-    reloadProjects(index);
+    reloadProjects(newCategory, 0);
 };
 
 // Handle pagination
@@ -75,73 +70,77 @@ const changePage = (pageIndex) => {
     if (currentPage.value == pageIndex) {
         return;
     }
+    currentPage.value = pageIndex;
+    scrollTo(0, 0);
 
-    currentPage.value = Number(pageIndex);
-
-    reloadProjects(pageIndex);
+    reloadProjects(currentCategory.value, pageIndex);
 };
 
 // Handle displaying projects
-const reloadProjects = (pageIndex) => {
-    // clear the computed property
-    currentCatagory.value = -1;
+const reloadProjects = (catagoryIndex, pageIndex) => {
+    currentCategory.value = catagoryIndex;
+    currentPage.value = pageIndex;
 
-    // delay reseting the computed property so the animations play correctly
     setTimeout(() => {
-        currentCatagory.value = pageIndex;
+        canChangeTab = true;
 
-        setTimeout(() => {
-            canChangeTab = true;
-            const projects = document.getElementsByClassName("project");
-            projects.forEach((element) => {
-                element.classList.add("new");
-            });
+        // Current Catagory highlight
+        let sortButtons = document.getElementsByClassName("sort");
+        for (let i = 0; i < sortButtons.length; i++) {
+            sortButtons[i].classList.toggle("active", i == catagoryIndex);
+        }
 
-            let gotoPages = document.querySelectorAll(".pagination .page");
-            for (let i = 0; i < gotoPages.length; i++) {
-                gotoPages[i].classList.toggle("active", pageIndex == i);
-            }
-        }, 100);
-    }, 100);
+        // Current Page highlight
+        let gotoPages = document.querySelectorAll(".pagination .page");
+        for (let i = 0; i < gotoPages.length; i++) {
+            gotoPages[i].classList.toggle("active", pageIndex == i);
+        }
+    }, 5);
 };
 
 // Computed values
 const filteredProjects = computed(() => {
-    const title = Catagories[currentCatagory.value];
+    const title = Catagories[currentCategory.value];
     var projects = Projects.filter((project) => project.type == title || title == "All");
     var pageOffset = currentPage.value * MaxProjectsPerPage;
     return projects.slice(pageOffset, pageOffset + MaxProjectsPerPage);
 });
 
 const maxPagesForCatagory = computed(() => {
-    const title = Catagories[currentCatagory.value];
+    const title = Catagories[currentCategory.value];
     return Math.ceil(Projects.filter((project) => project.type == title || title == "All").length / MaxProjectsPerPage);
 });
 
 // Events
 onMounted(() => {
-    changeCatagory(0);
-    setTimeout(() => {
-        changePage(0);
-    }, 500);
+    reloadProjects(0, 0);
 });
 </script>
 
 <style>
 .project {
-    transition: transform 0.25s ease-in-out, opacity 0.1s linear;
     --betweenTime: 0.05s;
-    opacity: 0;
-    transform: translateY(2rem);
+    transform: translateY(0rem);
+    opacity: 1;
+    animation: NewProjectAdded 0.35s forwards;
 }
 
-.project.new {
-    opacity: 1;
-    transform: translateY(0rem);
+@keyframes NewProjectAdded {
+    0% {
+        transform: translateY(2rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
 }
 
 .pagination {
     padding: 2rem 0;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
 }
 
 .pagination.prev,
@@ -239,49 +238,46 @@ onMounted(() => {
         width: min-content;
         margin: 0 0.5rem;
     }
+
     .pagination {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
     }
 }
 
 /* delay the children in order ugly but fine no need for js */
 .projectsContainer .project:nth-child(1) {
-    transition-delay: calc(var(--betweenTime) * 1);
+    animation-delay: calc(var(--betweenTime) * 1);
 }
 .projectsContainer .project:nth-child(2) {
-    transition-delay: calc(var(--betweenTime) * 2);
+    animation-delay: calc(var(--betweenTime) * 2);
 }
 .projectsContainer .project:nth-child(3) {
-    transition-delay: calc(var(--betweenTime) * 3);
+    animation-delay: calc(var(--betweenTime) * 3);
 }
 .projectsContainer .project:nth-child(4) {
-    transition-delay: calc(var(--betweenTime) * 4);
+    animation-delay: calc(var(--betweenTime) * 4);
 }
 .projectsContainer .project:nth-child(5) {
-    transition-delay: calc(var(--betweenTime) * 5);
+    animation-delay: calc(var(--betweenTime) * 5);
 }
 .projectsContainer .project:nth-child(6) {
-    transition-delay: calc(var(--betweenTime) * 6);
+    animation-delay: calc(var(--betweenTime) * 6);
 }
 .projectsContainer .project:nth-child(7) {
-    transition-delay: calc(var(--betweenTime) * 7);
+    animation-delay: calc(var(--betweenTime) * 7);
 }
 .projectsContainer .project:nth-child(8) {
-    transition-delay: calc(var(--betweenTime) * 8);
+    animation-delay: calc(var(--betweenTime) * 8);
 }
 .projectsContainer .project:nth-child(9) {
-    transition-delay: calc(var(--betweenTime) * 9);
+    animation-delay: calc(var(--betweenTime) * 9);
 }
 .projectsContainer .project:nth-child(10) {
-    transition-delay: calc(var(--betweenTime) * 10);
+    animation-delay: calc(var(--betweenTime) * 10);
 }
 .projectsContainer .project:nth-child(11) {
-    transition-delay: calc(var(--betweenTime) * 11);
+    animation-delay: calc(var(--betweenTime) * 11);
 }
 .projectsContainer .project:nth-child(12) {
-    transition-delay: calc(var(--betweenTime) * 12);
+    animation-delay: calc(var(--betweenTime) * 12);
 }
 </style>

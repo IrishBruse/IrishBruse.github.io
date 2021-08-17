@@ -92,9 +92,9 @@ onMounted(() => {
 
     text-align: center;
     position: absolute;
-    width: 25vw;
+    width: 80vw;
 
-    padding: 0 37.5%;
+    padding: 0 10%;
 
     top: var(--navbarHeight);
 
@@ -105,9 +105,12 @@ onMounted(() => {
 }
 
 .navbarLink {
+    width: ;
     font-size: 1.25rem;
     padding: 0.5rem 1rem;
+    margin: 0 auto;
     text-decoration: none;
+    text-align: center;
 }
 
 @media only screen and (min-width: 992px) {
@@ -126,7 +129,8 @@ onMounted(() => {
     }
 
     .navbarLink {
-        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 1rem;
+        padding: 0;
     }
 }
 
