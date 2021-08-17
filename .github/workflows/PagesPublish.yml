@@ -42,9 +42,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: pages
           publish_dir: ./dist
-          
-      - name: create 404
-        uses: canastro/copy-file-action@master
-        with:
-          source: "index.html"
-          target: "404.html"
