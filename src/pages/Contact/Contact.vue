@@ -2,11 +2,11 @@
     <div class="viewport">
         <div class="pageBackground" />
         <h1 class="text-center">Email</h1>
-        <form class="text-center" @submit="send" @reset="onReset">
-            <input v-model="email" type="email" placeholder="Email" class="round shadow" /><br />
-            <input v-model="subject" type="text" placeholder="Subject" class="round shadow" /><br />
-            <textarea v-model="message" cols="36" rows="6" placeholder="Body" class="round shadow" /><br />
-            <input type="submit" value="Send Email" class="round shadow" />
+        <form class="text-center" @reset="onReset" @submit="send">
+            <input v-model="email" class="round shadow" placeholder="Email" type="email" /><br />
+            <input v-model="subject" class="round shadow" placeholder="Subject" type="text" /><br />
+            <textarea v-model="message" class="round shadow" cols="36" placeholder="Body" rows="6" /><br />
+            <input class="round shadow" type="submit" value="Send Email" />
         </form>
     </div>
 </template>

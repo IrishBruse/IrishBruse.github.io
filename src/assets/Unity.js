@@ -6,16 +6,16 @@ export function createUnityInstance(e, t, r) {
             r = t ? t.toString() : "string" == typeof e.message ? e.message : "string" == typeof e.reason ? e.reason : "";
         if (
             (t && "string" == typeof t.stack && (r += "\n" + t.stack.substring(t.stack.lastIndexOf(r, 0) ? 0 : r.length).replace(/(^\n*|\n*$)/g, "")),
-            r && l.stackTraceRegExp && l.stackTraceRegExp.test(r))
+                r && l.stackTraceRegExp && l.stackTraceRegExp.test(r))
         ) {
             var n =
-                    e instanceof ErrorEvent
-                        ? e.filename
-                        : t && "string" == typeof t.fileName
+                e instanceof ErrorEvent
+                    ? e.filename
+                    : t && "string" == typeof t.fileName
                         ? t.fileName
                         : t && "string" == typeof t.sourceURL
-                        ? t.sourceURL
-                        : "",
+                            ? t.sourceURL
+                            : "",
                 o = e instanceof ErrorEvent ? e.lineno : t && "number" == typeof t.lineNumber ? t.lineNumber : t && "number" == typeof t.line ? t.line : 0;
             a(r, n, o);
         }
@@ -29,22 +29,22 @@ export function createUnityInstance(e, t, r) {
             !(
                 (l.errorHandler && l.errorHandler(e, t, r)) ||
                 (console.log("Invoking error handler due to\n" + e),
-                "function" == typeof dump && dump("Invoking error handler due to\n" + e),
-                e.indexOf("UnknownError") != -1 || e.indexOf("Program terminated with exit(0)") != -1 || a.didShowErrorMessage)
+                    "function" == typeof dump && dump("Invoking error handler due to\n" + e),
+                    e.indexOf("UnknownError") != -1 || e.indexOf("Program terminated with exit(0)") != -1 || a.didShowErrorMessage)
             )
         ) {
             var e = "An error occurred running the Unity content on this page. See your browser JavaScript console for more info. The error was:\n" + e;
             e.indexOf("DISABLE_EXCEPTION_CATCHING") != -1
                 ? (e =
-                      "An exception has occurred, but exception handling has been disabled in this build. If you are the developer of this content, enable exceptions in your project WebGL player settings to be able to catch the exception or see the stack trace.")
+                    "An exception has occurred, but exception handling has been disabled in this build. If you are the developer of this content, enable exceptions in your project WebGL player settings to be able to catch the exception or see the stack trace.")
                 : e.indexOf("Cannot enlarge memory arrays") != -1
-                ? (e = "Out of memory. If you are the developer of this content, try allocating more memory to your WebGL build in the WebGL player settings.")
-                : (e.indexOf("Invalid array buffer length") == -1 &&
-                      e.indexOf("Invalid typed array length") == -1 &&
-                      e.indexOf("out of memory") == -1 &&
-                      e.indexOf("could not allocate memory") == -1) ||
-                  (e =
-                      "The browser could not allocate enough memory for the WebGL content. If you are the developer of this content, try allocating less memory to your WebGL build in the WebGL player settings."),
+                    ? (e = "Out of memory. If you are the developer of this content, try allocating more memory to your WebGL build in the WebGL player settings.")
+                    : (e.indexOf("Invalid array buffer length") == -1 &&
+                        e.indexOf("Invalid typed array length") == -1 &&
+                        e.indexOf("out of memory") == -1 &&
+                        e.indexOf("could not allocate memory") == -1) ||
+                    (e =
+                        "The browser could not allocate enough memory for the WebGL content. If you are the developer of this content, try allocating less memory to your WebGL build in the WebGL player settings."),
                 alert(e),
                 (a.didShowErrorMessage = !0);
         }
@@ -54,8 +54,8 @@ export function createUnityInstance(e, t, r) {
             var n = l.downloadProgress[e];
             n || (n = l.downloadProgress[e] = { started: !1, finished: !1, lengthComputable: !1, total: 0, loaded: 0 }),
                 "object" != typeof t ||
-                    ("progress" != t.type && "load" != t.type) ||
-                    (n.started || ((n.started = !0), (n.lengthComputable = t.lengthComputable), (n.total = t.total)),
+                ("progress" != t.type && "load" != t.type) ||
+                (n.started || ((n.started = !0), (n.lengthComputable = t.lengthComputable), (n.total = t.total)),
                     (n.loaded = t.loaded),
                     "load" == t.type && (n.finished = !0));
             var o = 0,
@@ -118,7 +118,7 @@ export function createUnityInstance(e, t, r) {
                     if (!String.fromCharCode.apply(null, e.subarray(r, r + n.length)) == n) throw "unknown data format";
                     r += n.length;
                     var o = t.getUint32(r, !0);
-                    for (r += 4; r < o; ) {
+                    for (r += 4; r < o;) {
                         var a = t.getUint32(r, !0);
                         r += 4;
                         var s = t.getUint32(r, !0);
@@ -135,7 +135,7 @@ export function createUnityInstance(e, t, r) {
                 });
         });
     }
-    r = r || function () {};
+    r = r || function () { };
     var l = {
         canvas: e,
         webglContextAttributes: { preserveDrawingBuffer: !1 },
@@ -201,25 +201,25 @@ export function createUnityInstance(e, t, r) {
             }
             for (
                 var t,
-                    r,
-                    n,
-                    o,
-                    a,
-                    s,
-                    i = navigator.userAgent + " ",
-                    d = [
-                        ["Firefox", "Firefox"],
-                        ["OPR", "Opera"],
-                        ["Edg", "Edge"],
-                        ["SamsungBrowser", "Samsung Browser"],
-                        ["Trident", "Internet Explorer"],
-                        ["MSIE", "Internet Explorer"],
-                        ["Chrome", "Chrome"],
-                        ["CriOS", "Chrome on iOS Safari"],
-                        ["FxiOS", "Firefox on iOS Safari"],
-                        ["Safari", "Safari"],
-                    ],
-                    u = 0;
+                r,
+                n,
+                o,
+                a,
+                s,
+                i = navigator.userAgent + " ",
+                d = [
+                    ["Firefox", "Firefox"],
+                    ["OPR", "Opera"],
+                    ["Edg", "Edge"],
+                    ["SamsungBrowser", "Samsung Browser"],
+                    ["Trident", "Internet Explorer"],
+                    ["MSIE", "Internet Explorer"],
+                    ["Chrome", "Chrome"],
+                    ["CriOS", "Chrome on iOS Safari"],
+                    ["FxiOS", "Firefox on iOS Safari"],
+                    ["Safari", "Safari"],
+                ],
+                u = 0;
                 u < d.length;
                 ++u
             )
@@ -230,17 +230,17 @@ export function createUnityInstance(e, t, r) {
             "Safari" == t && (r = e("Version/(.*?) ", i, 1)), "Internet Explorer" == t && (r = e("rv:(.*?)\\)? ", i, 1) || r);
             for (
                 var l = [
-                        ["Windows (.*?)[;)]", "Windows"],
-                        ["Android ([0-9_.]+)", "Android"],
-                        ["iPhone OS ([0-9_.]+)", "iPhoneOS"],
-                        ["iPad.*? OS ([0-9_.]+)", "iPadOS"],
-                        ["FreeBSD( )", "FreeBSD"],
-                        ["OpenBSD( )", "OpenBSD"],
-                        ["Linux|X11()", "Linux"],
-                        ["Mac OS X ([0-9_.]+)", "macOS"],
-                        ["bot|google|baidu|bing|msn|teoma|slurp|yandex", "Search Bot"],
-                    ],
-                    c = 0;
+                    ["Windows (.*?)[;)]", "Windows"],
+                    ["Android ([0-9_.]+)", "Android"],
+                    ["iPhone OS ([0-9_.]+)", "iPhoneOS"],
+                    ["iPad.*? OS ([0-9_.]+)", "iPadOS"],
+                    ["FreeBSD( )", "FreeBSD"],
+                    ["OpenBSD( )", "OpenBSD"],
+                    ["Linux|X11()", "Linux"],
+                    ["Mac OS X ([0-9_.]+)", "macOS"],
+                    ["bot|google|baidu|bing|msn|teoma|slurp|yandex", "Search Bot"],
+                ],
+                c = 0;
                 c < l.length;
                 ++c
             )
@@ -314,7 +314,7 @@ export function createUnityInstance(e, t, r) {
             function n() {
                 function t(t) {
                     if ("undefined" == typeof n.database)
-                        for (n.database = t, n.database || e("indexedDB database could not be opened"); n.queue.length; ) {
+                        for (n.database = t, n.database || e("indexedDB database could not be opened"); n.queue.length;) {
                             var r = n.queue.shift();
                             n.database ? n.execute.apply(n, r.arguments) : "function" == typeof r.onerror && r.onerror(new Error("operation cancelled"));
                         }
@@ -358,9 +358,9 @@ export function createUnityInstance(e, t, r) {
                 var a = { url: e, version: i.version, company: t, product: r, updated: n, revalidated: n, accessed: n, responseHeaders: {}, xhr: {} };
                 return (
                     o &&
-                        (["Last-Modified", "ETag"].forEach(function (e) {
-                            a.responseHeaders[e] = o.getResponseHeader(e);
-                        }),
+                    (["Last-Modified", "ETag"].forEach(function (e) {
+                        a.responseHeaders[e] = o.getResponseHeader(e);
+                    }),
                         ["responseURL", "status", "statusText", "response"].forEach(function (e) {
                             a.xhr[e] = o[e];
                         })),
@@ -380,24 +380,24 @@ export function createUnityInstance(e, t, r) {
                                 !r.revalidated &&
                                 (304 == t.status
                                     ? ((r.result.revalidated = r.result.accessed),
-                                      (r.revalidated = !0),
-                                      u.execute(i.name, "put", [r.result]),
-                                      e("'" + r.result.url + "' successfully revalidated and served from the indexedDB cache"))
+                                        (r.revalidated = !0),
+                                        u.execute(i.name, "put", [r.result]),
+                                        e("'" + r.result.url + "' successfully revalidated and served from the indexedDB cache"))
                                     : 200 == t.status
-                                    ? ((r.result = o(r.result.url, r.company, r.product, r.result.accessed, t)),
-                                      (r.revalidated = !0),
-                                      u.execute(
-                                          i.name,
-                                          "put",
-                                          [r.result],
-                                          function (t) {
-                                              e("'" + r.result.url + "' successfully downloaded and stored in the indexedDB cache");
-                                          },
-                                          function (t) {
-                                              e("'" + r.result.url + "' successfully downloaded but not stored in the indexedDB cache due to the error: " + t);
-                                          },
-                                      ))
-                                    : e("'" + r.result.url + "' request failed with status: " + t.status + " " + t.statusText));
+                                        ? ((r.result = o(r.result.url, r.company, r.product, r.result.accessed, t)),
+                                            (r.revalidated = !0),
+                                            u.execute(
+                                                i.name,
+                                                "put",
+                                                [r.result],
+                                                function (t) {
+                                                    e("'" + r.result.url + "' successfully downloaded and stored in the indexedDB cache");
+                                                },
+                                                function (t) {
+                                                    e("'" + r.result.url + "' successfully downloaded but not stored in the indexedDB cache due to the error: " + t);
+                                                },
+                                            ))
+                                        : e("'" + r.result.url + "' request failed with status: " + t.status + " " + t.statusText));
                         }.bind(this),
                     );
             }
@@ -432,44 +432,44 @@ export function createUnityInstance(e, t, r) {
                     (o.enabled = o.enabled && "arraybuffer" == n.responseType && !t),
                     o.enabled
                         ? void u.execute(
-                              i.name,
-                              "get",
-                              [o.result.url],
-                              function (t) {
-                                  if (!t || t.version != i.version) return void n.send.apply(n, a);
-                                  if (((o.result = t), (o.result.accessed = Date.now()), "immutable" == o.control))
-                                      (o.revalidated = !0),
-                                          u.execute(i.name, "put", [o.result]),
-                                          n.dispatchEvent(new Event("load")),
-                                          e("'" + o.result.url + "' served from the indexedDB cache without revalidation");
-                                  else if (r(o.result.url) && (o.result.responseHeaders["Last-Modified"] || o.result.responseHeaders.ETag)) {
-                                      var s = new XMLHttpRequest();
-                                      s.open("HEAD", o.result.url),
-                                          (s.onload = function () {
-                                              (o.revalidated = ["Last-Modified", "ETag"].every(function (e) {
-                                                  return !o.result.responseHeaders[e] || o.result.responseHeaders[e] == s.getResponseHeader(e);
-                                              })),
-                                                  o.revalidated
-                                                      ? ((o.result.revalidated = o.result.accessed),
+                            i.name,
+                            "get",
+                            [o.result.url],
+                            function (t) {
+                                if (!t || t.version != i.version) return void n.send.apply(n, a);
+                                if (((o.result = t), (o.result.accessed = Date.now()), "immutable" == o.control))
+                                    (o.revalidated = !0),
+                                        u.execute(i.name, "put", [o.result]),
+                                        n.dispatchEvent(new Event("load")),
+                                        e("'" + o.result.url + "' served from the indexedDB cache without revalidation");
+                                else if (r(o.result.url) && (o.result.responseHeaders["Last-Modified"] || o.result.responseHeaders.ETag)) {
+                                    var s = new XMLHttpRequest();
+                                    s.open("HEAD", o.result.url),
+                                        (s.onload = function () {
+                                            (o.revalidated = ["Last-Modified", "ETag"].every(function (e) {
+                                                return !o.result.responseHeaders[e] || o.result.responseHeaders[e] == s.getResponseHeader(e);
+                                            })),
+                                                o.revalidated
+                                                    ? ((o.result.revalidated = o.result.accessed),
                                                         u.execute(i.name, "put", [o.result]),
                                                         n.dispatchEvent(new Event("load")),
                                                         e("'" + o.result.url + "' successfully revalidated and served from the indexedDB cache"))
-                                                      : n.send.apply(n, a);
-                                          }),
-                                          s.send();
-                                  } else
-                                      o.result.responseHeaders["Last-Modified"]
-                                          ? (n.setRequestHeader("If-Modified-Since", o.result.responseHeaders["Last-Modified"]),
+                                                    : n.send.apply(n, a);
+                                        }),
+                                        s.send();
+                                } else
+                                    o.result.responseHeaders["Last-Modified"]
+                                        ? (n.setRequestHeader("If-Modified-Since", o.result.responseHeaders["Last-Modified"]),
                                             n.setRequestHeader("Cache-Control", "no-cache"))
-                                          : o.result.responseHeaders.ETag &&
-                                            (n.setRequestHeader("If-None-Match", o.result.responseHeaders.ETag),
+                                        : o.result.responseHeaders.ETag &&
+                                        (n.setRequestHeader("If-None-Match", o.result.responseHeaders.ETag),
                                             n.setRequestHeader("Cache-Control", "no-cache")),
-                                          n.send.apply(n, a);
-                              },
-                              function (e) {
-                                  n.send.apply(n, a);
-                              },
-                          )
+                                        n.send.apply(n, a);
+                            },
+                            function (e) {
+                                n.send.apply(n, a);
+                            },
+                        )
                         : n.send.apply(n, a)
                 );
             }),
@@ -499,18 +499,18 @@ export function createUnityInstance(e, t, r) {
                             e,
                             "function" == typeof l[e]
                                 ? {
-                                      value: function () {
-                                          return this.xhr[e].apply(this.xhr, arguments);
-                                      },
-                                  }
+                                    value: function () {
+                                        return this.xhr[e].apply(this.xhr, arguments);
+                                    },
+                                }
                                 : {
-                                      get: function () {
-                                          return this.cache.revalidated && this.cache.result.xhr.hasOwnProperty(e) ? this.cache.result.xhr[e] : this.xhr[e];
-                                      },
-                                      set: function (t) {
-                                          this.xhr[e] = t;
-                                      },
-                                  },
+                                    get: function () {
+                                        return this.cache.revalidated && this.cache.result.xhr.hasOwnProperty(e) ? this.cache.result.xhr[e] : this.xhr[e];
+                                    },
+                                    set: function (t) {
+                                        this.xhr[e] = t;
+                                    },
+                                },
                         );
                     })(c);
             return a;
@@ -519,12 +519,12 @@ export function createUnityInstance(e, t, r) {
             l.SystemInfo.hasWebGL
                 ? l.SystemInfo.hasWasm
                     ? (1 == l.SystemInfo.hasWebGL && l.print('Warning: Your browser does not support "WebGL 2.0" Graphics API, switching to "WebGL 1.0"'),
-                      (l.startupErrorHandler = t),
-                      r(0),
-                      l.postRun.push(function () {
-                          r(1), delete l.startupErrorHandler, e(p);
-                      }),
-                      u())
+                        (l.startupErrorHandler = t),
+                        r(0),
+                        l.postRun.push(function () {
+                            r(1), delete l.startupErrorHandler, e(p);
+                        }),
+                        u())
                     : t("Your browser does not support WebAssembly.")
                 : t("Your browser does not support WebGL.");
         })

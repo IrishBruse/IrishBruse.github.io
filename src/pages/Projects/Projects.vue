@@ -1,21 +1,17 @@
 <template>
     <div class="viewport">
-        <div class="projectSorting">
-            <h1 class="text-left inline">Projects</h1>
-            <div class="sortButtons inline">
-                <h2 class="catagorySort inline noTextHighlight active" @click="changeSort('All', $event)">All</h2>
-                <h2 class="catagorySort inline noTextHighlight" @click="changeSort('Software', $event)">Software</h2>
-                <h2 class="catagorySort inline noTextHighlight" @click="changeSort('Library', $event)">Library</h2>
-                <h2 class="catagorySort inline noTextHighlight" @click="changeSort('Game', $event)">Game</h2>
-            </div>
+        <div class="projectTitlebar flex">
+            <h1 class="title">Projects</h1>
+            <h2 class="sort noTextHighlight" @click="changeCatagory(0)">All</h2>
+            <h2 class="sort noTextHighlight" @click="changeCatagory(1)">Software</h2>
+            <h2 class="sort noTextHighlight" @click="changeCatagory(2)">Libraries</h2>
+            <h2 class="sort noTextHighlight" @click="changeCatagory(3)">Games</h2>
         </div>
-        <Row :gutter="24" class="projectDelayer">
-            <Col v-for="project in filteredProjects" :key="project.title" :xs="12" :md="4" :lg="3" class="project old">
-                <img :src="require('@/assets/projects/' + project.title + '/Thumbnail.png')" class="shadow round" @click="navigateToProject(project.title)" />
+        <Row class="projectsContainer" :gutter="24">
+            <Col v-for="project in filteredProjects" :key="project.title" class="project" :lg="3" :md="4" :xs="12">
+                <img class="shadow round" :src="require('@/assets/projects/' + project.title + '/Thumbnail.png')" @click="navigateToProject(project.title)" />
                 <div class="projectInfo">
-                    <h4 class="projectTitle">
-                        {{ project.title }}
-                    </h4>
+                    <h4 class="projectTitle">{{ project.title }}</h4>
                     <p class="projectType float-right">({{ project.type }})</p>
                 </div>
             </Col>
@@ -24,7 +20,9 @@
         <div class="pagination flex">
             <button class="prev round" @click="changePage(currentPage - 1)">Previous Page</button>
             <div class="pages">
-                <button v-for="index in maxPages" :key="index" class="page round" @click="changePage(index - 1)">{{ index }}</button>
+                <button v-for="index in maxPagesForCatagory" :key="index" class="page round" @click="changePage(index - 1)">
+                    <b>{{ index }}</b>
+                </button>
             </div>
             <button class="next round" @click="changePage(currentPage + 1)">Next Page</button>
         </div>
@@ -37,120 +35,113 @@ import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+const MaxProjectsPerPage = 12;
+const Catagories = ["All", "Software", "Library", "Game"];
 
-const currentSort = ref("none");
-var canChangeTab = true;
+// Clickable projects
+const navigateToProject = (project) => {
+    router.push("/projects/" + project);
+};
+
+// Handle sorting tabs
+const currentCatagory = ref(-1);
 const currentPage = ref(-1);
-const maxPages = Math.ceil(Projects.length / 12);
-const changeSort = (sortType, event) => {
-    if (canChangeTab == false || currentSort.value == sortType) {
+
+var canChangeTab = true;
+
+const changeCatagory = (index) => {
+    if (canChangeTab == false || currentCatagory.value == index) {
         return;
     }
     canChangeTab = false;
 
     // Tab Styling
-    let tablinks = document.getElementsByClassName("catagorySort");
-    for (let i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
+    let sortButtons = document.getElementsByClassName("sort");
+    for (let i = 0; i < sortButtons.length; i++) {
+        sortButtons[i].classList.toggle("active", i == index);
     }
-    event.srcElement.classList.add("active");
-
     // Animate project loading
-    reloadProjects(sortType);
+    reloadProjects(index);
 };
 
-const navigateToProject = (project) => {
-    router.push("/projects/" + project);
-};
-
-const changePage = (newPage) => {
-    if (newPage >= maxPages) {
-        newPage = maxPages - 1;
-    } else if (newPage < 0) {
-        newPage = 0;
+// Handle pagination
+const changePage = (pageIndex) => {
+    if (pageIndex >= maxPagesForCatagory.value) {
+        pageIndex = maxPagesForCatagory.value - 1;
+    } else if (pageIndex < 0) {
+        pageIndex = 0;
     }
 
-    if (currentPage.value == newPage) {
+    if (currentPage.value == pageIndex) {
         return;
     }
 
-    currentPage.value = newPage;
+    currentPage.value = Number(pageIndex);
 
-    let gotoPages = document.querySelectorAll(".pagination .page");
-    for (let i = 0; i < gotoPages.length; i++) {
-        gotoPages[i].classList.remove("active");
-        if (currentPage.value == i) {
-            gotoPages[i].classList.add("active");
-        }
-    }
-    reloadProjects(currentSort.value);
+    reloadProjects(pageIndex);
 };
 
-const filteredProjects = computed(() => {
-    var projects = Projects.filter((project) => project.type == currentSort.value || currentSort.value == "All");
-    var pageOffset = currentPage.value * 12;
-    return projects.slice(pageOffset, pageOffset + 12);
-});
+// Handle displaying projects
+const reloadProjects = (pageIndex) => {
+    // clear the computed property
+    currentCatagory.value = -1;
 
-const addProjects = () => {
-    const projects = document.getElementsByClassName("project");
-    projects.forEach((element) => {
-        element.classList.replace("new", "old");
-    });
-};
-
-const removeProjects = () => {
-    const projects = document.getElementsByClassName("project");
-    projects.forEach((element) => {
-        element.classList.replace("old", "new");
-    });
-};
-
-const reloadProjects = (sortType) => {
-    currentSort.value = "none";
+    // delay reseting the computed property so the animations play correctly
     setTimeout(() => {
-        currentSort.value = sortType;
-        removeProjects();
+        currentCatagory.value = pageIndex;
+
         setTimeout(() => {
-            addProjects();
-        }, 10);
-    }, 10);
+            canChangeTab = true;
+            const projects = document.getElementsByClassName("project");
+            projects.forEach((element) => {
+                element.classList.add("new");
+            });
 
-    setTimeout(() => {
-        canChangeTab = true;
-        removeProjects();
-    }, 600);
+            let gotoPages = document.querySelectorAll(".pagination .page");
+            for (let i = 0; i < gotoPages.length; i++) {
+                gotoPages[i].classList.toggle("active", pageIndex == i);
+            }
+        }, 100);
+    }, 100);
 };
 
-onMounted(() => {
-    changePage(0);
-    reloadProjects("All");
+// Computed values
+const filteredProjects = computed(() => {
+    const title = Catagories[currentCatagory.value];
+    var projects = Projects.filter((project) => project.type == title || title == "All");
+    var pageOffset = currentPage.value * MaxProjectsPerPage;
+    return projects.slice(pageOffset, pageOffset + MaxProjectsPerPage);
 });
-onUnmounted(() => removeProjects());
+
+const maxPagesForCatagory = computed(() => {
+    const title = Catagories[currentCatagory.value];
+    return Math.ceil(Projects.filter((project) => project.type == title || title == "All").length / MaxProjectsPerPage);
+});
+
+// Events
+onMounted(() => {
+    changeCatagory(0);
+    setTimeout(() => {
+        changePage(0);
+    }, 500);
+});
 </script>
 
 <style>
 .project {
     transition: transform 0.25s ease-in-out, opacity 0.1s linear;
     --betweenTime: 0.05s;
+    opacity: 0;
+    transform: translateY(2rem);
 }
-/* delay the children in order ugly but fine no need for js */
+
 .project.new {
     opacity: 1;
     transform: translateY(0rem);
 }
 
-.project.old {
-    transform: translateY(2rem);
-    opacity: 0;
-}
-
 .pagination {
     padding: 2rem 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }
 
 .pagination.prev,
@@ -198,74 +189,99 @@ onUnmounted(() => removeProjects());
     color: var(--invert-accent-background);
 }
 
-.sortButtons {
-    float: right;
-}
-
-.catagorySort > h2 {
-    padding: 0;
-}
-
-.catagorySort {
+.sort {
     border-radius: 0.5rem;
     cursor: pointer;
+
+    height: 2rem;
+
     padding: 0.25rem 0.5rem;
-    margin: 0 0.5rem;
+    margin: 0;
     color: var(--invert-background);
     transition-duration: 0.25s;
 }
 
-.catagorySort.active {
+.sort.active {
     background-color: var(--link);
     color: var(--accent-background);
 }
 
-.catagorySort.active:hover {
+.sort.active:hover {
     background-color: var(--link-hover);
 }
 
-.projectSorting {
+.projectTitlebar {
+    text-align: center;
     padding: 2rem 0;
+    flex-direction: column;
 }
 
-.projectSorting > h1 {
-    padding: 0;
+.projectTitlebar > h1 {
+    padding: 1rem 0;
+    flex: 0;
+    width: 100%;
+}
+.projectTitlebar > h2 {
+    width: 50%;
+    margin: auto;
 }
 
-.projectDelayer .project:nth-child(1) {
+@media only screen and (min-width: 992px) {
+    .projectTitlebar {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .projectTitlebar > h1 {
+        flex: 1;
+    }
+    .projectTitlebar > h2 {
+        width: min-content;
+        margin: 0 0.5rem;
+    }
+    .pagination {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+/* delay the children in order ugly but fine no need for js */
+.projectsContainer .project:nth-child(1) {
     transition-delay: calc(var(--betweenTime) * 1);
 }
-.projectDelayer .project:nth-child(2) {
+.projectsContainer .project:nth-child(2) {
     transition-delay: calc(var(--betweenTime) * 2);
 }
-.projectDelayer .project:nth-child(3) {
+.projectsContainer .project:nth-child(3) {
     transition-delay: calc(var(--betweenTime) * 3);
 }
-.projectDelayer .project:nth-child(4) {
+.projectsContainer .project:nth-child(4) {
     transition-delay: calc(var(--betweenTime) * 4);
 }
-.projectDelayer .project:nth-child(5) {
+.projectsContainer .project:nth-child(5) {
     transition-delay: calc(var(--betweenTime) * 5);
 }
-.projectDelayer .project:nth-child(6) {
+.projectsContainer .project:nth-child(6) {
     transition-delay: calc(var(--betweenTime) * 6);
 }
-.projectDelayer .project:nth-child(7) {
+.projectsContainer .project:nth-child(7) {
     transition-delay: calc(var(--betweenTime) * 7);
 }
-.projectDelayer .project:nth-child(8) {
+.projectsContainer .project:nth-child(8) {
     transition-delay: calc(var(--betweenTime) * 8);
 }
-.projectDelayer .project:nth-child(9) {
+.projectsContainer .project:nth-child(9) {
     transition-delay: calc(var(--betweenTime) * 9);
 }
-.projectDelayer .project:nth-child(10) {
+.projectsContainer .project:nth-child(10) {
     transition-delay: calc(var(--betweenTime) * 10);
 }
-.projectDelayer .project:nth-child(11) {
+.projectsContainer .project:nth-child(11) {
     transition-delay: calc(var(--betweenTime) * 11);
 }
-.projectDelayer .project:nth-child(12) {
+.projectsContainer .project:nth-child(12) {
     transition-delay: calc(var(--betweenTime) * 12);
 }
 </style>

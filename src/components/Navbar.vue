@@ -2,10 +2,10 @@
     <div class="navbar noTextHighlight">
         <button v-if="screen.width < 992" class="icons burger" @click="toggleLinks()">menu</button>
         <div ref="links" class="navbarLinks">
-            <router-link to="/home" class="navbarLink"> Home </router-link>
-            <router-link to="/projects" class="navbarLink"> Projects </router-link>
-            <router-link to="/about" class="navbarLink"> About </router-link>
-            <router-link to="/contact" class="navbarLink"> Contact </router-link>
+            <router-link class="navbarLink" to="/home"> Home </router-link>
+            <router-link class="navbarLink" to="/projects"> Projects </router-link>
+            <router-link class="navbarLink" to="/about"> About </router-link>
+            <router-link class="navbarLink" to="/contact"> Contact </router-link>
         </div>
         <div class="hiddenButton" />
         <ThemeToggle />

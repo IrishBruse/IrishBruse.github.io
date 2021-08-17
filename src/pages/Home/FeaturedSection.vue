@@ -2,9 +2,9 @@
     <h2 class="text-center">Featured Projects</h2>
     <Carousel :items-to-show="1" :transition="500" :wrap-around="true">
         <Slide v-for="project in projects" :key="project.title" class="slide">
-            <img :src="require('@/assets/projects/' + project.title + '/Thumbnail.png')" class="slideImage" @click="navigateToProject(project.title)" />
+            <img class="slideImage" :src="require('@/assets/projects/' + project.title + '/Thumbnail.png')" @click="navigateToProject(project.title)" />
             <div class="tags">
-                <a v-for="tag in project.tags" :key="tag" :href="tag" class="tag round">{{ tag }}</a>
+                <a v-for="tag in project.tags" :key="tag" class="tag round" :href="tag">{{ tag }}</a>
             </div>
         </Slide>
 
@@ -24,7 +24,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const projects = Projects.filter((project) => {
-    return project.featured;
+    return project.flags.includes("featured");
 });
 
 const navigateToProject = (project) => {

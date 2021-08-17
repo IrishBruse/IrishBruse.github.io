@@ -1,6 +1,6 @@
 <template>
-    <label for="themeCheckbox" class="themeSwitch round">
-        <input type="checkbox" @click="updateTheme" ref="darkThemeCheckbox" id="themeCheckbox" class="hidden" />
+    <label class="themeSwitch round" for="themeCheckbox">
+        <input id="themeCheckbox" ref="darkThemeCheckbox" class="hidden" type="checkbox" @click="updateTheme" />
         <div class="knob round" />
 
         <span class="icons themeIcon">light_mode</span>

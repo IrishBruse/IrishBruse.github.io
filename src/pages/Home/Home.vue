@@ -1,6 +1,5 @@
 <template>
     <div class="viewport">
-        <div class="pageBackground" />
         <Featured />
         <Github />
     </div>

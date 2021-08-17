@@ -1,58 +1,20 @@
-<template>
+<template >
     <div class="viewport">
-        <component :is="comp" v-if="isCustom" />
-        <div v-else>
-            <div class="pageBackground" />
-            <br />
-            <h1 class="text-center">
-                {{ projectTitle }}
-            </h1>
-
-            <div class="container">
-                <div>
-                    <div class="videoContainer">
-                        <iframe
-                            class="video"
-                            :src="projectVideo"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                        />
-                    </div>
-                </div>
-                <div>
-                    <Markdown class="text-justify" :source="markdownContents" />
-                </div>
-            </div>
-
-            <div class="container">
-                <div>
-                    <a v-if="downloadLink" class="downloadButton text-center" :href="downloadLink">Download {{ projectTitle }} </a>
-                </div>
-                <div />
-            </div>
+        <div v-if="isCustom">
+            <component :is="comp" />
         </div>
+        <div v-else>test</div>
     </div>
 </template>
 
 <script setup>
-import Markdown from "vue3-markdown-it";
 import { useRoute } from "vue-router";
 import Projects from "@/assets/projects/projects.json";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent } from "@vue/runtime-core";
 
 const route = useRoute();
 var currentProject = Projects.find((project) => project.title == route.params.project);
-
-const projectTitle = currentProject.title;
-const projectVideo = currentProject.video;
-var markdownContents;
-if (currentProject.custom) {
-} else {
-    markdownContents = require("@/assets/projects/" + currentProject.title + "/markdown.md").default;
-}
-const downloadLink = currentProject.download;
-const isCustom = currentProject.custom;
+const isCustom = currentProject.flags.includes("useCustomPage");
 const comp = defineAsyncComponent(() => import("@/assets/projects/" + currentProject.title + "/index.vue"));
 </script>
 

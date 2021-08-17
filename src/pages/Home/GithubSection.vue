@@ -5,11 +5,11 @@
         <div class="githubProfile">
             <Row class="profileInfo">
                 <Col>
-                    <img :src="profile.avatar" alt="github avatar" class="avatar circle noTextHighlight" />
+                    <img alt="github avatar" class="avatar circle noTextHighlight" :src="profile.avatar" />
                 </Col>
                 <Col>
                     <div class="profileInfoCenter">
-                        <a :href="profile.url" class="profileLink">{{ profile.name }}</a>
+                        <a class="profileLink" :href="profile.url">{{ profile.name }}</a>
                         <div class="profileFollowersContainer">
                             <p class="profileFollowers">{{ profile.followers }} followers</p>
                             <p class="profileFollowers">{{ profile.following }} following</p>
@@ -20,10 +20,10 @@
         </div>
 
         <div class="githubRepos">
-            <Row :gutter="40" :columns="12">
-                <Col v-for="repo in repos" :key="repo.name" :xs="12" :lg="6">
+            <Row :columns="12" :gutter="40">
+                <Col v-for="repo in repos" :key="repo.name" :lg="6" :xs="12">
                     <div class="githubRepo round shadow">
-                        <a :href="repo.html_url" class="repoTitle">
+                        <a class="repoTitle" :href="repo.html_url">
                             {{ repo.name }}
                         </a>
                         <p class="repoDescription">

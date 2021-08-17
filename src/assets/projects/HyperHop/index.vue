@@ -5,6 +5,13 @@
             <canvas class="gameCanvas" width="540" ref="unity" height="960"></canvas>
         </div>
     </div>
+    <div class="text-center">
+        <h2>This is a game i made with Josh Van Etten(Artist)</h2>
+        <p>
+            We released this game on both android and ios. It was a great project to learn the difficulties of managing a live product and dealing with bug
+            reports, issues and feature requests from the people who downloaded
+        </p>
+    </div>
 </template>
 
 <script setup>

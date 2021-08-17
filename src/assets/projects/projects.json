@@ -2,37 +2,35 @@
     {
         "title": "LDtkMonogame",
         "type": "Library",
-        "tags": ["C#", "Monogame", "Nuget"],
-        "video": "",
-        "featured": true
+        "flags": [
+            "featured"
+        ]
     },
     {
         "title": "Monoboy",
         "type": "Software",
-        "tags": ["C#", "Gameboy", "Emulator"],
-        "video": "",
-        "featured": true
+        "flags": [
+            "featured"
+        ]
     },
     {
         "title": "HyperHop",
         "type": "Game",
-        "tags": ["C#", "Unity", "Game"],
         "video": "https://www.youtube.com/embed/43nXqXdOAu4",
-        "featured": true,
-        "custom": true
+        "flags": [
+            "featured",
+            "useCustomPage"
+        ]
     },
     {
         "title": "Asteroids",
         "type": "Game",
-        "tags": ["C#", "Monogame", "Game"],
-        "video": "",
-        "featured": false
+        "video": "https://www.youtube.com/embed/UMikJOsE8LE",
+        "flags": []
     },
     {
         "title": "ConwaysGameOfLife",
         "type": "Game",
-        "tags": ["C#", "Monogame", "Game"],
-        "video": "",
-        "featured": false
+        "flags": []
     }
 ]
