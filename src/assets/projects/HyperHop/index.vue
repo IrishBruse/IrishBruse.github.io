@@ -5,21 +5,23 @@
             <canvas class="gameCanvas" width="540" ref="unity" height="960"></canvas>
         </div>
     </div>
-    <div class="text-center">
-        <h2>This is a game i made with Josh Van Etten(Artist)</h2>
-        <p>
+    <div class="text-center discription">
+        <h2>Made by me and Josh Van Etten(Artist)</h2>
+        <p class="text-justify">
             We released this game on both android and ios. It was a great project to learn the difficulties of managing a live product and dealing with bug
-            reports, issues and feature requests from the people who downloaded
+            reports, issues, marketing and feature requests from the people who downloaded our app. This helped me learn what parts of a project need focusing
+            on first and what ones can be left.
         </p>
     </div>
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import { createUnityInstance } from "@/assets/Unity.js";
 
 const unity = ref(null);
-let inst;
+const inst = ref(null);
+
 onMounted(() => {
     createUnityInstance(unity.value, {
         dataUrl: location.origin + "/Build/web.data",
@@ -29,15 +31,15 @@ onMounted(() => {
         companyName: "Blue Squash Studios",
         productName: "Hyper Hop",
         productVersion: "2.2.1",
-        // matchWebGLToCanvasSize: true,
-    }).then((a) => (inst = a));
+    }).then((a) => (inst.value = a));
 });
 
-onUnmounted(() => {
-    inst.Quit(function () {
+onBeforeUnmount(() => {
+    inst.value.Quit(function () {
         console.log("done!");
     });
-    inst = null;
+
+    inst.value = null;
 });
 </script>
 
@@ -56,5 +58,16 @@ onUnmounted(() => {
 
 .gameCanvas {
     height: 80vh;
+}
+
+.discription {
+    padding: 0 0 4rem 0;
+    width: 100%;
+}
+@media only screen and (min-width: 992px) {
+    .discription {
+        margin: 0rem auto;
+        width: 60%;
+    }
 }
 </style>

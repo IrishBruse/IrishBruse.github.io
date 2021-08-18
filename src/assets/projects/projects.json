@@ -3,15 +3,18 @@
         "title": "LDtkMonogame",
         "type": "Library",
         "flags": [
-            "featured"
+            "featured",
+            "useCustomPage"
         ]
     },
     {
         "title": "Monoboy",
+        "video": "https://www.youtube.com/embed/UMikJOsE8LE",
         "type": "Software",
         "flags": [
             "featured"
-        ]
+        ],
+        "discription": "Monoboy is a Gameboy emulator written in C# it was written to help me get better and learn bit wise operations and the more lower level parts of c#. "
     },
     {
         "title": "HyperHop",
@@ -26,11 +29,13 @@
         "title": "Asteroids",
         "type": "Game",
         "video": "https://www.youtube.com/embed/UMikJOsE8LE",
-        "flags": []
+        "flags": [],
+        "discription": "ab"
     },
     {
         "title": "ConwaysGameOfLife",
         "type": "Game",
-        "flags": []
+        "flags": [],
+        "discription": "b"
     }
 ]

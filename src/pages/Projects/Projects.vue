@@ -40,7 +40,11 @@ const Catagories = ["All", "Software", "Library", "Game"];
 
 // Clickable projects
 const navigateToProject = (project) => {
-    router.push("/projects/" + project);
+    if (project == "LDtkMonogame") {
+        window.open("https://irishbruse.github.io/LDtkMonogame/", "_self");
+    } else {
+        router.push("/projects/" + project);
+    }
 };
 
 // Handle sorting tabs
@@ -79,11 +83,10 @@ const changePage = (pageIndex) => {
 // Handle displaying projects
 const reloadProjects = (catagoryIndex, pageIndex) => {
     currentCategory.value = -1;
-    currentPage.value = -1;
+    currentPage.value = pageIndex;
 
     setTimeout(() => {
         currentCategory.value = catagoryIndex;
-        currentPage.value = pageIndex;
 
         canChangeTab = true;
 
@@ -93,11 +96,13 @@ const reloadProjects = (catagoryIndex, pageIndex) => {
             sortButtons[i].classList.toggle("active", i == catagoryIndex);
         }
 
-        // Current Page highlight
-        let gotoPages = document.querySelectorAll(".pagination .page");
-        for (let i = 0; i < gotoPages.length; i++) {
-            gotoPages[i].classList.toggle("active", pageIndex == i);
-        }
+        setTimeout(() => {
+            // Current Page highlight
+            let gotoPages = document.querySelectorAll(".pagination .page");
+            for (let i = 0; i < gotoPages.length; i++) {
+                gotoPages[i].classList.toggle("active", pageIndex == i);
+            }
+        }, 5);
     }, 5);
 };
 
