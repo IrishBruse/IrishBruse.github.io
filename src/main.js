@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router.js";
 
 import { Row, Column, Hidden } from "vue-grid-responsive";
+import ModalImage from "./components/ModalImage";
 
 import "./assets/css/theme.css";
 import "./assets/css/global.css";
@@ -11,6 +12,7 @@ import "./assets/css/scrollbar.css";
 
 const app = createApp(App);
 
+app.component("ModalImage", ModalImage);
 app.component("Row", Row);
 app.component("Col", Column);
 app.component("Hidden", Hidden);

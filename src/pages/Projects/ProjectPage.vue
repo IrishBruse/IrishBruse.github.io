@@ -4,15 +4,15 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import Projects from "@/assets/projects/projects.json";
+import Projects from "@/projects/projects.json";
 import { defineAsyncComponent } from "@vue/runtime-core";
 
 const route = useRoute();
 const currentProject = Projects.find((project) => project.title == route.params.project);
-var comp;
 
+var comp;
 if (currentProject != null) {
-    comp = defineAsyncComponent(() => import("./pages/" + currentProject.title + ".vue"));
+    comp = defineAsyncComponent(() => import("@/projects/" + currentProject.title + "/Index.vue"));
 } else {
     comp = defineAsyncComponent(() => import("@/pages/404.vue"));
 }

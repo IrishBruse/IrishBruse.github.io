@@ -9,7 +9,7 @@
 
     <Row class="projectsContainer" :gutter="24">
         <Col v-for="project in filteredProjects" :key="project.title" class="project" :lg="3" :md="4" :xs="12">
-            <img class="shadow round" :src="require('@/assets/projects/' + project.title + '/Thumbnail.png')" @click="navigateToProject(project.title)" />
+            <img class="shadow round" :src="require('@/projects/' + project.title + '/Thumbnail.png')" @click="navigateToProject(project.title)" />
             <div class="projectInfo">
                 <h4 class="projectTitle">{{ project.title }}</h4>
                 <p class="projectType float-right">({{ project.type }})</p>
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import Projects from "@/assets/projects/projects.json";
+import Projects from "@/projects/projects.json";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useRouter } from "vue-router";
 

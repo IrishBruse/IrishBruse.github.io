@@ -2,10 +2,10 @@
     <div class="navbar noTextHighlight">
         <button v-if="screen.width < 992" class="icons burger" @click="toggleLinks()">menu</button>
         <div ref="links" class="navbarLinks">
-            <router-link class="navbarLink" active-link="active" to="/home"> Home </router-link>
-            <router-link class="navbarLink" active-link="active" to="/projects"> Projects </router-link>
-            <router-link class="navbarLink" active-link="active" to="/about"> About </router-link>
-            <router-link class="navbarLink" active-link="active" to="/contact"> Contact </router-link>
+            <router-link class="navbarLink" to="/home"> Home </router-link>
+            <router-link class="navbarLink" to="/projects"> Projects </router-link>
+            <router-link class="navbarLink" to="/about"> About </router-link>
+            <router-link class="navbarLink" to="/contact"> Contact </router-link>
         </div>
         <div class="hiddenButton" />
         <ThemeToggle />
@@ -129,6 +129,10 @@ onMounted(() => {
     .navbarLink {
         margin: 0rem 0.75rem;
         padding: 0rem 0.5rem;
+    }
+
+    .hiddenButton {
+        display: none;
     }
 }
 

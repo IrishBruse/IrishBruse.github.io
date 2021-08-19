@@ -5,7 +5,7 @@
                 <iframe class="video" :src="'https://www.youtube.com/embed/' + props.video" frameborder="0" allowfullscreen />
             </div>
         </Col>
-        <Col :lg="6" :md="6" :xs="12">
+        <Col :lg="6" :md="6" :xs="12" class="videoDescription">
             <slot>404 no discription found!</slot>
         </Col>
     </Row>
@@ -34,5 +34,9 @@ const props = defineProps({
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.videoDescription * {
+    font-size: 1.25rem;
 }
 </style>

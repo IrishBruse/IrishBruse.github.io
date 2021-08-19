@@ -6,11 +6,17 @@ import Projects from "./pages/Projects/Projects.vue";
 import ProjectPage from "./pages/Projects/ProjectPage.vue";
 import ProjectsGrid from "./pages/Projects/ProjectsGrid.vue";
 import Error from "./pages/404.vue";
+import Redirect from "./pages/Redirect.vue";
 
 const routes = [
     {
+        path: "/",
+        name: "Software Developer",
+        component: Redirect,
+        meta: { index: -1 }
+    },
+    {
         path: "/home",
-        alias: ["/", "/home"],
         name: "Home",
         component: Home,
         meta: { index: 0 },

@@ -18,7 +18,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 router.afterEach((to, from) => {
-    if (from.href != undefined) {
+    if (from.href != undefined && from.meta.index != -1) {
         const toDepth = to.path.split("/").length;
         const fromDepth = from.path.split("/").length;
 

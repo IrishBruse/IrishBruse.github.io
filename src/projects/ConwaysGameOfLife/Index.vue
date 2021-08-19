@@ -3,7 +3,8 @@
 
     <VideoDescription :video="props.project.video">
         <div class="text-justify">
-            Monoboy is a Gameboy emulator written in C# it was written to help me get better and learn bit wise operations and the more lower level parts of c#.
+            This is a implementation of the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a> cellular automata it
+            helped me learn how to handle camera matrix's in monogame and how to handle an infinite world for the simulation
         </div>
     </VideoDescription>
 </template>

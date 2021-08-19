@@ -2,7 +2,7 @@
     <h2 class="text-center">Featured Projects</h2>
     <Carousel :items-to-show="1" :transition="500" :wrap-around="true">
         <Slide v-for="project in projects" :key="project.title" class="slide">
-            <img class="slideImage" :src="require('@/assets/projects/' + project.title + '/Thumbnail.png')" @click="navigateToProject(project.title)" />
+            <img class="slideImage" :src="require('@/projects/' + project.title + '/Thumbnail.png')" @click="navigateToProject(project.title)" />
             <div class="tags">
                 <a v-for="tag in project.tags" :key="tag" class="tag round" :href="tag">{{ tag }}</a>
             </div>
@@ -18,7 +18,7 @@
 <script setup>
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
-import Projects from "@/assets/projects/projects.json";
+import Projects from "@/projects/projects.json";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
