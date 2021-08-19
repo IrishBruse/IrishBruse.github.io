@@ -9,7 +9,13 @@ import { defineAsyncComponent } from "@vue/runtime-core";
 
 const route = useRoute();
 const currentProject = Projects.find((project) => project.title == route.params.project);
-const comp = defineAsyncComponent(() => import("./pages/" + currentProject.title + ".vue"));
+var comp;
+
+if (currentProject != null) {
+    comp = defineAsyncComponent(() => import("./pages/" + currentProject.title + ".vue"));
+} else {
+    comp = defineAsyncComponent(() => import("@/pages/404.vue"));
+}
 </script>
 
 <style>

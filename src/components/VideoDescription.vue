@@ -1,14 +1,12 @@
 <template>
-    <Row :columns="12" :gutter="12">
+    <Row :columns="12" :gutter="24">
         <Col :lg="6" :md="6" :xs="12">
             <div class="videoContainer">
                 <iframe class="video" :src="'https://www.youtube.com/embed/' + video" frameborder="0" allowfullscreen ref="iframe" />
             </div>
         </Col>
         <Col :lg="6" :md="6" :xs="12">
-            <div class="cellPadding">
-                <slot>404 no discription found!</slot>
-            </div>
+            <slot>404 no discription found!</slot>
         </Col>
     </Row>
 </template>
