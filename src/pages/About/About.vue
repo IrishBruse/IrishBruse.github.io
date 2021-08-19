@@ -1,7 +1,7 @@
 <template>
     <h1 class="text-center">About Me</h1>
     <p class="aboutMe text-justify">
-        Hi I'm Ethan an {{ age }} year old Irish software developer studing
+        Hi I'm Ethan an {{ age }} year old studying
         <a href="https://www.gmit.ie/computer-science-and-applied-physics/bachelor-science-honours-software-development">Software Development</a> in GMIT. I am
         self taught in programming before GMIT and have been programming for many years as a hobby making games, websites, software and mobile apps.
     </p>
