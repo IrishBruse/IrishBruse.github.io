@@ -20,11 +20,9 @@ const links = ref(null);
 const screen = ref({ width: 0, height: 0 });
 
 const outsideClickListener = (clickEvent) => {
-    if (clickEvent.srcElement.parentElement.classList.contains("navbarLinks") == false) {
-        if (links.value.classList.contains("navbarLinksOpen")) {
-            links.value.classList.remove("navbarLinksOpen");
-            document.removeEventListener("click", outsideClickListener);
-        }
+    if (links.value.classList.contains("navbarLinksOpen")) {
+        links.value.classList.remove("navbarLinksOpen");
+        document.removeEventListener("click", outsideClickListener);
     }
 };
 
