@@ -1,8 +1,6 @@
 <template>
-    <div class="viewport">
-        <Featured />
-        <Github />
-    </div>
+    <Featured />
+    <Github />
 </template>
 
 <script setup>

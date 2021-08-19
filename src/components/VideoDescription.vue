@@ -1,15 +1,13 @@
 <template>
-    <h1>{{ props.project.title }}</h1>
-
-    <Row :columns="12">
+    <Row :columns="12" :gutter="12">
         <Col :lg="6" :md="6" :xs="12">
             <div class="videoContainer">
-                <iframe class="video" :src="props.project.video" frameborder="0" allowfullscreen ref="iframe" />
+                <iframe class="video" :src="'https://www.youtube.com/embed/' + video" frameborder="0" allowfullscreen ref="iframe" />
             </div>
         </Col>
         <Col :lg="6" :md="6" :xs="12">
             <div class="cellPadding">
-                <div class="text-justify">{{ props.project.discription }}</div>
+                <slot>404 no discription found!</slot>
             </div>
         </Col>
     </Row>
@@ -19,7 +17,7 @@
 import { defineProps } from "vue";
 
 const props = defineProps({
-    project: Object,
+    video: String,
 });
 </script>
 
@@ -28,16 +26,15 @@ const props = defineProps({
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
+    background-color: black;
 }
+
 .video {
     position: absolute;
+    background-color: black;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-}
-
-.cellPadding {
-    padding: 0 1rem;
 }
 </style>

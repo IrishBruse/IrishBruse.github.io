@@ -33,7 +33,7 @@
                             <p class="repoDetail" :style="'color: ' + Colors[repo.language]">
                                 {{ repo.language }}
                             </p>
-                            <a v-if="repo.stargazers_count > 0" class="repoDetail repoStarButton" :href="repo.html_url + '/stargazers'">
+                            <a v-if="repo.stargazers_count > 0" class="repoDetail repoStarLink" :href="repo.html_url + '/stargazers'">
                                 <span class="icons repoStar">grade</span>
                                 {{ repo.stargazers_count }}
                             </a>
@@ -160,7 +160,7 @@ onMounted(() => {
 .repoDetails {
     display: inline-block;
     width: 100%;
-    max-height: 1rem;
+    max-height: min-content;
 }
 
 .repoDetail {
@@ -182,13 +182,17 @@ onMounted(() => {
     height: calc(1rem + 6px);
 }
 
-.repoStarButton {
+.repoStarLink {
     text-decoration: none;
     color: var(--invert-accent-background);
 }
 
-.repoStarButton:hover,
-.repoStarButton:hover > .repoStar {
+.repoStarLink > .icons {
+    font-size: 22px;
+}
+
+.repoStarLink:hover,
+.repoStarLink:hover > .icons {
     color: lightblue;
 }
 

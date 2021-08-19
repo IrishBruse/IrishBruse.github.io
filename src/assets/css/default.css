@@ -12,6 +12,10 @@ body {
     background-color: var(--background);
 }
 
+img{
+    width: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -65,29 +69,4 @@ button:hover {
     padding: 0;
     color: var(--invert-accent-background);
     font-weight: bolder;
-}
-
-.icons {
-    font-family: "Material Icons Outlined";
-    font-weight: normal;
-    font-style: normal;
-    display: inline-block;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-
-    cursor: pointer;
-
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-
-    /* Support for IE. */
-    font-feature-settings: "liga";
 }

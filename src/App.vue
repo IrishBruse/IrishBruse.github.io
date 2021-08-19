@@ -3,7 +3,10 @@
 
     <router-view v-slot="{ Component, route }">
         <transition :name="route.meta.transitionName">
-            <component :is="Component" />
+            <!-- key forces transition on viewport also viewport fixes problem with multi root comps -->
+            <div class="viewport" :key="route.path">
+                <component :is="Component" />
+            </div>
         </transition>
     </router-view>
 </template>
@@ -15,9 +18,10 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 router.afterEach((to, from) => {
-    if (from.name !== undefined || from.name != "Redirect") {
+    if (from.href != undefined) {
         const toDepth = to.path.split("/").length;
         const fromDepth = from.path.split("/").length;
+
         if (toDepth == fromDepth) {
             to.meta.transitionName = to.meta.index < from.meta.index ? "slide-right" : "slide-left";
         } else {
