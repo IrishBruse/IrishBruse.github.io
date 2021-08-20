@@ -104,6 +104,7 @@ onMounted(() => {
     border-style: solid;
     border-color: var(--background);
     height: 8rem;
+    width: 8rem;
     display: block;
 
     margin: 0 auto;

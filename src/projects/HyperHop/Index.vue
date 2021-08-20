@@ -20,9 +20,7 @@
         <div class="game">
             <canvas class="gameCanvas" width="540" ref="unity" height="960"></canvas>
         </div>
-        <button @click="toggleHyperHopModal" class="closeButton">
-            <span class="icons">close</span>
-        </button>
+        <button @click="toggleHyperHopModal" class="closeButton"><span class="icons">close</span></button>
     </div>
 
     <h2 class="text-center">Screenshots</h2>
@@ -92,6 +90,7 @@ onBeforeUnmount(() => {
 
 .hyperhopPlayButton button {
     margin: 1rem auto;
+    display: block;
 }
 
 .gameViewport {
