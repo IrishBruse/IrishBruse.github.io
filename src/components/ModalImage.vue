@@ -54,23 +54,23 @@ const closeModal = () => {
     position: fixed;
     left: 50%;
     top: calc(50% + var(--navbarHeight) / 2);
+    width: 0%;
+    height: 0%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    height: 50%;
 
-    z-index: 10;
+    z-index: 20;
 
     transition: all 0.25s;
 }
 
 .modalImagePopup.wide {
-    width: calc(95vw);
+    width: 80%;
     height: auto;
 }
 
 .modalImagePopup.tall {
     width: auto;
-    height: calc(95vh - var(--navbarHeight));
+    height: 80%;
 }
 
 .modalImageDim {
