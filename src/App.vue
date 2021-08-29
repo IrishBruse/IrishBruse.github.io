@@ -31,11 +31,20 @@ router.afterEach((to, from) => {
             to.meta.transitionName = toDepth < fromDepth ? "slide-up" : "slide-down";
         }
     }
-
     var body = document.getElementsByTagName("body")[0];
-    body.classList.toggle("light", to.query.theme == "light");
 
-    navbarVisable.value = to.query.navbar != "false";
+    if (to.query.launcher == "true") {
+        navbarVisable.value = false;
+        document.addEventListener("contextmenu", (event) => event.preventDefault());
+        body.onmousedown = () => {
+            return false;
+        };
+        body.onselectstart = () => {
+            return false;
+        };
+    }
+
+    body.classList.toggle("light", to.query.theme == "light");
 });
 </script>
 
