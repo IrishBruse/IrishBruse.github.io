@@ -1,5 +1,5 @@
 <template>
-    <Navbar />
+    <Navbar v-if="navbarVisable" />
 
     <router-view v-slot="{ Component, route }">
         <transition :name="route.meta.transitionName">
@@ -13,9 +13,12 @@
 
 <script setup>
 import Navbar from "@/components/Navbar.vue";
+import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+
+const navbarVisable = ref(true);
 
 router.afterEach((to, from) => {
     if (from.href != undefined && from.meta.index != -1) {
@@ -28,6 +31,11 @@ router.afterEach((to, from) => {
             to.meta.transitionName = toDepth < fromDepth ? "slide-up" : "slide-down";
         }
     }
+
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.toggle("light", to.query.theme == "light");
+
+    navbarVisable.value = to.query.navbar != "false";
 });
 </script>
 

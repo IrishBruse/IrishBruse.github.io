@@ -1,16 +1,4 @@
 body {
-    --background: rgb(231, 234, 236);
-    --accent-background: rgb(236, 241, 247);
-
-    --invert-background: rgb(30, 34, 36);
-    --invert-accent-background: rgb(72, 79, 85);
-
-    --link: rgb(69, 112, 9);
-    --link-hover: black;
-    --link-focus: rgb(46, 75, 6);
-}
-
-body.dark {
     --background: rgb(30, 34, 36);
     --accent-background: rgb(35, 39, 42);
 
@@ -20,4 +8,16 @@ body.dark {
     --link: rgb(134, 194, 50);
     --link-hover: white;
     --link-focus: rgb(84, 124, 28);
+}
+
+body.light {
+    --background: rgb(231, 234, 236);
+    --accent-background: rgb(236, 241, 247);
+
+    --invert-background: rgb(30, 34, 36);
+    --invert-accent-background: rgb(72, 79, 85);
+
+    --link: rgb(69, 112, 9);
+    --link-hover: black;
+    --link-focus: rgb(46, 75, 6);
 }

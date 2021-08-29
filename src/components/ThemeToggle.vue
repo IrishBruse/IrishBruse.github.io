@@ -1,34 +1,34 @@
 <template>
     <label class="themeSwitch round" for="themeCheckbox">
-        <input id="themeCheckbox" ref="darkThemeCheckbox" class="hidden" type="checkbox" @click="updateTheme" />
+        <input id="themeCheckbox" ref="themeCheckbox" class="hidden" type="checkbox" @click="toggleTheme" />
         <div class="knob round" />
 
-        <span class="icons themeIcon">light_mode</span>
         <span class="icons themeIcon">dark_mode</span>
+        <span class="icons themeIcon">light_mode</span>
     </label>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 
-const darkThemeCheckbox = ref(null);
+const isLight = ref(false);
+const themeCheckbox = ref(null);
 
-const updateTheme = () => {
-    localStorage.setItem("isDark", darkThemeCheckbox.value.checked);
+const toggleTheme = () => {
+    isLight.value = !isLight.value;
+    localStorage.setItem("isLight", isLight.value);
     var body = document.getElementsByTagName("body")[0];
-    body.classList.toggle("dark", darkThemeCheckbox.value.checked);
+    body.classList.toggle("light", isLight.value);
 };
 
 onMounted(() => {
-    if (localStorage.getItem("isDark") === null) {
-        var val = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        localStorage.setItem("isDark", val);
-        darkThemeCheckbox.value.checked = val;
+    if (localStorage.getItem("isLight") === null) {
+        isLight.value = !window.matchMedia("(prefers-color-scheme: dark)").matches;
+        localStorage.setItem("isLight", isLight.value);
+        themeCheckbox.value.checked = isLight.value;
     } else {
-        darkThemeCheckbox.value.checked = localStorage.getItem("isDark") == "true";
+        isLight.value = localStorage.getItem("isLight") == "true";
     }
-
-    updateTheme();
 });
 </script>
 
