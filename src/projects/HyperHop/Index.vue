@@ -12,17 +12,6 @@
         </div>
     </VideoDescription>
 
-    <div class="hyperhopPlayButton">
-        <button class="round" @click="toggleHyperHopModal">Play in browser</button>
-    </div>
-
-    <div class="gameViewport" v-show="showHyperHop">
-        <div class="game">
-            <canvas class="gameCanvas" width="540" ref="unity" height="960"></canvas>
-        </div>
-        <button @click="toggleHyperHopModal" class="closeButton"><span class="icons">close</span></button>
-    </div>
-
     <h2 class="text-center">Screenshots</h2>
 
     <Row :columns="12" :gutter="24">
@@ -45,7 +34,6 @@
 import VideoDescription from "@/components/VideoDescription.vue";
 import { defineProps, onBeforeUnmount, ref } from "vue";
 import { loadProjectImage } from "../CommonProject.js";
-import { createUnityInstance } from "@/assets/Unity.js";
 
 const props = defineProps({
     project: Object,
@@ -54,25 +42,6 @@ const props = defineProps({
 const unity = ref(null);
 const showHyperHop = ref(false);
 var inst;
-
-const toggleHyperHopModal = () => {
-    showHyperHop.value = !showHyperHop.value;
-
-    if (showHyperHop.value) {
-        createUnityInstance(unity.value, {
-            dataUrl: location.origin + "/HyperHopData/web.data",
-            frameworkUrl: "/HyperHopData/web.framework.js",
-            codeUrl: location.origin + "/HyperHopData/web.wasm",
-            companyName: "Blue Squash Studios",
-            productName: "Hyper Hop",
-            productVersion: "2.2.1",
-        }).then((a) => (inst = a));
-    } else {
-        inst.Quit(function () {
-            inst = null;
-        });
-    }
-};
 
 onBeforeUnmount(() => {
     inst.Quit(function () {
