@@ -20,7 +20,7 @@ const send = () => {
     if (formValid) {
         return;
     }
-    window.open("mailto:Econn50@outlook.com?subject=" + subject.value + "&body=" + message.value, "_blank", "noreferrer");
+    window.open("mailto:ethan@ethanconneely.com?subject=" + subject.value + "&body=" + message.value, "_blank", "noreferrer");
 
     const formValid = () => {
         return /(.+)@(.+){2,}\.(.+){2,}/.test(email.value) && subject.value.length > 0 && message.value.length > 0;
