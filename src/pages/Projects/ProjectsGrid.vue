@@ -1,15 +1,17 @@
 <template>
     <div class="projectTitlebar flex">
-        <h1 class="title">Projects</h1>
+        <h1>Projects</h1>
         <h2 class="sort noTextHighlight" @click="changeCatagory(0)">All</h2>
         <h2 class="sort noTextHighlight" @click="changeCatagory(1)">Software</h2>
         <h2 class="sort noTextHighlight" @click="changeCatagory(2)">Libraries</h2>
         <h2 class="sort noTextHighlight" @click="changeCatagory(3)">Games</h2>
     </div>
 
-    <Row class="projectsContainer" :gutter="24">
+    <Row class="projectsContainer" id="projectsParent" :gutter="24">
         <Col v-for="project in filteredProjects" :key="project.title" class="project" :lg="3" :md="4" :xs="12">
-            <img class="shadow round" :src="require('@/projects/' + project.title + '/Thumbnail.png')" @click="navigateToProject(project.title)" />
+            <a :href="navigateToProject(project.title)">
+                <img class="shadow round" :src="loadProjectImage('Thumbnail.png', project.title)" />
+            </a>
             <div v-if="checkIfNew(project.date)" class="newTag">New</div>
             <div class="projectInfo">
                 <h4 class="projectTitle">{{ project.title }}</h4>
@@ -21,25 +23,24 @@
 
 <script setup>
 import Projects from "@/projects/projects.json";
+import { loadProjectImage } from "@/projects/CommonProject.js";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const MaxProjectsPerPage = 12;
 const Catagories = ["All", "Software", "Library", "Game"];
 
 // Clickable projects
 const navigateToProject = (project) => {
     if (project == "LDtkMonogame") {
-        window.open("https://irishbruse.github.io/LDtkMonogame/", "_self");
+        return "/LDtkMonogame/";
     } else {
-        router.push("/projects/" + project);
+        return "/projects/" + project;
     }
 };
 
 // Handle sorting tabs
 const currentCategory = ref(-1);
-const currentPage = ref(-1);
 
 var canChangeTab = true;
 
@@ -50,86 +51,66 @@ const changeCatagory = (newCategory) => {
     canChangeTab = false;
 
     // Animate project loading
-    reloadProjects(newCategory, 0);
+    reloadProjects(newCategory);
 };
 
 const checkIfNew = (date) => {
     var now = new Date(Date.now());
     var project = new Date(date);
-    var monthMilis = 2629800000 * 2; // 2 Months
+    var monthMilis = 2629800000; // 1 Months
 
     return now - project < monthMilis;
 };
 
-// Handle pagination
-const changePage = (pageIndex) => {
-    if (pageIndex >= maxPagesForCatagory.value) {
-        pageIndex = maxPagesForCatagory.value - 1;
-    } else if (pageIndex < 0) {
-        pageIndex = 0;
-    }
-
-    if (currentPage.value == pageIndex) {
-        return;
-    }
-    currentPage.value = pageIndex;
-    scrollTo(0, 0);
-
-    reloadProjects(currentCategory.value, pageIndex);
-};
-
 // Handle displaying projects
-const reloadProjects = (catagoryIndex, pageIndex) => {
+// Note I hate this so much there are so many timeouts because we need to wait for the computed
+// to be removed then added back so the animations plays right (>﹏<)
+const reloadProjects = (catagoryIndex) => {
     currentCategory.value = -1;
-    currentPage.value = pageIndex;
 
+    // wait for computed to empty
     setTimeout(() => {
         currentCategory.value = catagoryIndex;
-
         canChangeTab = true;
 
-        // Current Catagory highlight
-        let sortButtons = document.getElementsByClassName("sort");
-        for (let i = 0; i < sortButtons.length; i++) {
-            sortButtons[i].classList.toggle("active", i == catagoryIndex);
-        }
-
+        // wait for computed to be full again
         setTimeout(() => {
-            // Current Page highlight
-            let gotoPages = document.querySelectorAll(".pagination .page");
-            for (let i = 0; i < gotoPages.length; i++) {
-                gotoPages[i].classList.toggle("active", pageIndex == i);
+            var cells = document.getElementById("projectsParent").children;
+            for (let i = 0; i < cells.length; i++) {
+                setTimeout(() => {
+                    cells[i].classList.toggle("projectLoadDelay", true);
+                }, 25 * i);
             }
-        }, 5);
-    }, 5);
+            // Current Catagory highlight
+            let sortButtons = document.getElementsByClassName("sort");
+            for (let i = 0; i < sortButtons.length; i++) {
+                sortButtons[i].classList.toggle("active", i == catagoryIndex);
+            }
+        }, 1);
+    }, 1);
 };
 
 // Computed values
 const filteredProjects = computed(() => {
     const title = Catagories[currentCategory.value];
-    var projects = Projects.filter((project) => project.type == title || title == "All");
-    var pageOffset = currentPage.value * MaxProjectsPerPage;
-    return projects.slice(pageOffset, pageOffset + MaxProjectsPerPage);
-});
-
-const maxPagesForCatagory = computed(() => {
-    const title = Catagories[currentCategory.value];
-    return Math.ceil(Projects.filter((project) => project.type == title || title == "All").length / MaxProjectsPerPage);
+    return Projects.filter((project) => project.type == title || title == "All");
 });
 
 // Events
 onMounted(() => {
     setTimeout(() => {
-        reloadProjects(0, 0);
-    }, 500);
+        reloadProjects(0);
+    }, 5);
 });
 </script>
 
 <style>
 .project {
-    --betweenTime: 0.05s;
     transform: translateY(0rem);
     opacity: 0;
+}
+
+.projectLoadDelay {
     animation: NewProjectAdded 0.35s forwards;
 }
 
@@ -144,12 +125,12 @@ onMounted(() => {
     }
 }
 
-.project > img {
+.project img {
     width: 100%;
     background-color: var(--background);
 }
 
-.project > img:hover {
+.project img:hover {
     cursor: pointer;
     filter: contrast(90%) brightness(105%);
 }
@@ -160,9 +141,6 @@ onMounted(() => {
     right: 1.5rem;
     background-color: var(--link);
     color: var(--background);
-    /* border-width: 2px;
-    border-color: var(--link-hover);
-    border-style: solid; */
     font-weight: bolder;
     padding: 0.25rem 0.5rem;
     pointer-events: none;
@@ -179,6 +157,10 @@ onMounted(() => {
 .projectTitle {
     display: inline-block;
     padding: 0 0.25rem;
+}
+
+.projectTitle {
+    width: min-content;
 }
 
 .projectType {
@@ -213,10 +195,12 @@ onMounted(() => {
     text-align: center;
     padding: 2rem 0;
     flex-direction: column;
+    align-self: center;
+    height: min-content;
 }
 
 .projectTitlebar > h1 {
-    padding: 1rem 0;
+    padding: 0;
     flex: 0;
     width: 100%;
 }
@@ -238,46 +222,5 @@ onMounted(() => {
         width: min-content;
         margin: 0 0.5rem;
     }
-
-    .pagination {
-    }
-}
-
-/* delay the children in order ugly but fine no need for js */
-.projectsContainer .project:nth-child(1) {
-    animation-delay: calc(var(--betweenTime) * 1);
-}
-.projectsContainer .project:nth-child(2) {
-    animation-delay: calc(var(--betweenTime) * 2);
-}
-.projectsContainer .project:nth-child(3) {
-    animation-delay: calc(var(--betweenTime) * 3);
-}
-.projectsContainer .project:nth-child(4) {
-    animation-delay: calc(var(--betweenTime) * 4);
-}
-.projectsContainer .project:nth-child(5) {
-    animation-delay: calc(var(--betweenTime) * 5);
-}
-.projectsContainer .project:nth-child(6) {
-    animation-delay: calc(var(--betweenTime) * 6);
-}
-.projectsContainer .project:nth-child(7) {
-    animation-delay: calc(var(--betweenTime) * 7);
-}
-.projectsContainer .project:nth-child(8) {
-    animation-delay: calc(var(--betweenTime) * 8);
-}
-.projectsContainer .project:nth-child(9) {
-    animation-delay: calc(var(--betweenTime) * 9);
-}
-.projectsContainer .project:nth-child(10) {
-    animation-delay: calc(var(--betweenTime) * 10);
-}
-.projectsContainer .project:nth-child(11) {
-    animation-delay: calc(var(--betweenTime) * 11);
-}
-.projectsContainer .project:nth-child(12) {
-    animation-delay: calc(var(--betweenTime) * 12);
 }
 </style>

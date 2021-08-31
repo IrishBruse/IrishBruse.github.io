@@ -2,10 +2,22 @@
     <div class="navbar noTextHighlight">
         <button class="burger icons" @click="toggleLinks()">menu</button>
         <div ref="links" class="navbarLinks">
-            <router-link class="navbarLink" to="/home"> Home </router-link>
-            <router-link class="navbarLink" to="/projects"> Projects </router-link>
-            <router-link class="navbarLink" to="/about"> About </router-link>
-            <router-link class="navbarLink" to="/contact"> Contact </router-link>
+            <router-link class="navbarLink" to="/home">
+                Home
+                <div class="underline" />
+            </router-link>
+            <router-link class="navbarLink" to="/projects">
+                Projects
+                <div class="underline" />
+            </router-link>
+            <router-link class="navbarLink" to="/about">
+                About
+                <div class="underline" />
+            </router-link>
+            <router-link class="navbarLink" to="/contact">
+                Contact
+                <div class="underline" />
+            </router-link>
         </div>
         <div class="hiddenButton" />
         <ThemeToggle />
@@ -104,12 +116,24 @@ onMounted(() => {
 }
 
 .navbarLink {
+    transition-duration: 200ms;
     width: ;
     font-size: 1.25rem;
     padding: 0.5rem 1rem;
     margin: 0 auto;
     text-decoration: none;
     text-align: center;
+}
+
+.underline {
+    transition-duration: 200ms;
+}
+
+.navbarLink > .underline {
+    width: 100%;
+    height: 2px;
+    background-color: var(--link);
+    transform: scaleX(0);
 }
 
 @media only screen and (min-width: 992px) {
@@ -141,13 +165,16 @@ onMounted(() => {
     }
 }
 
+.navbarLink:hover .underline {
+    transform: scaleX(1);
+    background-color: var(--link-hover);
+}
+
 .navbarLink:hover {
     color: var(--link-hover);
 }
 
-.router-link-active {
-    border-color: var(--link);
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
+.router-link-active > .underline {
+    transform: scaleX(1);
 }
 </style>
