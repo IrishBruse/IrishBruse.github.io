@@ -79,7 +79,7 @@ const reloadProjects = (catagoryIndex) => {
             for (let i = 0; i < cells.length; i++) {
                 setTimeout(() => {
                     cells[i].classList.toggle("projectLoadDelay", true);
-                }, 25 * i);
+                }, 50 * i);
             }
             // Current Catagory highlight
             let sortButtons = document.getElementsByClassName("sort");
@@ -100,7 +100,7 @@ const filteredProjects = computed(() => {
 onMounted(() => {
     setTimeout(() => {
         reloadProjects(0);
-    }, 5);
+    }, 500);
 });
 </script>
 
