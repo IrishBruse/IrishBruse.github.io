@@ -1,7 +1,7 @@
 <template>
     <img :src="src" class="modalImage noTextHighlight" @click="toggleModal" ref="sourceImage" />
     <teleport to="body">
-        <div v-show="imageIsModal" class="modalImageDim" @click="closeModal">
+        <div v-show="imageIsModal" class="modalImageContainer" @click="closeModal">
             <img :src="src" class="modalImagePopup noTextHighlight" ref="modalImage" />
         </div>
     </teleport>
@@ -25,11 +25,7 @@ const toggleModal = () => {
 
     setTimeout(() => {
         if (imageIsModal.value) {
-            if (modalImage.value.naturalHeight > modalImage.value.naturalWidth) {
-                modalImage.value.classList.add("tall");
-            } else {
-                modalImage.value.classList.add("wide");
-            }
+            modalImage.value.classList.add("active");
         }
     }, 1);
 
@@ -39,9 +35,6 @@ const toggleModal = () => {
 const closeModal = () => {
     modalImage.value.classList.remove("active");
     imageIsModal.value = false;
-
-    modalImage.value.classList.remove("wide");
-    modalImage.value.classList.remove("tall");
 };
 </script>
 
@@ -63,23 +56,18 @@ const closeModal = () => {
     transition: all 0.25s;
 }
 
-.modalImagePopup.wide {
-    width: 80%;
-    height: auto;
-}
-
-.modalImagePopup.tall {
+.modalImagePopup.active {
+    height: 90%;
     width: auto;
-    height: 80%;
 }
 
-.modalImageDim {
+.modalImageContainer {
     cursor: pointer;
     position: fixed;
-    top: 0;
+    top: var(--navbarHeight);
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - var(--navbarHeight));
     z-index: 5;
     background-color: #000000aa;
 }
