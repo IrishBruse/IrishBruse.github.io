@@ -1,6 +1,6 @@
 <template>
     <div class="navbar noTextHighlight">
-        <button v-if="screen.width < 992" class="icons burger" @click="toggleLinks()">menu</button>
+        <button class="burger icons" @click="toggleLinks()">menu</button>
         <div ref="links" class="navbarLinks">
             <router-link class="navbarLink" to="/home"> Home </router-link>
             <router-link class="navbarLink" to="/projects"> Projects </router-link>
@@ -75,6 +75,7 @@ onMounted(() => {
 
 .burger {
     color: var(--link);
+    display: block;
     border-style: none;
     font-size: 2rem;
 }
@@ -132,6 +133,10 @@ onMounted(() => {
     }
 
     .hiddenButton {
+        display: none;
+    }
+
+    .burger {
         display: none;
     }
 }
