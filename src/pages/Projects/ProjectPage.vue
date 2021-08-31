@@ -14,9 +14,21 @@ var comp;
 if (currentProject != null) {
     comp = defineAsyncComponent(() => import("@/projects/" + currentProject.title + "/Index.vue"));
 } else {
-    comp = defineAsyncComponent(() => import("@/pages/404.vue"));
+    comp = defineAsyncComponent(() => import("./404.vue"));
 }
 </script>
 
 <style>
+.startedOn {
+    right: 0;
+    bottom: 1rem;
+    color: var(--invert-accent-background);
+}
+
+.projectTitleContainer {
+    padding: 0;
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
 </style>

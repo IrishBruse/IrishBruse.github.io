@@ -10,22 +10,13 @@
     <Row class="projectsContainer" :gutter="24">
         <Col v-for="project in filteredProjects" :key="project.title" class="project" :lg="3" :md="4" :xs="12">
             <img class="shadow round" :src="require('@/projects/' + project.title + '/Thumbnail.png')" @click="navigateToProject(project.title)" />
+            <div v-if="checkIfNew(project.date)" class="newTag">New</div>
             <div class="projectInfo">
                 <h4 class="projectTitle">{{ project.title }}</h4>
                 <p class="projectType float-right">({{ project.type }})</p>
             </div>
         </Col>
     </Row>
-
-    <div class="pagination flex">
-        <button class="prev round" @click="changePage(currentPage - 1)">Previous Page</button>
-        <div class="pages">
-            <button v-for="index in maxPagesForCatagory" :key="index" class="page round" @click="changePage(index - 1)">
-                <b>{{ index }}</b>
-            </button>
-        </div>
-        <button class="next round" @click="changePage(currentPage + 1)">Next Page</button>
-    </div>
 </template>
 
 <script setup>
@@ -60,6 +51,14 @@ const changeCatagory = (newCategory) => {
 
     // Animate project loading
     reloadProjects(newCategory, 0);
+};
+
+const checkIfNew = (date) => {
+    var now = new Date(Date.now());
+    var project = new Date(date);
+    var monthMilis = 2629800000 * 2; // 2 Months
+
+    return now - project < monthMilis;
 };
 
 // Handle pagination
@@ -145,29 +144,6 @@ onMounted(() => {
     }
 }
 
-.pagination {
-    padding: 2rem 0;
-    bottom: 0;
-    position: absolute;
-    width: 100%;
-}
-
-.pagination.prev,
-.pagination.next {
-    flex-grow: 1;
-    margin: 2rem 0;
-}
-
-.pagination > .pages {
-    margin: 0 auto;
-}
-
-.pagination .page.active {
-    color: var(--background);
-    background-color: var(--link);
-}
-
-/* // */
 .project > img {
     width: 100%;
     background-color: var(--background);
@@ -176,6 +152,21 @@ onMounted(() => {
 .project > img:hover {
     cursor: pointer;
     filter: contrast(90%) brightness(105%);
+}
+
+.newTag {
+    position: absolute;
+    bottom: 3rem;
+    right: 1.5rem;
+    background-color: var(--link);
+    color: var(--background);
+    /* border-width: 2px;
+    border-color: var(--link-hover);
+    border-style: solid; */
+    font-weight: bolder;
+    padding: 0.25rem 0.5rem;
+    pointer-events: none;
+    border-radius: 2rem;
 }
 
 .projectInfo {
@@ -187,12 +178,12 @@ onMounted(() => {
 .projectType,
 .projectTitle {
     display: inline-block;
-    padding: 0 1rem;
+    padding: 0 0.25rem;
 }
 
 .projectType {
     text-align: right;
-    padding: 0 2rem;
+    padding: 0 0.25rem;
     width: auto;
     color: var(--invert-accent-background);
 }

@@ -36,7 +36,7 @@ const routes = [
                 path: '',
                 name: "Projects",
                 component: ProjectsGrid,
-            }
+            },
         ],
     },
     {
@@ -51,7 +51,6 @@ const routes = [
         component: Contact,
         meta: { index: 3 },
     },
-
     {
         path: "/:pathMatch(.*)*",
         name: "404",

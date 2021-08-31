@@ -6,7 +6,9 @@
             </div>
         </Col>
         <Col :lg="6" :md="6" :xs="12" class="videoDescription">
-            <slot>404 no discription found!</slot>
+            <div class="text-justify">
+                <slot>404 no discription found!</slot>
+            </div>
         </Col>
     </Row>
 </template>

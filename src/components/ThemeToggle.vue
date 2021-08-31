@@ -61,11 +61,11 @@ onMounted(() => {
     width: 1rem;
     height: 1rem;
     margin: 0.1rem;
-    transition: all 0.5s;
     position: absolute;
 }
 
 .themeIcon {
+    display: inline-block;
     margin: 0.25rem;
 }
 </style>

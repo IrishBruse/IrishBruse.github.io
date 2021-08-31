@@ -4,7 +4,8 @@
         "type": "Library",
         "flags": [
             "featured"
-        ]
+        ],
+        "date": "2021-01-24"
     },
     {
         "title": "Monoboy",
@@ -12,7 +13,8 @@
         "type": "Software",
         "flags": [
             "featured"
-        ]
+        ],
+        "date": "2020-06-24"
     },
     {
         "title": "HyperHop",
@@ -20,17 +22,20 @@
         "video": "43nXqXdOAu4",
         "flags": [
             "featured"
-        ]
+        ],
+        "date": "2019-02-03"
     },
     {
         "title": "Asteroids",
         "type": "Game",
         "video": "UMikJOsE8LE",
-        "flags": []
+        "flags": [],
+        "date": "2020-06-04"
     },
     {
-        "title": "ConwaysGameOfLife",
+        "title": "GameOfLife",
         "type": "Game",
-        "flags": []
+        "flags": [],
+        "date": "2020-10-02"
     }
 ]

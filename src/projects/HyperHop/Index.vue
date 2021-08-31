@@ -1,15 +1,18 @@
 <template>
-    <h1 class="text-center">{{ props.project.title }}</h1>
+    <div class="relative projectTitleContainer">
+        <h1 class="text-center p0">
+            {{ props.project.title }}
+        </h1>
+        <time :title="localDate" datetime="props.project.date" class="absolute startedOn">Started on {{ localDate }}</time>
+    </div>
 
     <VideoDescription :video="props.project.video">
-        <div class="text-justify">
-            <h3>Made by me and <a href="https://www.joshvanetten.com/">Josh Van Etten</a></h3>
-            <p>
-                We released this game on both android and ios. It was a great project to learn the difficulties of managing a live product and dealing with bug
-                reports, issues, marketing and feature requests from the people who downloaded our app. This helped me learn what parts of a project need to be
-                prioritised.
-            </p>
-        </div>
+        <h3>Made by me and <a href="https://www.joshvanetten.com/">Josh Van Etten</a></h3>
+        <p>
+            We released this game on both android and ios. It was a great project to learn the difficulties of managing a live product and dealing with bug
+            reports, issues, marketing and feature requests from the people who downloaded our app. This helped me learn what parts of a project need to be
+            prioritised.
+        </p>
     </VideoDescription>
 
     <h2 class="text-center">Screenshots</h2>
@@ -43,6 +46,7 @@ const unity = ref(null);
 const showHyperHop = ref(false);
 var inst;
 
+const localDate = new Date(props.project.date).toLocaleDateString();
 onBeforeUnmount(() => {
     inst.Quit(function () {
         inst = null;

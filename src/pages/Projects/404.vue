@@ -14,14 +14,3 @@ const back = () => {
     router.back();
 };
 </script>
-
-
-<style>
-.page404 {
-    padding: auto 0;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-</style>

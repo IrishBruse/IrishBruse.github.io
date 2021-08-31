@@ -1,14 +1,15 @@
 <template>
-    <h1 class="text-center">{{ props.project.title }}</h1>
+    <div class="relative projectTitleContainer">
+        <h1 class="text-center p0">
+            {{ props.project.title }}
+        </h1>
+        <time :title="localDate" datetime="props.project.date" class="absolute startedOn">Started on {{ localDate }}</time>
+    </div>
 
     <VideoDescription :video="props.project.video">
-        <div class="text-justify">
-            <p>
-                Monoboy is a Gameboy emulator written in C#. It was made to help me learn bitwise operations and the more lower level parts of C#. I learned
-                alot about project management as this was the biggest piece of software i had made at the time. I also improved my ability to structure code in
-                a way that was easier to come back to and maintain.
-            </p>
-        </div>
+        Monoboy is a Gameboy emulator written in C#. It was made to help me learn bitwise operations and the more lower level parts of C#. I learned alot about
+        project management as this was the biggest piece of software i had made at the time. I also improved my ability to structure code in a way that was
+        easier to come back to and maintain.
     </VideoDescription>
 
     <h2 class="text-center">Screenshots</h2>
@@ -37,5 +38,6 @@ import { loadProjectImage } from "../CommonProject.js";
 const props = defineProps({
     project: Object,
 });
-</script>
 
+const localDate = new Date(props.project.date).toLocaleDateString();
+</script>
