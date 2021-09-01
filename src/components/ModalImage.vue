@@ -28,8 +28,6 @@ const toggleModal = () => {
             modalImage.value.classList.add("active");
         }
     }, 1);
-
-    console.log(imageIsModal.value);
 };
 
 const closeModal = () => {

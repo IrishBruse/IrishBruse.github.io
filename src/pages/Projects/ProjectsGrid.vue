@@ -9,9 +9,9 @@
 
     <Row class="projectsContainer" id="projectsParent" :gutter="24">
         <Col v-for="project in filteredProjects" :key="project.title" class="project" :lg="3" :md="4" :xs="12">
-            <a :href="navigateToProject(project.title)">
+            <router-link :to="navigateToProject(project.title)">
                 <img class="shadow round" :src="loadProjectImage('Thumbnail.png', project.title)" />
-            </a>
+            </router-link>
             <div v-if="checkIfNew(project.date)" class="newTag">New</div>
             <div class="projectInfo">
                 <h4 class="projectTitle">{{ project.title }}</h4>
@@ -151,6 +151,8 @@ onMounted(() => {
     width: 100%;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-items: start;
 }
 
 .projectType,
@@ -160,13 +162,16 @@ onMounted(() => {
 }
 
 .projectTitle {
-    width: min-content;
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-height: 1.5rem;
 }
 
 .projectType {
     text-align: right;
     padding: 0 0.25rem;
-    width: auto;
     color: var(--invert-accent-background);
 }
 

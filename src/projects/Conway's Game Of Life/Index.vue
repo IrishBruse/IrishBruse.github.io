@@ -1,8 +1,7 @@
 <template>
     <ProjectHeader :project="props.project">
-        Monoboy is a Gameboy emulator written in C#. It was made to help me learn bitwise operations and the more lower level parts of C#. I learned alot about
-        project management as this was the biggest piece of software i had made at the time. I also improved my ability to structure code in a way that was
-        easier to come back to and maintain.
+        This is a implementation of the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a> cellular automata it helped me
+        learn how to handle camera matrix's in monogame and how to handle an infinite world for the simulation
     </ProjectHeader>
 
     <ProjectScreenshots :project="props.project"> </ProjectScreenshots>
@@ -11,7 +10,6 @@
 <script setup>
 import ProjectHeader from "@/components/projects/ProjectHeader.vue";
 import ProjectScreenshots from "@/components/projects/ProjectScreenshots.vue";
-
 import { defineProps } from "vue";
 
 const props = defineProps({
