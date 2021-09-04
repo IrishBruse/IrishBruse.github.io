@@ -175,6 +175,6 @@ onMounted(() => {
 }
 
 .router-link-active > .underline {
-    transform: scaleX(1);
+    transform: scaleX(1.1);
 }
 </style>
