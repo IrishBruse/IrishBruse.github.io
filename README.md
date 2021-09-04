@@ -1,5 +1,5 @@
 # irishbruse.github.io
-
+[![Github Pages](https://github.com/IrishBruse/IrishBruse.github.io/actions/workflows/PagesPublish.yml/badge.svg)](https://github.com/IrishBruse/IrishBruse.github.io/actions/workflows/PagesPublish.yml)
 Personal portfolio website written using Vue3
 
 Component packages used:
