@@ -88,6 +88,7 @@ const navigateToProject = (project) => {
 }
 
 .slideImage {
+    transition: filter 150ms;
     width: 95%;
     cursor: pointer;
     background-color: var(--background);

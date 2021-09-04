@@ -128,11 +128,12 @@ onMounted(() => {
 .project img {
     width: 100%;
     background-color: var(--background);
+    transition: transform 150ms;
 }
 
 .project img:hover {
     cursor: pointer;
-    filter: contrast(90%) brightness(105%);
+    transform: scale(1.05);
 }
 
 .newTag {

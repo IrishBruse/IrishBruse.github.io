@@ -2,7 +2,7 @@
     <img :src="src" class="modalImage noTextHighlight" @click="toggleModal" ref="sourceImage" />
     <teleport to="body">
         <div v-show="imageIsModal" class="modalImageContainer" @click="closeModal">
-            <img :src="src" class="modalImagePopup noTextHighlight" ref="modalImage" />
+            <img :src="src" class="modalImagePopup noTextHighlight" ref="modalImage" @click="" />
         </div>
     </teleport>
 </template>
@@ -39,15 +39,21 @@ const closeModal = () => {
 <style>
 .modalImage {
     cursor: pointer;
+    transition: transform 150ms;
+}
+
+.modalImage:hover {
+    transform: scale(1.05);
 }
 
 .modalImagePopup {
     position: fixed;
     left: 50%;
-    top: calc(50% + var(--navbarHeight) / 2);
+    top: 50%;
     width: 0%;
     height: 0%;
     transform: translate(-50%, -50%);
+    object-fit: contain;
 
     z-index: 20;
 
@@ -62,11 +68,11 @@ const closeModal = () => {
 .modalImageContainer {
     cursor: pointer;
     position: fixed;
-    top: var(--navbarHeight);
+    top: 0;
     left: 0;
     width: 100vw;
-    height: calc(100vh - var(--navbarHeight));
-    z-index: 5;
+    height: 100vh;
+    z-index: 100;
     background-color: #000000aa;
 }
 </style>
