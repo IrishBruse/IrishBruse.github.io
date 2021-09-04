@@ -1,5 +1,7 @@
 <template>
-    <Navbar v-if="navbarVisable" />
+    <HideInLauncher>
+        <Navbar />
+    </HideInLauncher>
 
     <router-view v-slot="{ Component, route }">
         <transition :name="route.meta.transitionName">
@@ -18,8 +20,6 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const navbarVisable = ref(true);
-
 router.afterEach((to, from) => {
     if (from.href != undefined && from.meta.index != -1) {
         const toDepth = to.path.split("/").length;
@@ -34,7 +34,6 @@ router.afterEach((to, from) => {
     var body = document.getElementsByTagName("body")[0];
 
     if (to.query.launcher == "true") {
-        navbarVisable.value = false;
         document.addEventListener("contextmenu", (event) => event.preventDefault());
         body.onmousedown = () => {
             return false;
@@ -44,7 +43,9 @@ router.afterEach((to, from) => {
         };
     }
 
-    body.classList.toggle("light", to.query.theme == "light");
+    if (to.query.theme != null) {
+        body.classList.toggle("light", to.query.theme == "light");
+    }
 });
 </script>
 

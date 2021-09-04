@@ -1,10 +1,12 @@
 <template>
-    <div class="relative projectTitleContainer">
-        <h1 class="text-center p0">
-            {{ props.project.title }}
-        </h1>
-        <time :title="localDate" datetime="props.project.date" class="absolute startedOn">Started on {{ localDate }}</time>
-    </div>
+    <HideInLauncher>
+        <div class="relative projectTitleContainer">
+            <h1 class="text-center p0">
+                {{ props.project.title }}
+            </h1>
+            <time :title="localDate" datetime="props.project.date" class="absolute startedOn">Started on {{ localDate }}</time>
+        </div>
+    </HideInLauncher>
 
     <VideoDescription :video="props.project.video">
         <slot></slot>
@@ -21,8 +23,8 @@ const props = defineProps({
 
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-function convertDate(date_str) {
-    var temp_date = date_str.split("/");
+function convertDate(date) {
+    var temp_date = date.split("/");
     return temp_date[0] + " " + months[Number(temp_date[1]) - 1] + " " + temp_date[2];
 }
 

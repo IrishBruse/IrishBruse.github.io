@@ -14,7 +14,7 @@
             <p class="text-justify">
                 I am self taught in C# and have used it in many ways from Unity to Monogame to a
                 <Router-link to="/projects/Monoboy">Gameboy Emulator</Router-link> and mobile apps. I have been programming in C# for {{ yearsCSharp }} years
-                and I am well adversed with its tool chain and the dotnet workflow in general.
+                when i started with xna making games and I am well adversed with its newer tool chain and the dotnet core and 5 workflow in general.
             </p>
         </Col>
 
@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-const yearsCSharp = new Date(Date.now()).getFullYear() - 2014;
+const yearsCSharp = new Date(Date.now()).getFullYear() - 2012;
 </script>
 
 <style>

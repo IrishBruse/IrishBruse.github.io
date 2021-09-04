@@ -25,10 +25,14 @@ onMounted(() => {
     if (localStorage.getItem("isLight") === null) {
         isLight.value = !window.matchMedia("(prefers-color-scheme: dark)").matches;
         localStorage.setItem("isLight", isLight.value);
-        themeCheckbox.value.checked = isLight.value;
     } else {
         isLight.value = localStorage.getItem("isLight") == "true";
     }
+
+    themeCheckbox.value.checked = isLight.value;
+
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.toggle("light", isLight.value);
 });
 </script>
 
