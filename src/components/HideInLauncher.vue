@@ -1,5 +1,5 @@
 <template>
-    <div v-show="showIfNotLauncher">
+    <div v-if="showIfNotLauncher">
         <slot></slot>
     </div>
 </template>

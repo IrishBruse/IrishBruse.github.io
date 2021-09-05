@@ -53,8 +53,8 @@ router.afterEach((to, from) => {
 .viewport {
     background-color: var(--accent-background);
     width: 93vw;
-    margin: 0 2.5%;
-    padding: 0 1%;
+    margin: 0 2%;
+    padding: 0 1.5%;
     position: relative;
 
     min-height: calc(100vh - var(--navbarHeight));
@@ -62,8 +62,9 @@ router.afterEach((to, from) => {
 
 @media only screen and (min-width: 992px) {
     .viewport {
-        margin: 0 12.5%;
-        width: 72vw;
+        width: 75vw;
+        margin: 0 calc(12.5% - 2rem);
+        padding: 0 2rem;
     }
 }
 

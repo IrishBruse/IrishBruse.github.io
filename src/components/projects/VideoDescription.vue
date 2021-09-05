@@ -1,5 +1,5 @@
 <template>
-    <Row :columns="12" :gutter="24">
+    <Row :columns="12" :gutter="24" class="videoDescriptionContainer">
         <Col :lg="6" :md="6" :xs="12">
             <div class="videoContainer">
                 <iframe class="video" :src="'https://www.youtube.com/embed/' + props.video" frameborder="0" allowfullscreen />
@@ -40,5 +40,9 @@ const props = defineProps({
 
 .videoDescription * {
     font-size: 1.25rem;
+}
+
+.videoDescriptionContainer {
+    padding: 2rem 0 0 0;
 }
 </style>
