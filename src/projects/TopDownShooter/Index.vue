@@ -1,10 +1,9 @@
 <template>
     <ProjectHeader :project="props.project">
-        We released this game on both android and ios. It was a great project to learn the difficulties of managing a live product and dealing with bug reports,
-        issues, marketing and feature requests from the people who downloaded our app. This helped me learn what parts of a project need to be prioritised.
+        TopDownShooter is one of the very first games I made in XNA back in around 2014 I had made games in GameMaker Studio 1 before then but most were just
+        following tutorials this was the very first game I made on my own with my own assets and everything unfortunately over time i lost the latest version of
+        the game that contained a big boss zombie.
     </ProjectHeader>
-
-    <h3>Made by me and Josh Van Etten</h3>
 
     <ProjectScreenshots :project="props.project"> </ProjectScreenshots>
 </template>
@@ -12,7 +11,6 @@
 <script setup>
 import ProjectHeader from "@/components/projects/ProjectHeader.vue";
 import ProjectScreenshots from "@/components/projects/ProjectScreenshots.vue";
-import { defineProps, onBeforeUnmount, ref } from "vue";
 import { loadProjectImage } from "../CommonProject.js";
 
 const props = defineProps({

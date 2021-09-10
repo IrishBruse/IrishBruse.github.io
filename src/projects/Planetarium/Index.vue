@@ -1,10 +1,9 @@
 <template>
     <ProjectHeader :project="props.project">
-        We released this game on both android and ios. It was a great project to learn the difficulties of managing a live product and dealing with bug reports,
-        issues, marketing and feature requests from the people who downloaded our app. This helped me learn what parts of a project need to be prioritised.
+        Planetarium was the first time I participated in a game jam I had never been constrained to such a short time to make a game.It really helped me see
+        what my strengths and weakness were i also had to learn to make music for this game it was a great learning experience even if the game didnt come out
+        how i wanted it to.
     </ProjectHeader>
-
-    <h3>Made by me and Josh Van Etten</h3>
 
     <ProjectScreenshots :project="props.project"> </ProjectScreenshots>
 </template>
@@ -12,7 +11,6 @@
 <script setup>
 import ProjectHeader from "@/components/projects/ProjectHeader.vue";
 import ProjectScreenshots from "@/components/projects/ProjectScreenshots.vue";
-import { defineProps, onBeforeUnmount, ref } from "vue";
 import { loadProjectImage } from "../CommonProject.js";
 
 const props = defineProps({

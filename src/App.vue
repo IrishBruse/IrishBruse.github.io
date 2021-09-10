@@ -15,8 +15,8 @@
 
 <script setup>
 import Navbar from "@/components/Navbar.vue";
-import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
+import { ref } from "@vue/reactivity";
 
 const router = useRouter();
 

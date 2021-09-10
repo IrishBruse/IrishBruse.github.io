@@ -56,12 +56,14 @@ const closeModal = () => {
     object-fit: contain;
 
     z-index: 20;
+    opacity: 0;
 
     transition: all 0.25s;
 }
 
 .modalImagePopup.active {
     height: 90%;
+    opacity: 1;
     width: auto;
 }
 

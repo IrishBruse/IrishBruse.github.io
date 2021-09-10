@@ -1,10 +1,8 @@
 <template>
     <ProjectHeader :project="props.project">
-        We released this game on both android and ios. It was a great project to learn the difficulties of managing a live product and dealing with bug reports,
-        issues, marketing and feature requests from the people who downloaded our app. This helped me learn what parts of a project need to be prioritised.
+        Space Blast is a small simple space shooter game made with Kenney assets for android. It was made in unity and it is an endless game in where you try
+        and get the highest score before you die. Along the way you will collect power ups to temporarily increse the fire rate or replenish a heart.
     </ProjectHeader>
-
-    <h3>Made by me and Josh Van Etten</h3>
 
     <ProjectScreenshots :project="props.project"> </ProjectScreenshots>
 </template>
