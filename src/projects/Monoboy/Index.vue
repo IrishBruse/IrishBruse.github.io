@@ -5,14 +5,12 @@
         easier to come back to and maintain.
     </ProjectHeader>
 
-    <ProjectScreenshots :project="props.project"> </ProjectScreenshots>
+    <ProjectScreenshots :project="props.project" />
 </template>
 
 <script setup>
 import ProjectHeader from "@/components/projects/ProjectHeader.vue";
 import ProjectScreenshots from "@/components/projects/ProjectScreenshots.vue";
-
-import { defineProps } from "vue";
 
 const props = defineProps({
     project: Object,

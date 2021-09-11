@@ -5,17 +5,14 @@
         the game that contained a big boss zombie.
     </ProjectHeader>
 
-    <ProjectScreenshots :project="props.project"> </ProjectScreenshots>
+    <ProjectScreenshots :project="props.project" />
 </template>
 
 <script setup>
 import ProjectHeader from "@/components/projects/ProjectHeader.vue";
 import ProjectScreenshots from "@/components/projects/ProjectScreenshots.vue";
-import { loadProjectImage } from "../CommonProject.js";
 
 const props = defineProps({
     project: Object,
 });
-
-const localDate = new Date(props.project.date).toLocaleDateString();
 </script>

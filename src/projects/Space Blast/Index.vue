@@ -4,18 +4,14 @@
         and get the highest score before you die. Along the way you will collect power ups to temporarily increse the fire rate or replenish a heart.
     </ProjectHeader>
 
-    <ProjectScreenshots :project="props.project"> </ProjectScreenshots>
+    <ProjectScreenshots :project="props.project" />
 </template>
 
 <script setup>
 import ProjectHeader from "@/components/projects/ProjectHeader.vue";
 import ProjectScreenshots from "@/components/projects/ProjectScreenshots.vue";
-import { defineProps, onBeforeUnmount, ref } from "vue";
-import { loadProjectImage } from "../CommonProject.js";
 
 const props = defineProps({
     project: Object,
 });
-
-const localDate = new Date(props.project.date).toLocaleDateString();
 </script>

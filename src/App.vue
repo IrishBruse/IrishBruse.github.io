@@ -6,7 +6,10 @@
     <router-view v-slot="{ Component, route }">
         <transition :name="route.meta.transitionName">
             <!-- key forces transition on viewport also viewport fixes problem with multi root comps -->
-            <div class="viewport" :key="route.path">
+            <div
+                :key="route.path"
+                class="viewport"
+            >
                 <component :is="Component" />
             </div>
         </transition>
@@ -16,7 +19,6 @@
 <script setup>
 import Navbar from "@/components/Navbar.vue";
 import { useRouter } from "vue-router";
-import { ref } from "@vue/reactivity";
 
 const router = useRouter();
 

@@ -4,7 +4,7 @@
         learn how to handle camera matrix's in monogame and how to handle an infinite world for the simulation
     </ProjectHeader>
 
-    <ProjectScreenshots :project="props.project"> </ProjectScreenshots>
+    <ProjectScreenshots :project="props.project" />
 </template>
 
 <script setup>
