@@ -1,8 +1,22 @@
 <template>
-    <h2 class="text-center">Featured Projects</h2>
-    <Carousel :items-to-show="1" :transition="500" :wrap-around="true">
-        <Slide v-for="project in projects" :key="project.title" class="slide">
-            <img class="slideImage round" :src="require('@/projects/' + project.title + '/Thumbnail.png')" @click="navigateToProject(project.title)" />
+    <h2 class="text-center">
+        Featured Projects
+    </h2>
+
+    <Carousel
+        :items-to-show="1"
+        :transition="500"
+    >
+        <Slide
+            v-for="project in projects"
+            :key="project.title"
+            class="slide"
+        >
+            <img
+                class="slideImage round"
+                :src="require('@/projects/' + project.title + '/Thumbnail.png')"
+                @click="navigateToProject(project.title)"
+            >
         </Slide>
 
         <template #addons>

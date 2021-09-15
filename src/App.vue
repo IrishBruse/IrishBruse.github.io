@@ -54,8 +54,6 @@ router.afterEach((to, from) => {
 <style>
 #app {
     min-height: calc(100vh);
-    display: flex;
-    flex-direction: column;
 }
 
 .viewport {
@@ -65,7 +63,6 @@ router.afterEach((to, from) => {
     padding: 0 1.5%;
     position: relative;
 
-    flex-grow: 1;
 }
 
 @media only screen and (min-width: 992px) {
