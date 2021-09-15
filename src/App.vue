@@ -67,7 +67,7 @@ router.afterEach((to, from) => {
     background-color: var(--accent-background);
     width: 93vw;
     margin: 0 2%;
-    padding: 0 1.5%;
+    padding: 2rem 1.5%;
 }
 
 @media only screen and (min-width: 992px) {

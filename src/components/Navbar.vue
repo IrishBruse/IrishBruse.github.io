@@ -1,6 +1,8 @@
 <template>
     <div class="navbar noTextHighlight">
-        <button class="burger icons" @click="toggleLinks()">menu</button>
+        <button class="burger icons" @click="toggleLinks()">
+            menu
+        </button>
         <div ref="links" class="navbarLinks">
             <router-link class="navbarLink" to="/home">
                 Home
@@ -31,7 +33,7 @@ import { ref, onMounted } from "vue";
 const links = ref(null);
 const screen = ref({ width: 0, height: 0 });
 
-const outsideClickListener = (clickEvent) => {
+const outsideClickListener = () => {
     if (links.value.classList.contains("navbarLinksOpen")) {
         links.value.classList.remove("navbarLinksOpen");
         document.removeEventListener("click", outsideClickListener);
