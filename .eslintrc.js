@@ -18,6 +18,15 @@ module.exports = {
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
         "vue/no-unused-components": "warn",
         "vue/html-indent": ["error", 4],
-        "vue/require-default-prop": "off"
+        "vue/require-default-prop": "off",
+        "vue/max-attributes-per-line": ["warn", {
+            "singleline": {
+                "max": 10,
+                "allowFirstLine": true
+            }, "multiline": {
+                "max": 10,
+                "allowFirstLine": true
+            }
+        }]
     },
 };

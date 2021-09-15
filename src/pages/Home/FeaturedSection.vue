@@ -3,20 +3,9 @@
         Featured Projects
     </h2>
 
-    <Carousel
-        :items-to-show="1"
-        :transition="500"
-    >
-        <Slide
-            v-for="project in projects"
-            :key="project.title"
-            class="slide"
-        >
-            <img
-                class="slideImage round"
-                :src="require('@/projects/' + project.title + '/Thumbnail.png')"
-                @click="navigateToProject(project.title)"
-            >
+    <Carousel :items-to-show="1" :autoplay="5000" :transition="500">
+        <Slide v-for="project in projects" :key="project.title" class="slide">
+            <img class="slideImage round" :src="require('@/projects/' + project.title + '/Thumbnail.png')" @click="navigateToProject(project.title)">
         </Slide>
 
         <template #addons>

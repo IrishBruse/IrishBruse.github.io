@@ -54,14 +54,20 @@ router.afterEach((to, from) => {
 <style>
 #app {
     min-height: calc(100vh);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
 }
 
 .viewport {
+    flex-grow: 1;
+
     background-color: var(--accent-background);
     width: 93vw;
     margin: 0 2%;
-    padding: 0 1.5%;
-    position: relative;
+    padding: 2rem 1.5%;
+
+    transition: height 1s;
 
 }
 
@@ -69,7 +75,6 @@ router.afterEach((to, from) => {
     .viewport {
         width: 75vw;
         margin: 0 calc(12.5% - 2rem);
-        padding: 0 2rem;
     }
 }
 
@@ -108,12 +113,14 @@ body {
 .slide-right-leave-active {
     top: var(--navbarHeight);
     position: absolute;
+    height: 100vh;
 }
 
 .slide-left-leave-active,
 .slide-right-enter {
     top: var(--navbarHeight);
     position: absolute;
+    height: 100vh;
 }
 
 /* route transitions */

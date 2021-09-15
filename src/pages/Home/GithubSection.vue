@@ -1,18 +1,24 @@
 <template>
-    <h1 class="text-center">Github</h1>
+    <h1 class="text-center">
+        Github
+    </h1>
 
     <div v-if="isFoundProfile">
         <div class="githubProfile">
             <Row class="profileInfo">
                 <Col>
-                    <img alt="github avatar" class="avatar circle noTextHighlight" :src="profile.avatar" />
+                    <img alt="github avatar" class="avatar circle noTextHighlight" :src="profile.avatar">
                 </Col>
                 <Col>
                     <div class="profileInfoCenter">
                         <a class="profileLink" :href="profile.url">{{ profile.name }}</a>
                         <div class="profileFollowersContainer">
-                            <p class="profileFollowers">{{ profile.followers }} followers</p>
-                            <p class="profileFollowers">{{ profile.following }} following</p>
+                            <p class="profileFollowers">
+                                {{ profile.followers }} followers
+                            </p>
+                            <p class="profileFollowers">
+                                {{ profile.following }} following
+                            </p>
                         </div>
                     </div>
                 </Col>
@@ -180,7 +186,7 @@ onMounted(() => {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    height: calc(1rem + 6px);
+    height: 1.5rem;
 }
 
 .repoStarLink {
