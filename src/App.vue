@@ -43,6 +43,8 @@ router.afterEach((to, from) => {
         body.onselectstart = () => {
             return false;
         };
+
+        body.classList.add("launcher");
     }
 
     if (to.query.theme != null) {
@@ -65,10 +67,7 @@ router.afterEach((to, from) => {
     background-color: var(--accent-background);
     width: 93vw;
     margin: 0 2%;
-    padding: 2rem 1.5%;
-
-    transition: height 1s;
-
+    padding: 0 1.5%;
 }
 
 @media only screen and (min-width: 992px) {
@@ -76,6 +75,10 @@ router.afterEach((to, from) => {
         width: 75vw;
         margin: 0 calc(12.5% - 2rem);
     }
+}
+
+.launcher{
+    --navbarHeight:0;
 }
 
 body {
