@@ -1,10 +1,10 @@
 <template>
     <ProjectHeader :project="props.project">
-        IrishBruse Launcher is a way to share all my projects and software along with all the versions letting you see the progress in each project. 
-        It uses the dropbox Api to download the projects from their cloud service and then unzips the game ready to play. Its all gotten live from 
+        IrishBruse Launcher is a way to share all my projects and software along with all the versions letting you see the progress in each project.
+        It uses the dropbox Api to download the projects from their cloud service and then unzips the game ready to play. Its all gotten live from
         the service so i can add and remove games, software and versions as I want.
         Its the first golang application I wrote too as i wanted to give a try at a new language and go had some handy features that made making
-        this application alot easier than in C#. 
+        this application alot easier than in C#.
     </ProjectHeader>
 
     <div class="download">
@@ -27,7 +27,7 @@ const props = defineProps({
 const downloader = ref();
 
 const downloadInstaller = ()=>{
-    downloader.value.src = "/Launcher%20Installer.exe";
+    downloader.value.src = "/InstallerV2.exe";
 }
 </script>
 
@@ -47,7 +47,7 @@ const downloadInstaller = ()=>{
     font-weight: bolder;
     background-color: var(--link);
 }
-.centerButton:hover{    
+.centerButton:hover{
     background-color: var(--link-focus);
 }
 </style>
