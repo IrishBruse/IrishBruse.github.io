@@ -58,7 +58,6 @@ router.afterEach((to, from) => {
     min-height: calc(100vh);
     display: flex;
     flex-direction: column;
-    flex-shrink: 1;
 }
 
 .viewport {
