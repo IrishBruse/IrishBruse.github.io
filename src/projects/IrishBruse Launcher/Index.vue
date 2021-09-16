@@ -27,7 +27,7 @@ const props = defineProps({
 const downloader = ref();
 
 const downloadInstaller = ()=>{
-    downloader.value.src = "/Launcher Installer.exe";
+    downloader.value.src = "/Launcher%20Installer.exe";
 }
 </script>
 
