@@ -27,6 +27,13 @@
         "screenshots": "3"
     },
     {
+        "title": "Island Strike",
+        "type": "Game",
+        "flags": [],
+        "date": "2021-8-18",
+        "screenshots": "3"
+    },
+    {
         "title": "HyperHop",
         "type": "Game",
         "video": "43nXqXdOAu4",
@@ -34,6 +41,20 @@
             "featured"
         ],
         "date": "2019-02-03",
+        "screenshots": "3"
+    },
+    {
+        "title": "Planetarium",
+        "type": "Game",
+        "flags": [],
+        "date": "2017-8-1",
+        "screenshots": "3"
+    },
+    {
+        "title": "Space Blast",
+        "type": "Game",
+        "flags": [],
+        "date": "2018-12-2",
         "screenshots": "3"
     },
     {
@@ -50,20 +71,6 @@
         "video": "PUX19M9hy6U",
         "flags": [],
         "date": "2020-10-02",
-        "screenshots": "3"
-    },
-    {
-        "title": "Planetarium",
-        "type": "Game",
-        "flags": [],
-        "date": "2017-8-1",
-        "screenshots": "3"
-    },
-    {
-        "title": "Space Blast",
-        "type": "Game",
-        "flags": [],
-        "date": "2018-12-2",
         "screenshots": "3"
     },
     {

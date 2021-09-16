@@ -1,21 +1,35 @@
 <template>
     <div class="projectTitlebar flex">
         <h1>Projects</h1>
-        <h2 class="sort noTextHighlight" @click="changeCatagory(0)">All</h2>
-        <h2 class="sort noTextHighlight" @click="changeCatagory(1)">Software</h2>
-        <h2 class="sort noTextHighlight" @click="changeCatagory(2)">Libraries</h2>
-        <h2 class="sort noTextHighlight" @click="changeCatagory(3)">Games</h2>
+        <h2 class="sort noTextHighlight" @click="changeCatagory(0)">
+            All
+        </h2>
+        <h2 class="sort noTextHighlight" @click="changeCatagory(1)">
+            Software
+        </h2>
+        <h2 class="sort noTextHighlight" @click="changeCatagory(2)">
+            Libraries
+        </h2>
+        <h2 class="sort noTextHighlight" @click="changeCatagory(3)">
+            Games
+        </h2>
     </div>
 
-    <Row class="projectsContainer" id="projectsParent" :gutter="24">
+    <Row id="projectsParent" class="projectsContainer" :gutter="24">
         <Col v-for="project in filteredProjects" :key="project.title" class="project" :lg="3" :md="4" :xs="12">
             <router-link :to="navigateToProject(project.title)">
-                <img class="shadow round" :src="loadProjectImage('Thumbnail.png', project.title)" />
+                <img class="shadow round" :src="loadProjectImage('Thumbnail.png', project.title)">
             </router-link>
-            <div v-if="checkIfNew(project.date)" class="newTag">New</div>
+            <div v-if="checkIfNew(project.date)" class="newTag">
+                New
+            </div>
             <div class="projectInfo">
-                <h4 class="projectTitle">{{ project.title }}</h4>
-                <p class="projectType float-right">({{ project.type }})</p>
+                <h4 class="projectTitle">
+                    {{ project.title }}
+                </h4>
+                <p class="projectType float-right">
+                    ({{ project.type }})
+                </p>
             </div>
         </Col>
     </Row>
@@ -24,10 +38,8 @@
 <script setup>
 import Projects from "@/projects/projects.json";
 import { loadProjectImage } from "@/projects/CommonProject.js";
-import { computed, onMounted, onUnmounted, ref } from "vue";
-import { useRouter } from "vue-router";
+import { computed, onMounted,  ref } from "vue";
 
-const router = useRouter();
 const Catagories = ["All", "Software", "Library", "Game"];
 
 // Clickable projects
@@ -93,7 +105,10 @@ const reloadProjects = (catagoryIndex) => {
 // Computed values
 const filteredProjects = computed(() => {
     const title = Catagories[currentCategory.value];
-    return Projects.filter((project) => project.type == title || title == "All");
+    return Projects.filter((project) => project.type == title || title == "All").sort((a,b)=>
+    {
+        return new Date(b.date) - new Date(a.date);
+    });
 });
 
 // Events
