@@ -189,8 +189,8 @@ onMounted(() => {
     z-index: 100;
     top: 0;
     left: 0;
-    width: 99%;
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
     background-color: white;
     color: black;
     font-weight: bold;
@@ -253,13 +253,8 @@ onMounted(() => {
     padding: 0.175rem 0.5rem;
 }
 
-/* need to add a div with id in 1:00 & 1:30 slot */
-#wide {
-    width: 7rem;
-}
-
 .fixedWidth {
-    min-width: 5.9rem;
+    min-width: 5.3vw;
 }
 
 .red {
