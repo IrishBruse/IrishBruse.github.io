@@ -30,6 +30,10 @@ onMounted(() => {
         if (node.nodeType === 1) {
             node.removeAttribute("class");
             node.removeAttribute("style");
+        } else if (node.nodeType === 3) {
+            if (node.textContent == "\xa0") {
+                node.textContent = "";
+            }
         }
     });
 
@@ -47,7 +51,7 @@ onMounted(() => {
             }
 
             if (i == 0 || i == 1 || i == 2 || i == 3 || (i == 4 && index == 0) || i == 6) {
-                rows[i].children[index].classList.add("underline");
+                rows[i].children[index].classList.add("timetableunderline");
             }
             rows[i].children[index].classList.add("cell");
             var nodes = rows[i].children[index].querySelectorAll("table");
@@ -181,8 +185,9 @@ onMounted(() => {
 });
 </script>
 
-<style >
+<style>
 .fullscreen {
+    empty-cells: show;
     text-align: center;
     padding: 0.5rem;
     position: absolute;
@@ -196,24 +201,7 @@ onMounted(() => {
     font-weight: bold;
 }
 
-/* debug */
-/* .fullscreen table tr td {
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
-} */
-
-/* .fullscreen table tr td tr td {
-    border-style: solid;
-    border-color: blue;
-    border-width: 1px;
-} */
-
-.cell {
-    padding: 0.2rem;
-}
-
-.underline {
+.timetableunderline {
     border-bottom-style: solid;
     border-bottom-color: rgb(139, 139, 139);
     border-bottom-width: 2px;
@@ -228,10 +216,8 @@ onMounted(() => {
     height: 100vh;
 }
 
-.border {
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
+.cell {
+    /* padding: 0.1rem 0.2rem; */
 }
 
 .cellTop {
@@ -254,7 +240,7 @@ onMounted(() => {
 }
 
 .fixedWidth {
-    min-width: 5.3vw;
+    min-width: 5.425vw;
 }
 
 .red {
