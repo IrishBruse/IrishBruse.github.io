@@ -150,7 +150,7 @@ onMounted(() => {
                         break;
 
                     case "INTERNET AND MOBILE APPLICATION DEVELOPMENT":
-                        moduleName = "Internet and Mobile Development";
+                        moduleName = "Programming in C#\nfor Mobile";
                         color = "green";
                         break;
 
