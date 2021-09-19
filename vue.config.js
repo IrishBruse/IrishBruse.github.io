@@ -1,6 +1,12 @@
-// vue.config.js
-
 module.exports = {
-    chainWebpack: () => {
+    configureWebpack: {
+        module: {
+            rules: [
+                {
+                    test: /\.html$/i,
+                    use: 'raw-loader',
+                },
+            ],
+        },
     },
 };

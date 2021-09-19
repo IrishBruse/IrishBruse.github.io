@@ -1,4 +1,4 @@
-<template >
+<template>
     <component :is="comp" :project="currentProject" />
 </template>
 
@@ -12,7 +12,7 @@ const currentProject = Projects.find((project) => project.title == route.params.
 
 var comp;
 if (currentProject != null) {
-    comp = defineAsyncComponent(() => import("@/projects/" + currentProject.title + "/Index.vue"));
+    comp = defineAsyncComponent(() => import("@/projects/" + currentProject.title + "/index.vue"));
 } else {
     comp = defineAsyncComponent(() => import("./404.vue"));
 }

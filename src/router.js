@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "./pages/Home/Home.vue";
-import Contact from "./pages/Contact/Contact.vue";
-import About from "./pages/About/About.vue";
-import Projects from "./pages/Projects/Projects.vue";
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import Timetable from "./pages/Timetable";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
 import ProjectPage from "./pages/Projects/ProjectPage.vue";
 import ProjectsGrid from "./pages/Projects/ProjectsGrid.vue";
 import Error from "./pages/404.vue";
@@ -44,6 +45,11 @@ const routes = [
         name: "Contact",
         component: Contact,
         meta: { index: 3 },
+    },
+    {
+        path: "/timetable/:class",
+        name: "Timetable",
+        component: Timetable,
     },
     {
         path: "/:pathMatch(.*)*",
