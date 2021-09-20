@@ -155,7 +155,7 @@ onMounted(() => {
                         break;
 
                     default:
-                        moduleName = "Error";
+                        moduleName = "(Error)" + moduleName;
                         color = "gray";
                         break;
                 }
