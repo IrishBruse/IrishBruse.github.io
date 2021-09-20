@@ -6,14 +6,18 @@
     <router-view v-slot="{ Component, route }">
         <transition :name="route.meta.transitionName">
             <!-- key forces transition on viewport also viewport fixes problem with multi root comps -->
-            <div
-                :key="route.path"
-                class="viewport"
-            >
+            <div :key="route.path" class="viewport">
                 <component :is="Component" />
             </div>
         </transition>
     </router-view>
+
+    <a href="https://hits.seeyoufarm.com" style="display: none">
+        >
+        <img
+            src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fethanconneely.com&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true"
+        />
+    </a>
 </template>
 
 <script setup>
@@ -76,8 +80,8 @@ router.afterEach((to, from) => {
     }
 }
 
-.launcher{
-    --navbarHeight:0;
+.launcher {
+    --navbarHeight: 0;
 }
 
 body {

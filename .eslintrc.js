@@ -27,6 +27,7 @@ module.exports = {
                 "max": 10,
                 "allowFirstLine": true
             }
-        }]
+        }],
+        "vue/html-self-closing": ["off"]
     },
 };
