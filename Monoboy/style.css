@@ -20,4 +20,12 @@ body
 #viewport
 {
     image-rendering: pixelated;
+    cursor: pointer;
+}
+
+#file-picker
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }

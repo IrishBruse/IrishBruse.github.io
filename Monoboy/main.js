@@ -2,10 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 import { dotnet } from './dotnet.js'
 
-console.log("Create");
 globalThis.Dotnet = await dotnet.create();
 
-console.log("Run");
 await dotnet.run()
 
 let body = document.querySelector("body");
@@ -23,13 +21,36 @@ viewport.addEventListener("drop", async (e) =>
     e.preventDefault();
     e.dataTransfer.dropEffect = "copy";
 
-    for (const file of e.dataTransfer.files)
+    let array = await e.dataTransfer.files[0].arrayBuffer()
+    let data = new Uint8Array(array);
+    emulator.OpenFile(data);
+    paused = false;
+});
+
+const pickerOpts = {
+    types: [
+        {
+            description: 'Gameboy Rom',
+            accept: {
+                'application/gb': ['.gb', '.gbc']
+            }
+        },
+    ],
+    excludeAcceptAllOption: true,
+    multiple: false
+};
+
+viewport.addEventListener("click", async (e) =>
+{
+    window.showOpenFilePicker(pickerOpts).then(async (files) =>
     {
+        let file = await files[0].getFile();
+        console.log(file);
         let array = await file.arrayBuffer()
         let data = new Uint8Array(array);
         emulator.OpenFile(data);
         paused = false;
-    }
+    }).catch()
 });
 
 viewport.addEventListener("dragover", (e) =>
