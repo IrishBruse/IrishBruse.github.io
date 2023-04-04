@@ -1,4 +1,9 @@
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Ethan Conneely - Leaderboard</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
     <style type="text/css">
         :root {
             font-family: 'Open Sans', sans-serif;
@@ -26,10 +31,18 @@
             justify-content: space-around;
         }
 
+        a {
+            text-decoration: none;
+            color: #58b142;
+            font-size: 1.5em;
+            padding: 1%;
+        }
+
+        a:hover {
+            color: #D4D4D4;
+        }
+
     </style>
-
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -45,52 +58,54 @@
     </div>
 
     <script>
-        fetch("http://dreamlo.com/lb/" + location.search.slice(1) + "/json")
-            .then(response => response.json())
-            .then(response => response.dreamlo.leaderboard.entry)
-            .then(scores =>
+        async function getScores()
+        {
+            let res = await fetch("http://dreamlo.com/lb/" + location.search.slice(1) + "/json")
+            let data = await res.json()
+            let scores = data.dreamlo.leaderboard.entry;
+
+            if (scores.length === undefined && scores !== null)
             {
-                if (scores.length === undefined && scores !== null)
-                {
-                    scores = [scores];
-                }
+                scores = [scores];
+            }
 
-                var td;
-                var tr;
-                var th;
-                var table;
+            var td;
+            var tr;
+            var th;
+            var table;
 
-                table = document.createElement("table");
+            table = document.createElement("table");
+            tr = document.createElement("tr");
+            th = document.createElement("th");
+
+            th.innerHTML = "Name";
+            tr.appendChild(th);
+            th = document.createElement("th");
+            th.innerHTML = "Time";
+            tr.appendChild(th);
+            table.append(tr);
+            th = document.createElement("th");
+            th.innerHTML = "Coins";
+            tr.appendChild(th);
+            table.append(tr);
+
+            for (var i = 0; i < scores.length; i++)
+            {
+                console.log(scores[i]);
                 tr = document.createElement("tr");
-                th = document.createElement("th");
-
-                th.innerHTML = "Name";
-                tr.appendChild(th);
-                th = document.createElement("th");
-                th.innerHTML = "Time";
-                tr.appendChild(th);
+                td = document.createElement("td");
+                td.innerHTML = scores[i].text;
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.innerHTML = ((2147483647 - parseInt(scores[i].score)) / 100.0) + "s";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.innerHTML = scores[i].seconds;
+                tr.appendChild(td);
                 table.append(tr);
-                th = document.createElement("th");
-                th.innerHTML = "Coins";
-                tr.appendChild(th);
-                table.append(tr);
-
-                for (var i = 0; i < scores.length; i++)
-                {
-                    console.log(scores[i]);
-                    tr = document.createElement("tr");
-                    td = document.createElement("td");
-                    td.innerHTML = scores[i].text;
-                    tr.appendChild(td);
-                    td = document.createElement("td");
-                    td.innerHTML = ((2147483647 - parseInt(scores[i].score)) / 100.0) + "s";
-                    tr.appendChild(td);
-                    td = document.createElement("td");
-                    td.innerHTML = scores[i].seconds;
-                    tr.appendChild(td);
-                    table.append(tr);
-                }
-                document.body.appendChild(table);
-            });
+            }
+            document.body.appendChild(table);
+        }
+        getScores();
     </script>
 </body>
