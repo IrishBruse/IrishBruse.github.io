@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Ethan Conneely - Platformer</title>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 
     <style>
         html,
@@ -44,14 +43,14 @@
         createUnityInstance(document.querySelector("#unity-canvas"), {
             dataUrl: "Build/platformer.data",
             frameworkUrl: "Build/platformer.framework.js",
-        codeUrl: "Build/platformer.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "IrishBruse",
-        productName: "Platformer",
-        productVersion: "1.0",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      });
+            codeUrl: "Build/platformer.wasm",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "IrishBruse",
+            productName: "Platformer",
+            productVersion: "1.0",
+            // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+            // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+        });
     </script>
     <script>
 
