@@ -78,6 +78,11 @@
 
         resizeCanvas();
 
+        if (location.href.startsWith("https"))
+        {
+            location.href = location.href.replace("https", "http");
+        }
+
     </script>
 </body>
 
