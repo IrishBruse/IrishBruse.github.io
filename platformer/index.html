@@ -45,15 +45,13 @@
             }
 
             createUnityInstance(document.querySelector("#unity-canvas"), {
-                dataUrl: "Build/5ea5aabd5ebc1c2b3e4782b502ee7639.data",
-                frameworkUrl: "Build/08f6940edfbbe96efec90c99c2efa388.js",
-                codeUrl: "Build/01f4669939af3eeba672bb62101acf35.wasm",
+                dataUrl: "Build/platformer.data.br",
+                frameworkUrl: "Build/platformer.framework.js.br",
+                codeUrl: "Build/platformer.wasm.br",
                 streamingAssetsUrl: "StreamingAssets",
                 companyName: "IrishBruse",
                 productName: "Platformer",
                 productVersion: "1.0",
-                // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-                // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
             });
         }
 
@@ -83,7 +81,7 @@
 
         if (location.href.startsWith("https"))
         {
-            document.body.innerHTML = "Please use http:// as https is not supported for the online leaderboard."
+            document.body.innerHTML = "Please use http:// as https is not supported for the online leaderboard.";
         }
         else
         {
