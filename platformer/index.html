@@ -14,8 +14,37 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #fff;
+            background-color: #9cdcf1;
             color: #000;
+        }
+
+        .flex {
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            background-color: #fff;
+        }
+
+        .progress {
+            position: relative;
+            width: 40%;
+            height: 40px;
+            background-color: #fff;
+
+            border-color: black;
+            border-style: solid;
+            border-width: 3px;
+
+            box-shadow: 10px 10px rgba(0, 0, 0, 0.26);
+        }
+
+        #fill {
+            background-color: #282844;
+            height: 100%;
         }
 
     </style>
@@ -23,9 +52,32 @@
 
 <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas"></canvas>
+    <div class="flex">
+        <div class="progress">
+            <div id="fill"></div>
+        </div>
+    </div>
     <script src="Build/platformer.loader.js"></script>
     <script>
-        function Test()
+        const evenCanvasSize = "false";
+        let fill = document.getElementById("fill");
+
+        function CreateUnity()
+        {
+            createUnityInstance(document.querySelector("#unity-canvas"), {
+                dataUrl: "Build/platformer.data",
+                frameworkUrl: "Build/platformer.framework.js",
+                codeUrl: "Build/platformer.wasm",
+                memoryUrl: "Build/",
+                symbolsUrl: "Build/",
+                streamingAssetsUrl: "StreamingAssets",
+                companyName: "IrishBruse",
+                productName: "Platformer",
+                productVersion: "1.0",
+            }, Progress);
+        }
+
+        function CheckMobile()
         {
             if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent))
             {
@@ -42,50 +94,42 @@
 
                 document.body.style.textAlign = "left";
             }
-
-            createUnityInstance(document.querySelector("#unity-canvas"), {
-                dataUrl: "Build/platformer.data",
-                frameworkUrl: "Build/platformer.framework.js",
-                codeUrl: "Build/platformer.wasm",
-                streamingAssetsUrl: "StreamingAssets",
-                companyName: "IrishBruse",
-                productName: "Platformer",
-                productVersion: "1.0",
-            });
         }
 
-        function resizeCanvas()
+        function Progress(percentage)
+        {
+            fill.style.width = `${100 * percentage}%`;
+
+            if (percentage == 1)
+            {
+                setTimeout(function ()
+                {
+                    document.querySelector(".flex").style.display = "none";
+                }, 500);
+            }
+        }
+
+        function ResizeCanvas()
         {
             let unity_canvas = document.getElementById("unity-canvas");
             let width = window.innerWidth;
             let height = window.innerHeight;
 
-            if (width % 2 != 0)
+            if (evenCanvasSize)
             {
-                width -= 1;
-            }
-
-            if (height % 2 != 0)
-            {
-                height -= 1;
+                width -= width % 2;
+                height -= height % 2;
             }
 
             unity_canvas.style.width = width + "px";
             unity_canvas.style.height = height + "px";
         }
 
-        window.addEventListener("resize", resizeCanvas, false);
+        window.addEventListener("resize", ResizeCanvas, false);
 
-        resizeCanvas();
-
-        if (location.href.startsWith("https"))
-        {
-            document.body.innerHTML = "<h1>Please use http:// as https is not supported for the online leaderboard.</h1>";
-        }
-        else
-        {
-            Test();
-        }
+        ResizeCanvas();
+        CreateUnity();
+        CheckMobile();
 
     </script>
 </body>
