@@ -127,15 +127,15 @@
 
         window.addEventListener("resize", ResizeCanvas, false);
 
-        if (location.href.startsWith("http"))
+        if (location.href.startsWith("https"))
+        {
+            document.body.innerHTML = "<h1> Please use http for the leaderboard to work </h1>"
+        }
+        else
         {
             ResizeCanvas();
             CreateUnity();
             CheckMobile();
-        }
-        else
-        {
-            document.body.innerHTML = "<h1> Please use http for the leaderboard to work </h1>"
         }
 
     </script>
